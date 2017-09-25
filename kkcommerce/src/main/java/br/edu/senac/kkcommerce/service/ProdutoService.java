@@ -14,11 +14,11 @@ public class ProdutoService extends ServiceBase {
         super(new FakeProdutoDAO());
     }
 
-    public List<Produto> listar() {
+    public List<Produto> listar() throws Exception {
         return dao.listar();
     }
 
-    public void salvar(Produto p) {
+    public void salvar(Produto p) throws Exception {
         if (dao.getById(p.getId()) == null) {
             dao.inserir(p);
         } else {
@@ -26,11 +26,11 @@ public class ProdutoService extends ServiceBase {
         }
     }
     
-    public void remover(int id){
+    public void remover(int id) throws Exception{
         dao.excluir(id);
     }
     
-    public Produto buscar(int id){
+    public Produto buscar(int id) throws Exception{
         return (Produto) dao.getById(id);
     }
 }
