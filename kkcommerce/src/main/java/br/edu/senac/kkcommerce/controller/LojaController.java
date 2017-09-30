@@ -1,4 +1,4 @@
-package br.edu.senac.kkcommerce;
+package br.edu.senac.kkcommerce.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
