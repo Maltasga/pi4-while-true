@@ -15,7 +15,6 @@ public class Produto implements IEntidade {
     private String descricao;
     private int idColecao;
     private String tipo;
-    private String cor;
     private double valor;
     private boolean ativo;
     private Date dataCadastro;
@@ -23,13 +22,12 @@ public class Produto implements IEntidade {
     private ArrayList<Estoque> estoque;
     private ArrayList<ImagemProduto> imagens;
 
-    public Produto(int id, String nome, String descricao, int idColecao, String tipo, String cor, double valor, boolean ativo, Date dataCadastro) {
+    public Produto(int id, String nome, String descricao, int idColecao, String tipo, double valor, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.idColecao = idColecao;
         this.tipo = tipo;
-        this.cor = cor;
         this.valor = valor;
         this.ativo = ativo;
         this.dataCadastro = dataCadastro;
@@ -74,15 +72,6 @@ public class Produto implements IEntidade {
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public void setCor(String cor) {
-        this.cor = cor;
-    }
-
     public double getValor() {
         return valor;
     }

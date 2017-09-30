@@ -31,7 +31,6 @@ public class ProdutoDao implements IDaoBase<Produto> {
             statement.setString(3, obj.getDescricao());
             statement.setInt(4, obj.getIdColecao());
             statement.setString(5, obj.getTipo());
-            statement.setString(6, obj.getCor());
             statement.setDouble(7, obj.getValor());
             statement.setBoolean(9, obj.isAtivo());
             statement.setDate(10, Util.toSQLDate(obj.getDataCadastro()));
@@ -125,7 +124,6 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getString("Descricao"),
                         result.getInt("IdColecao"),
                         result.getString("Tipo"),
-                        result.getString("Cor"),
                         result.getDouble("Valor"),
                         result.getBoolean("Ativo"),
                         Util.toUtilDate(result.getDate("DataCadastro")));

@@ -16,6 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class AdminController extends BaseAdminController {
 
+    @GetMapping
+    public ModelAndView index() {
+        return new ModelAndView("home/index.html");
+    }
+
     @GetMapping("/entrar")
     public ModelAndView login(Model model) {
         model.addAttribute("user", new Usuario());
@@ -31,10 +36,5 @@ public class AdminController extends BaseAdminController {
             model.addAttribute("msg", "Usuário e/ou senha inválidos");
             return new ModelAndView("home/login.html");
         }
-    }
-
-    @GetMapping
-    public ModelAndView index() {
-        return new ModelAndView("home/index.html");
     }
 }
