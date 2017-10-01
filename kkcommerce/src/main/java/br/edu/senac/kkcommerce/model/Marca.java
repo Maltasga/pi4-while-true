@@ -4,12 +4,11 @@ package br.edu.senac.kkcommerce.model;
  *
  * @author While True
  */
-public class Colecao {
-
+public class Marca {
     private int id;
     private String nome;
 
-    public Colecao(int id, String nome) {
+    public Marca(int id, String nome) {
         this.id = id;
         this.nome = nome;
     }
@@ -28,5 +27,5 @@ public class Colecao {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
+    }       
 }

@@ -1,7 +1,7 @@
 package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
-import br.edu.senac.kkcommerce.model.Colecao;
+import br.edu.senac.kkcommerce.model.Marca;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,16 +10,16 @@ import java.util.ArrayList;
 
 /**
  *
- * @author While True
+ * @author while true
  */
-public class ColecaoDao implements IDaoBase<Colecao> {
+public class MarcaDao implements IDaoBase<Marca> {
 
     Connection conexao = null;
 
     @Override
-    public ArrayList<Colecao> listar() throws SQLException {
-        ArrayList<Colecao> colecoes = new ArrayList<>();
-        String query = "SELECT ID, NOME FROM Colecao";
+    public ArrayList<Marca> listar() throws SQLException {
+        ArrayList<Marca> marcas = new ArrayList<>();
+        String query = "SELECT ID, NOME FROM Marca";
 
         PreparedStatement statement = null;
         ResultSet result = null;
@@ -30,7 +30,7 @@ public class ColecaoDao implements IDaoBase<Colecao> {
             result = statement.executeQuery();
 
             while (result.next()) {
-                colecoes.add(new Colecao(
+                marcas.add(new Marca(
                         result.getInt("ID"),
                         result.getString("NOME"))
                 );
@@ -48,13 +48,13 @@ public class ColecaoDao implements IDaoBase<Colecao> {
                 conexao.close();
             }
         }
-        return colecoes;
+        return marcas;
     }
 
     @Override
-    public Colecao getById(int id) throws SQLException, Exception {
-        Colecao colecao = null;
-        String query = "SELECT NOME FROM Colecao WHERE ID = ?";
+    public Marca getById(int id) throws SQLException, Exception {
+        Marca marca = null;
+        String query = "SELECT NOME FROM Marca WHERE ID = ?";
 
         PreparedStatement statement = null;
         ResultSet result = null;
@@ -65,7 +65,7 @@ public class ColecaoDao implements IDaoBase<Colecao> {
             result = statement.executeQuery();
 
             while (result.next()) {
-                colecao = new Colecao(id, result.getString("NOME"));
+                marca = new Marca(id, result.getString("NOME"));
             }
         } finally {
             if (result != null && !result.isClosed()) {
@@ -80,7 +80,7 @@ public class ColecaoDao implements IDaoBase<Colecao> {
                 conexao.close();
             }
         }
-        return colecao;
+        return marca;
     }
 
     @Override
@@ -88,13 +88,14 @@ public class ColecaoDao implements IDaoBase<Colecao> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+
     @Override
-    public void inserir(Colecao obj) throws SQLException, Exception {
+    public void inserir(Marca obj) throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void atualizar(Colecao obj) throws SQLException, Exception {
+    public void atualizar(Marca obj) throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

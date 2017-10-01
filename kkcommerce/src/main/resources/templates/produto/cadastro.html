@@ -11,7 +11,8 @@
                 <h1>Novo Produto</h1>
             </div>               
             <div class="col-lg-6">
-                <form action="#" method="post">
+                <form action="#" method="post" enctype="multipart/form-data"
+                      th:action="cadastrar-produto">
                     <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" required />
@@ -23,18 +24,22 @@
                     <div class="form-group">
                         <div class="form-inline">
                             <label>Coleção</label>
-                            <select name="idColecao" class="form-control" required>
+                            <select name="idColecao" class="form-control">
                                 <option></option>
                             </select>
                             <label>Tipo</label>
-                            <select name="tipo" class="form-control" required>
+                            <select name="idMarca" class="form-control">
                                 <option></option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Valor</label>
-                        <input class="form-control" typet="text" required />
+                        <input class="form-control" name="valor" typet="text" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Imagem do produto</label>
+                        <input type="file" name="arquivo" />
                     </div>
                     <div class="text-right">
                         <input type="submit" value="Salvar" class="btn btn-primary" />

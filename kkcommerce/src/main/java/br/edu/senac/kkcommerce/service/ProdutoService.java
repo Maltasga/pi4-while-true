@@ -1,6 +1,6 @@
 package br.edu.senac.kkcommerce.service;
 
-import br.edu.senac.kkcommerce.dao.FakeProdutoDAO;
+import br.edu.senac.kkcommerce.dao.ProdutoDao;
 import br.edu.senac.kkcommerce.model.Produto;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class ProdutoService extends ServiceBase {
 
     public ProdutoService() {
-        super(new FakeProdutoDAO());
+        super(new ProdutoDao());
     }
 
     public List<Produto> listar() throws Exception {

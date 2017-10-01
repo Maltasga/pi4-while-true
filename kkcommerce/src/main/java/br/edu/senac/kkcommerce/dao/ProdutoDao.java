@@ -20,20 +20,18 @@ public class ProdutoDao implements IDaoBase<Produto> {
     @Override
     public void inserir(Produto obj) throws SQLException, Exception {
         String query = "INSERT INTO Produto "
-                + "(Codigo, Nome, Descricao, IdColecao, Tipo, Cor, ValorProducao, ValorVenda, Ativo, DataCadastro) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "(NOME, DESCRICAO, ID_MARCA, ID_COLECAO, Valor) "
+                + "VALUES (?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setString(2, obj.getNome());
-            statement.setString(3, obj.getDescricao());
+            statement.setString(1, obj.getNome());
+            statement.setString(2, obj.getDescricao());
+            statement.setInt(3, obj.getIdMarca());
             statement.setInt(4, obj.getIdColecao());
-            statement.setString(5, obj.getTipo());
-            statement.setDouble(7, obj.getValor());
-            statement.setBoolean(9, obj.isAtivo());
-            statement.setDate(10, Util.toSQLDate(obj.getDataCadastro()));
+            statement.setDouble(5, obj.getValor());
 
             statement.execute();
         } finally {
@@ -49,7 +47,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
 
     @Override
     public void atualizar(Produto obj) throws SQLException, Exception {
-        String query = "UPDATE Produto SET Nome = ?, Descricao = ?, ValorProducao = ?, ValorVenda = ? "
+        String query = "UPDATE Produto SET Nome = ?, Descricao = ?, valor = ?"
                 + "WHERE Id = ?";
         PreparedStatement statement = null;
 
@@ -97,19 +95,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
     public ArrayList<Produto> listar() throws SQLException {
         ArrayList<Produto> produtos = new ArrayList<>();
 
-        String query = "SELECT "
-                + "obj.Id, "
-                + "obj.Codigo, "
-                + "obj.Nome, "
-                + "obj.Descricao, "
-                + "obj.IdColecao, "
-                + "c.Nome AS NomeColecao, "
-                + "obj.Tipo, obj.Cor, "
-                + "obj.ValorProducao, "
-                + "obj.ValorVenda, obj.Ativo, "
-                + "obj.DataCadastro "
-                + "FROM Produto p "
-                + "JOIN Colecao c ON obj.IdColecao = c.ID";
+        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO";
         PreparedStatement statement = null;
 
         try {
@@ -119,14 +105,14 @@ public class ProdutoDao implements IDaoBase<Produto> {
             Produto p = null;
             while (result.next()) {
                 p = new Produto(
-                        result.getInt("Id"),
-                        result.getString("Nome"),
-                        result.getString("Descricao"),
-                        result.getInt("IdColecao"),
-                        result.getString("Tipo"),
-                        result.getDouble("Valor"),
-                        result.getBoolean("Ativo"),
-                        Util.toUtilDate(result.getDate("DataCadastro")));
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("DESCRICAO"),
+                        result.getInt("ID_COLECAO"),
+                        result.getInt("ID_MARCA"),
+                        result.getDouble("VALOR"),
+                        result.getBoolean("ATIVO"),
+                        Util.toUtilDate(result.getDate("DT_CADASTRO")));
                 produtos.add(p);
 
             }
@@ -144,6 +130,37 @@ public class ProdutoDao implements IDaoBase<Produto> {
 
     @Override
     public Produto getById(int id)  throws SQLException, Exception{
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Produto produto = null;
+
+        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHEREID = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                produto = new Produto(
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("DESCRICAO"),
+                        result.getInt("ID_COLECAO"),
+                        result.getInt("ID_MARCA"),
+                        result.getDouble("VALOR"),
+                        result.getBoolean("ATIVO"),
+                        Util.toUtilDate(result.getDate("DT_CADASTRO")));
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return produto;
     }
 }

@@ -1,43 +1,48 @@
 package br.edu.senac.kkcommerce.model;
 
-import br.edu.senac.kkcommerce.dao.IEntidade;
 import java.util.ArrayList;
 import java.util.Date;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
  * @author While True
  */
-public class Produto implements IEntidade {
+public class Produto {
 
-    private int id;
+    private Integer id;
     private String nome;
     private String descricao;
-    private int idColecao;
-    private String tipo;
-    private double valor;
-    private boolean ativo;
+    private Integer idColecao;
+    private Integer idMarca;
+    private Double valor;
+    private Boolean ativo;
     private Date dataCadastro;
     private Colecao colecao;
     private ArrayList<Estoque> estoque;
     private ArrayList<ImagemProduto> imagens;
 
-    public Produto(int id, String nome, String descricao, int idColecao, String tipo, double valor, boolean ativo, Date dataCadastro) {
+    private MultipartFile arquivo;
+
+    public Produto() {
+    }
+
+    public Produto(int id, String nome, String descricao, int idColecao, int idMarca, double valor, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.idColecao = idColecao;
-        this.tipo = tipo;
+        this.idMarca = idMarca;
         this.valor = valor;
         this.ativo = ativo;
         this.dataCadastro = dataCadastro;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -57,34 +62,35 @@ public class Produto implements IEntidade {
         this.descricao = descricao;
     }
 
-    public int getIdColecao() {
+    public Integer getIdColecao() {
         return idColecao;
     }
 
-    public void setIdColecao(int idColecao) {
+    public void setIdColecao(Integer idColecao) {
         this.idColecao = idColecao;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Integer getIdMarca() {
+        return idMarca;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setIdMarca(Integer idMarca) {
+        this.idMarca = idMarca;
     }
-    public double getValor() {
+
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public boolean isAtivo() {
+    public Boolean isAtivo() {
         return ativo;
     }
 
-    public void setAtivo(boolean ativo) {
+    public void setAtivo(Boolean ativo) {
         this.ativo = ativo;
     }
 
@@ -119,9 +125,12 @@ public class Produto implements IEntidade {
     public void addImagem(ImagemProduto imagem) {
         this.imagens.add(imagem);
     }
+    
+    public MultipartFile getArquivo() {
+        return arquivo;
+    }
 
-    @Override
-    public boolean equals(Object o) {
-        return ((Produto) o).getId() == this.id;
+    public void setArquivo(MultipartFile arquivo) {
+        this.arquivo = arquivo;
     }
 }

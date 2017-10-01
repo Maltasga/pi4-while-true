@@ -15,18 +15,19 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProdutoController extends BaseAdminController {
 
-    @GetMapping("/produtos")
+    @GetMapping("/listar-produtos")
     public ModelAndView index() {
         return new ModelAndView("produto/index.html");
     }
 
-    @GetMapping("/cadastrar")
+    @GetMapping("/cadastrar-produto")
     public ModelAndView cadastrar() {
         return new ModelAndView("produto/cadastro");
     }
 
-    @PostMapping("/cadastrar")
+    @PostMapping("/cadastrar-produto")
     public ModelAndView cadastrar(@ModelAttribute Produto produto, ModelMap model) {
-        return new ModelAndView("redirect:/produtos");
+        
+        return new ModelAndView("redirect:/listar-produtos");
     }
 }
