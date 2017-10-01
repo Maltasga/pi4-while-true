@@ -25,11 +25,13 @@
                         <div class="form-inline">
                             <label>Coleção</label>
                             <select name="idColecao" class="form-control">
-                                <option></option>
+                                <option value="" selected>Selecione a coleção</option>
+                                <option th:each="c : ${colecoes}" value="${c.id}" th:text="${c.nome}"></option>
                             </select>
                             <label>Tipo</label>
                             <select name="idMarca" class="form-control">
-                                <option></option>
+                                <option value="" selected>Selecione a marca</option>
+                                <option th:each="m : ${marcas}" value="${m.id}" th:text="${m.nome}"></option>
                             </select>
                         </div>
                     </div>
