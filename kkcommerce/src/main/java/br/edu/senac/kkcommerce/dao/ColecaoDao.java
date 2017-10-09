@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -16,15 +18,18 @@ public class ColecaoDao implements IDaoBase<Colecao> {
 
     Connection conexao = null;
 
+    @Autowired
+    DataSource ds;
+
     @Override
-    public ArrayList<Colecao> listar() throws SQLException {
+    public ArrayList<Colecao> listar() throws SQLException, Exception {
         ArrayList<Colecao> colecoes = new ArrayList<>();
         String query = "SELECT ID, NOME FROM Colecao";
 
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
-            conexao = ConnectionUtils.getConnection();
+            conexao = ds.getConnection();// ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
 
             result = statement.executeQuery();
@@ -35,6 +40,8 @@ public class ColecaoDao implements IDaoBase<Colecao> {
                         result.getString("NOME"))
                 );
             }
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
         } finally {
             if (result != null && !result.isClosed()) {
                 result.close();
