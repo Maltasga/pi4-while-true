@@ -1,6 +1,6 @@
 package br.edu.senac.kkcommerce.service;
 
-import br.edu.senac.kkcommerce.dao.ColecaoDaoFAKE;
+import br.edu.senac.kkcommerce.dao.ColecaoDao;
 import br.edu.senac.kkcommerce.model.Colecao;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class ColecaoService extends ServiceBase {
 
     public ColecaoService() {
-        super(new ColecaoDaoFAKE());
+        super(new ColecaoDao());
     }
 
     public List<Colecao> listar() throws Exception {
