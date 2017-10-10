@@ -18,13 +18,13 @@ public class AdminController extends BaseAdminController {
 
     @GetMapping
     public ModelAndView index() {
-        return new ModelAndView("home/index.html");
+        return new ModelAndView("admin/index.html");
     }
 
     @GetMapping("/entrar")
     public ModelAndView login(Model model) {
         model.addAttribute("user", new Usuario());
-        return new ModelAndView("home/login.html");
+        return new ModelAndView("admin/login.html");
     }
 
     @PostMapping("/entrar")
@@ -34,7 +34,7 @@ public class AdminController extends BaseAdminController {
         } else {
             model.addAttribute("user", usuario);
             model.addAttribute("msg", "Usuário e/ou senha inválidos");
-            return new ModelAndView("home/login.html");
+            return new ModelAndView("admin/login.html");
         }
     }
 }
