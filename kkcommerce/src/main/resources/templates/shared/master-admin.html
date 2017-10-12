@@ -20,20 +20,27 @@
               th:href="@{/css/kkcoolwear.ecommerce.css}" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-<!--        <div id="barra-sup"></div>
+        <div id="barra-sup"></div>
         <div class="container">
             <div class="row">
-                <div class="col-lg-4 col-xs-4">
-                    <img class="img-responsive" th:src="@{/imagens/logo-lg.png}"
-                         src="../../static/imagens/logo-lg.png"
-                         alt="E-commerce KK Coolwear"/>    
+                <div class="col-lg-4 col-xs-10">
+                    <a href="#" th:href="@{/kk-admin}">
+                        <img class="img-responsive" th:src="@{/imagens/logo-lg.png}"
+                             src="../../static/imagens/logo-lg.png"
+                             alt="E-commerce KK Coolwear"/>
+                    </a>
                 </div>
-                <div class="col-lg-8 col-xs-4">
-                    <label>Usuário logado</label>
+                <div class="col-lg-4 col-xs-10">
+                    <div style="padding: 15px;"
+                         <!-- INFORMAÇÕES DO USUÁRIO LOGADO -->
+                         <p><label>Usuário:</label>&nbsp;<span>nome_do_usuario</span></p>
+                        <p><label>Email:</label>&nbsp;<span>email_do_usuario</span></p>
+                    </div>
                 </div>
             </div>
-        </div>-->
-        <div class="container" layout:fragment="conteudo">
+        </div>
+        <div class="container">
+            <div layout:fragment="conteudo"></div>
         </div>
     </body>
 </html>

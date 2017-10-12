@@ -40,6 +40,11 @@
     </head>
     <body>
         <div id="barra-sup"></div>
+        <div class="col-lg-3">
+            <img class="img-responsive" th:src="@{/imagens/logo-lg.png}"
+                 src="../../static/imagens/logo-lg.png"
+                 alt="E-commerce KK Coolwear"/>    
+        </div>
         <div class="container">
             <div id="form-login">
                 <form th:action="entrar" th:object="${user}" action="entrar" method="post">

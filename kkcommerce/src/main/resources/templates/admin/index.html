@@ -3,12 +3,40 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{shared/master-admin}">
     <head>
-        <title>KK Coolwear</title>
+        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
     </head>
     <body>
-        <div layout:fragment="conteudo">
-            <h1>Index admin</h1>
+        <div layout:fragment="conteudo" id="corpo">
+            <div class="col-xs-12 col-md-2 col-lg-4">
+                <a href="#" th:href="@{/kk-admin/listar-produtos}" title="Manutenção de Produtos">
+                    <img class="img-responsive img-acesso" th:src="@{/imagens/ger_produtos.png}"
+                         src="../../static/imagens/ger_produtos.png"
+                         alt="Manutenção de Produtos" />
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-2 col-lg-4">
+                <a href="#" title="Gestão de Marketing">
+                    <img class="img-responsive img-acesso" th:src="@{/imagens/ger_promocao.png}"
+                         src="../../static/imagens/ger_promocao.png"
+                         alt="Gestão de Marketing" />
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-2 col-lg-4">
+                <a href="#" title="Relatórios">
+                    <img class="img-responsive img-acesso" th:src="@{/imagens/ger_reports.png}"
+                         src="../../static/imagens/ger_reports.png"
+                         alt="Relatórios" />
+                </a>
+            </div>
+            <div class="col-xs-12 col-md-2 col-lg-4">
+                <a href="#" title="Manutenção de Usuários">
+                    <img class="img-responsive img-acesso" th:src="@{/imagens/ger_usuarios.png}"
+                         src="../../static/imagens/ger_usuarios.png"
+                         alt="Manutenção de Usuários" />
+                </a>
+            </div>
         </div>
-
     </body>
 </html>
