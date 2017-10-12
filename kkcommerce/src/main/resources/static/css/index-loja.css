@@ -1,0 +1,194 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    margin-top: 20px;
+}
+.glyphicon-large {
+    font-size: 2.5em;
+}
+
+.font-text{
+    margin-top: 2%;
+    font-size: 0.9em;
+}
+
+.flex{
+    display:flex;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+.margin-left{
+    margin-left: 2%;
+}
+
+.txtPesquisa{
+    box-shadow: 0 0 0 0;
+    border: 0 none;
+    outline: 0;
+    border-bottom: solid;
+    display: block;
+    width: 50%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;   
+}
+.icon-search{
+    position: relative;
+    right: 2.2em;
+    top: 2.5em;
+}
+
+.pesquisa{
+    padding: 3%;
+}
+
+.icons{
+    font-size: 2.7vw;
+}
+
+.img-logo{
+    background: url(../content/imagens/logo-lg.png) no-repeat;
+    width: 31em;
+    height: 7.1em;
+}
+.icons,.img-logo:hover{
+    cursor: pointer;
+}
+.navbar-default{
+    border:none;
+}
+
+.navbar{
+    background-color: white;
+    box-shadow: 0px 12px 12px -16px #000;
+}
+
+.fundo{
+    box-shadow: 2px 13px 60px 2px rgba(0,0,0,0.53);
+    /*background: url(http://api.thumbr.it/whitenoise-361x370.png?);*/
+    background:#f7f7f7;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.teste{
+    padding:1.5% !important;
+}
+
+thead{
+    background: #3598dc;
+    color: #FFF;
+}
+
+.tabela-pedidos {
+    /*    margin-top: 15px;
+        width: 100%;*/
+    text-align: center;
+    overflow:hidden;
+    border-collapse:separate;
+    border: solid #3598dc 1px;
+    border-radius: 10px;
+}
+
+
+.tabela-pedidos td {
+    color: #aaa;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #3598dc;
+}
+
+.tabela-pedidos th{
+    /*    color: white;*/
+    background-color: #3598dc;
+    font-weight: normal;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.produto-descricao{
+    margin-top: 12%;
+}
+
+.margem-valores{
+    margin-top: 33%; 
+}
+/******@MEDIAS*******/
+
+@media screen and (max-width: 700px){
+    .header-lg {
+        display: none;
+    }
+
+    .header-sm {
+        display: block;
+    }
+
+    .produto>center{
+        padding: 20px;
+        min-height: 200px;
+    }
+}
+
+@media screen and (max-width: 993px){
+    .img-logo{
+        background: url(../content/imagens/logo-sm.png) no-repeat;
+    }
+
+    .pesquisa{
+        position: relative;
+        bottom: 5.5em;
+        left: 5em;
+    }
+
+    .contaner-icons{
+        position: relative;
+        bottom: 10em;
+    }
+}
+
+@media screen and (max-width: 2000px) and (min-width: 994px) {
+    .txtPesquisa{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 993px) and (min-width: 805px) {
+    .txtPesquisa{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 600px){
+    .txtPesquisa{
+        width: 29%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .txtPesquisa{
+        width: 90% !important;
+    }
+    .pesquisa{
+        bottom: 1.5em;
+        left: 0em;
+    }
+
+    .contaner-icons{
+        bottom: 8em;
+    }
+    .icons{
+        font-size: 5vw;
+    }
+}
