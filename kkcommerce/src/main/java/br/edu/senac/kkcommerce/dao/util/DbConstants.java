@@ -7,8 +7,8 @@ package br.edu.senac.kkcommerce.dao.util;
  */
 public class DbConstants {
     
-    public static final String URL = "jdbc:derby://localhost:1527/ecommerceDB";
-    public static final String USER = "kkadmin";
-    public static final String PASSWORD = "123456";
+    public static final String URL = "jdbc:mysql://localhost:3306/ecommercedb";
+    public static final String USER = "root";
+    public static final String PASSWORD = "root";
     
 }

@@ -3,11 +3,32 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{shared/master-admin}">
     <head>
-        <title>KK Coolwear</title>
+        <title>KK Coolwear - Produtos</title>
+        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
     </head>
     <body>
-        <div layout:fragment="conteudo">
+        <div layout:fragment="conteudo" class="corpo">
             <h1>Produto cadastrados</h1>
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${produtos}">
+                        <td th:text="${p.nome}"></td>
+                        <td th:text="${p.marca.nome}"></td>
+                        <td th:text="${p.valor}"></td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </body>
 </html>

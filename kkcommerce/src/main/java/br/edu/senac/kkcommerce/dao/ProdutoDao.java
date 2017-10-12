@@ -1,6 +1,8 @@
 package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
+import br.edu.senac.kkcommerce.model.Colecao;
+import br.edu.senac.kkcommerce.model.Marca;
 import br.edu.senac.kkcommerce.model.Produto;
 import br.edu.senac.kkcommerce.model.Util;
 import java.sql.Connection;
@@ -90,7 +92,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
             }
         }
     }
-    
+
     @Override
     public ArrayList<Produto> listar() throws SQLException {
         ArrayList<Produto> produtos = new ArrayList<>();
@@ -113,6 +115,8 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getDouble("VALOR"),
                         result.getBoolean("ATIVO"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
+                p.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
+                p.setColecao(new Colecao(result.getInt("ID_COLECAO"), result.getString("NM_COLECAO")));
                 produtos.add(p);
 
             }
@@ -129,7 +133,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
     }
 
     @Override
-    public Produto getById(int id)  throws SQLException, Exception{
+    public Produto getById(int id) throws SQLException, Exception {
         Produto produto = null;
 
         String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHEREID = ?";

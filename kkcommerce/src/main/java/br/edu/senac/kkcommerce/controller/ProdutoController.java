@@ -3,6 +3,7 @@ package br.edu.senac.kkcommerce.controller;
 import br.edu.senac.kkcommerce.model.Produto;
 import br.edu.senac.kkcommerce.service.ColecaoService;
 import br.edu.senac.kkcommerce.service.MarcaService;
+import br.edu.senac.kkcommerce.service.ProdutoService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -18,9 +19,16 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class ProdutoController extends BaseAdminController {
 
+    ProdutoService produtoService = new ProdutoService();
+
     @GetMapping("/listar-produtos")
-    public ModelAndView index() {
-        return new ModelAndView("produto/index.html");
+    public ModelAndView index() throws Exception {
+        try {
+            return new ModelAndView("produto/index.html")
+                    .addObject("produtos", produtoService.listar());
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
 
     @GetMapping("/cadastrar-produto")

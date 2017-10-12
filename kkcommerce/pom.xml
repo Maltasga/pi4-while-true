@@ -56,10 +56,10 @@
             <version>2.2.4</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <scope>runtime</scope>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
     </dependencies>
 
     <build>

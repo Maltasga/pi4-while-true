@@ -18,6 +18,7 @@ public class Produto {
     private Double valor;
     private Boolean ativo;
     private Date dataCadastro;
+    private Marca marca;
     private Colecao colecao;
     private ArrayList<Estoque> estoque;
     private ArrayList<ImagemProduto> imagens;
@@ -116,6 +117,14 @@ public class Produto {
 
     public Colecao getColecao() {
         return colecao;
+    }
+
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
     }
 
     public void setImagens(ArrayList<ImagemProduto> imagens) {
