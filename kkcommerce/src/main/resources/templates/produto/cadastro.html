@@ -5,15 +5,29 @@
     <head>
         <title>KK Coolwear - Novo Produto</title>
         <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
+        <style>
+            .label-estoque {
+                display: inline-block;
+                min-width: 25px;
+                margin: 5px;
+                text-align: right;
+            }
+            .campo-estoque {
+                width: 50px;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="conteudo">
             <div class="header">
                 <h1>Novo Produto</h1>
             </div>               
-            <div class="col-lg-6">
-                <form action="#" method="post" enctype="multipart/form-data"
-                      th:action="cadastrar-produto" th:object="${produto}">
+            <form action="#" method="post" enctype="multipart/form-data"
+                  th:action="cadastrar-produto" th:object="${produto}">
+
+                <div class="col-lg-6">
+                    <input type="hidden" name="id"
+                           th:field="*{id}" th:value="${id}" />
                     <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" required
@@ -45,21 +59,37 @@
                         <input class="form-control" name="valor" typet="text" required
                                th:field="*{valor}" />
                     </div>
+                </div>
+
+                <div class="col-lg-6">
                     <div class="form-group">
                         <label>Imagens do produto</label>
                         <input type="file" name="arquivos" th:field="*{arquivos}" multiple  />
                     </div>
-                    <div class="text-right">
-                        <input type="submit" value="Salvar" class="btn btn-primary" />
-                        <a href="#" th:href="@{/kk-admin/listar-produtos}"
-                           <span class="btn btn-default">Cancelar</span>
-                        </a>
+                    <div class="form-group">
+                        <label>Estoque</label>
+                        <ul id="lista-estoque" class="list-unstyled">
+                            <li><div class="label-estoque">PP</div><input class="campo-estoque" type="text" /></li>
+                            <li><div class="label-estoque">P</div><input class="campo-estoque" type="text" /></li>                            
+                            <li><div class="label-estoque">M</div><input class="campo-estoque" type="text" /></li>
+                            <li><div class="label-estoque">G</div><input class="campo-estoque" type="text" /></li>
+                            <li><div class="label-estoque">GG</div><input class="campo-estoque" type="text" /></li>                            
+                            <li><div class="label-estoque">3G</div><input class="campo-estoque" type="text" /></li>
+                        </ul>
                     </div>
-                </form>
-            </div>
+                </div>
+                <div class="col-lg-12">
+                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <a href="#" th:href="@{/kk-admin/listar-produtos}"
+                       <span class="btn btn-default">Cancelar</span>
+                    </a>
+                </div>
+
+            </form>
             <script type="text/javascript">
                 $(function () {
                     $("input[name='valor'").inputmask({"alias": "currency"});
+                    $("input.campo-estoque").inputmask({"alias": "integer"});
                 });
             </script>
         </div>

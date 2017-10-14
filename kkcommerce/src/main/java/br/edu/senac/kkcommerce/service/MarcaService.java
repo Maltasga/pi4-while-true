@@ -1,6 +1,6 @@
 package br.edu.senac.kkcommerce.service;
 
-import br.edu.senac.kkcommerce.dao.MarcaDaoFAKE;
+import br.edu.senac.kkcommerce.dao.MarcaDao;
 import br.edu.senac.kkcommerce.model.Marca;
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
 public class MarcaService extends ServiceBase {
     
     public MarcaService() {
-        super(new MarcaDaoFAKE());
+        super(new MarcaDao());
     }
 
     public List<Marca> listar() throws Exception {
