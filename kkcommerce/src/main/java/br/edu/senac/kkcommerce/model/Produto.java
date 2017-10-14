@@ -23,9 +23,11 @@ public class Produto {
     private ArrayList<Estoque> estoque;
     private ArrayList<ImagemProduto> imagens;
 
-    private MultipartFile arquivo;
+    private MultipartFile[] arquivos;
 
     public Produto() {
+        estoque = new ArrayList<>();
+        imagens = new ArrayList<>();
     }
 
     public Produto(int id, String nome, String descricao, int idColecao, int idMarca, double valor, boolean ativo, Date dataCadastro) {
@@ -139,11 +141,11 @@ public class Produto {
         this.imagens.add(imagem);
     }
     
-    public MultipartFile getArquivo() {
-        return arquivo;
+    public MultipartFile[] getArquivos() {
+        return arquivos;
     }
 
-    public void setArquivo(MultipartFile arquivo) {
-        this.arquivo = arquivo;
+    public void setArquivos(MultipartFile[] arquivo) {
+        this.arquivos = arquivo;
     }
 }

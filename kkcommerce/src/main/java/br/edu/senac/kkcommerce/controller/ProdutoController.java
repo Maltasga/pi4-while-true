@@ -35,7 +35,7 @@ public class ProdutoController extends BaseAdminController {
     public ModelAndView cadastrar(Model model) {
         MarcaService marcaService = new MarcaService();
         ColecaoService colecaoService = new ColecaoService();
-
+        model.addAttribute("produto", new Produto());
         try {
             model.addAttribute("marcas", marcaService.listar());
             model.addAttribute("colecoes", colecaoService.listar());
@@ -48,6 +48,6 @@ public class ProdutoController extends BaseAdminController {
     @PostMapping("/cadastrar-produto")
     public ModelAndView cadastrar(@ModelAttribute Produto produto, ModelMap model) {
 
-        return new ModelAndView("redirect:/listar-produtos");
+        return new ModelAndView("redirect:/kk-admin/listar-produtos");
     }
 }
