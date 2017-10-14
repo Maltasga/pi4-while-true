@@ -127,6 +127,10 @@ public class Produto {
         this.marca = marca;
     }
 
+    public ArrayList<ImagemProduto> getImagens() {
+        return imagens;
+    }
+
     public void setImagens(ArrayList<ImagemProduto> imagens) {
         this.imagens = imagens;
     }

@@ -10,22 +10,41 @@
     </head>
     <body>
         <div layout:fragment="conteudo" class="corpo">
-            <h1>Produto cadastrados</h1>
-            <table class="table table-bordered table-striped">
+            <h1>Produtos cadastrados</h1>
+            <div class="text-right">
+                <a href="#" th:href="@{/kk-admin/cadastrar-produto}"
+                   <span class="btn btn-primary">Novo Produto</span>
+                </a>
+            </div>
+            <p>&nbsp;</p>
+            <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
                         <th>Nome</th>
                         <th>Marca</th>
                         <th>Preço</th>
                         <th>Estoque</th>
+                        <th>&nbsp;</th>
                     </tr>                
                 </thead>
                 <tbody>
                     <tr th:each="p : ${produtos}">
                         <td th:text="${p.nome}"></td>
                         <td th:text="${p.marca.nome}"></td>
-                        <td th:text="${p.valor}"></td>
-                        <td>-</td>
+                        <td th:text="${#numbers.formatCurrency(p.valor)}"></td>
+                        <td>0</td>
+                        <td>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <a href="#" title="Detalhes do produto">
+                                        <span class="glyphicon glyphicon-search small"></span>
+                                    </a></li>
+                                <li>
+                                    <a href="#" title="Editar produto">
+                                        <span class="glyphicon glyphicon-pencil small"></span>
+                                    </a></li>
+                            </ul>
+                        </td>
                     </tr>
                 </tbody>
             </table>

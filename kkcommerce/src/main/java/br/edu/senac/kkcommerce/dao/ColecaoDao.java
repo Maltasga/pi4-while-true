@@ -7,8 +7,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.sql.DataSource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  *
@@ -17,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class ColecaoDao implements IDaoBase<Colecao> {
 
     Connection conexao = null;
-
-    @Autowired
-    DataSource ds;
-
+    
     @Override
     public ArrayList<Colecao> listar() throws SQLException, Exception {
         ArrayList<Colecao> colecoes = new ArrayList<>();
@@ -29,7 +24,7 @@ public class ColecaoDao implements IDaoBase<Colecao> {
         PreparedStatement statement = null;
         ResultSet result = null;
         try {
-            conexao = ds.getConnection();// ConnectionUtils.getConnection();
+            conexao =  ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
 
             result = statement.executeQuery();
