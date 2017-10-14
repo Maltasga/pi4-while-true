@@ -88,10 +88,28 @@ public class MarcaDao implements IDaoBase<Marca> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-
     @Override
     public void inserir(Marca obj) throws SQLException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "INSERT INTO Marca "
+                + "(NOME) VALUES "
+                + "(?)";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setString(1, obj.getNome());
+
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
     }
 
     @Override
