@@ -42,6 +42,9 @@ public class Produto {
     }
 
     public Integer getId() {
+        if (this.id == null) {
+            return 0;
+        }
         return id;
     }
 
@@ -140,7 +143,7 @@ public class Produto {
     public void addImagem(ImagemProduto imagem) {
         this.imagens.add(imagem);
     }
-    
+
     public MultipartFile[] getArquivos() {
         return arquivos;
     }
