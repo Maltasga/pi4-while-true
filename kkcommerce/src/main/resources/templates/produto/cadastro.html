@@ -26,8 +26,8 @@
                   th:action="cadastrar-produto" th:object="${produto}">
 
                 <div class="col-lg-6">
-                    <input type="hidden" name="id"
-                           th:field="*{id}" th:value="${id}" />
+                    <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
+                    <input type="hidden" name="estoque" th:field="*{estoque}" th:value="${estoque}" />
                     <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" required
@@ -69,17 +69,18 @@
                     <div class="form-group">
                         <label>Estoque</label>
                         <ul id="lista-estoque" class="list-unstyled">
-                            <li><div class="label-estoque">PP</div><input class="campo-estoque" type="text" /></li>
-                            <li><div class="label-estoque">P</div><input class="campo-estoque" type="text" /></li>                            
-                            <li><div class="label-estoque">M</div><input class="campo-estoque" type="text" /></li>
-                            <li><div class="label-estoque">G</div><input class="campo-estoque" type="text" /></li>
-                            <li><div class="label-estoque">GG</div><input class="campo-estoque" type="text" /></li>                            
-                            <li><div class="label-estoque">3G</div><input class="campo-estoque" type="text" /></li>
+                            
+                            <li th:each="e, eStatus : ${estoque}">
+                                <div class="label-estoque" th:text="${e.tamanho}"></div>
+                                <input type="hidden" th:field="*{estoque[__${eStatus.index}__].tamanho}" th:value="${e.tamanho}" />
+                                <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" class="campo-estoque" />
+                            </li>
+
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-12">
-                    <input type="submit" value="Salvar" class="btn btn-primary" />
+                    <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
                     <a href="#" th:href="@{/kk-admin/listar-produtos}"
                        <span class="btn btn-default">Cancelar</span>
                     </a>
@@ -88,8 +89,16 @@
             </form>
             <script type="text/javascript">
                 $(function () {
-                    $("input[name='valor'").inputmask({"alias": "currency"});
+                    $("input[name='valor'").inputmask({"alias": "currency", removeMaskOnSubmit: true});
                     $("input.campo-estoque").inputmask({"alias": "integer"});
+
+                    $("#btnSalvar").on("click", function (event) {
+                        event.preventDefault();
+
+
+
+                        $("form").submit();
+                    });
                 });
             </script>
         </div>

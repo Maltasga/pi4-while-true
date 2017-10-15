@@ -7,14 +7,16 @@ package br.edu.senac.kkcommerce.model;
 public class ImagemProduto {
 
     private int id;
+    private int produtoId;
     private String nome;
     private String descricao;
 
     public ImagemProduto() {
     }
 
-    public ImagemProduto(int id, String nome, String descricao) {
+    public ImagemProduto(int id, int produtoId, String nome, String descricao) {
         this.id = id;
+        this.produtoId = produtoId;
         this.nome = nome;
         this.descricao = descricao;
     }
@@ -25,6 +27,14 @@ public class ImagemProduto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getProdutoId() {
+        return produtoId;
+    }
+
+    public void setProdutoId(int produtoId) {
+        this.produtoId = produtoId;
     }
 
     public String getNome() {
