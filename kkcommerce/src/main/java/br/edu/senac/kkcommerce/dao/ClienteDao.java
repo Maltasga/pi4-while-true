@@ -76,7 +76,25 @@ public class ClienteDao implements IDaoBase<Cliente> {
 
     @Override
     public void excluir(int id) throws SQLException, Exception {
+        String query = "UPDATE Cliente SET ATIVO = false WHERE ID = ?";
 
+        PreparedStatement statement = null;
+
+        try {
+            
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
     }
 
     @Override
