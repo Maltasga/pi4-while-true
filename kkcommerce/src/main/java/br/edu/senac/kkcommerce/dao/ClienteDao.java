@@ -5,6 +5,7 @@ import br.edu.senac.kkcommerce.model.Cliente;
 import br.edu.senac.kkcommerce.model.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,10 +18,11 @@ public class ClienteDao implements IDaoBase<Cliente> {
     Connection conexao = null;
 
     @Override
-    public void inserir(Cliente obj) throws SQLException, Exception {
+    public int inserir(Cliente obj) throws SQLException, Exception {
+        int idGerado = 0;
         String query = "INSERT INTO Cliente "
                 + "(NOME, CPF, EMAIL, DATA_NASC, SEXO, TELEFONE, CELULAR, SENHA)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
         PreparedStatement statement = null;
 
         try {
@@ -34,8 +36,10 @@ public class ClienteDao implements IDaoBase<Cliente> {
             statement.setString(6, obj.getTelefone());
             statement.setString(7, obj.getCelular());
             statement.setString(8, obj.getSenha());
+            ResultSet rs = statement.executeQuery();
+            
+            idGerado = rs.getInt("ultimo_id");
 
-            statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -45,6 +49,7 @@ public class ClienteDao implements IDaoBase<Cliente> {
                 conexao.close();
             }
         }
+        return idGerado;
     }
 
     @Override
@@ -81,11 +86,11 @@ public class ClienteDao implements IDaoBase<Cliente> {
         PreparedStatement statement = null;
 
         try {
-            
+
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setInt(1, id);
-            
+
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();

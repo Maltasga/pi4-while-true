@@ -12,7 +12,7 @@ import java.util.List;
 public class ColecaoDaoFAKE implements IDaoBase<Colecao> {
 
     @Override
-    public void inserir(Colecao obj) throws SQLException, Exception {
+    public int inserir(Colecao obj) throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

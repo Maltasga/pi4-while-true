@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface IDaoBase<T> {
 
-    void inserir(T obj) throws SQLException, Exception ;
+    int inserir(T obj) throws SQLException, Exception ;
 
     void atualizar(T obj) throws SQLException, Exception;
 

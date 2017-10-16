@@ -89,10 +89,11 @@ public class MarcaDao implements IDaoBase<Marca> {
     }
 
     @Override
-    public void inserir(Marca obj) throws SQLException, Exception {
+    public int inserir(Marca obj) throws SQLException, Exception {
+        int idGerado = 0;
         String query = "INSERT INTO Marca "
                 + "(NOME) VALUES "
-                + "(?)";
+                + "(?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
         PreparedStatement statement = null;
 
         try {
@@ -100,7 +101,8 @@ public class MarcaDao implements IDaoBase<Marca> {
             statement = conexao.prepareStatement(query);
             statement.setString(1, obj.getNome());
 
-            statement.execute();
+            ResultSet rs = statement.executeQuery();
+            idGerado = rs.getInt("ultimo_id");
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -110,6 +112,7 @@ public class MarcaDao implements IDaoBase<Marca> {
                 conexao.close();
             }
         }
+        return idGerado;
     }
 
     @Override

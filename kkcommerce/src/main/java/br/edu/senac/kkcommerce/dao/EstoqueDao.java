@@ -7,12 +7,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author While True
  */
-public class EstoqueDao {
+public class EstoqueDao implements IDaoBase<Estoque> {
 
     Connection conexao = null;
 
@@ -22,9 +23,11 @@ public class EstoqueDao {
         }
     }
 
-    public void inserir(Estoque e) throws SQLException {
+    @Override
+    public int inserir(Estoque e) throws SQLException {
+        int idGerado = 0;
         String query = "INSERT INTO ESTOQUE (IdProduto, Tamanho, Quantidade) "
-                + "VALUES (?, ?, ?)";
+                + "VALUES (?, ?, ?);  SELECT LAST_INSERT_ID() as 'ultimo_id';";
         PreparedStatement statement = null;
 
         try {
@@ -33,7 +36,9 @@ public class EstoqueDao {
             statement.setInt(1, e.getIdProduto());
             statement.setString(2, e.getTamanho());
             statement.setInt(3, e.getQuantidade());
-            statement.execute();
+            ResultSet rs = statement.executeQuery();
+            
+            idGerado = rs.getInt("ultimo_id");
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -43,6 +48,7 @@ public class EstoqueDao {
                 conexao.close();
             }
         }
+        return idGerado;
     }
 
     public void atualizar(Estoque e, int quantidade) throws SQLException {
@@ -130,4 +136,18 @@ public class EstoqueDao {
         return lista;
     }
 
+    @Override
+    public void excluir(int id) throws SQLException, Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Estoque> listar() throws SQLException, Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Estoque getById(int id) throws SQLException, Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -12,7 +12,7 @@ import java.util.List;
 public class MarcaDaoFAKE implements IDaoBase<Marca> {
 
     @Override
-    public void inserir(Marca obj) throws SQLException, Exception {
+    public int inserir(Marca obj) throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

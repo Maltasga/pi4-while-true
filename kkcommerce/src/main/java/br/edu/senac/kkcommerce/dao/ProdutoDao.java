@@ -20,10 +20,11 @@ public class ProdutoDao implements IDaoBase<Produto> {
     Connection conexao = null;
 
     @Override
-    public void inserir(Produto obj) throws SQLException, Exception {
+    public int inserir(Produto obj) throws SQLException, Exception {
+        int idGerado = 0;
         String query = "INSERT INTO Produto "
                 + "(NOME, DESCRICAO, ID_MARCA, ID_COLECAO, Valor) "
-                + "VALUES (?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
         PreparedStatement statement = null;
 
         try {
@@ -35,7 +36,8 @@ public class ProdutoDao implements IDaoBase<Produto> {
             statement.setInt(4, obj.getIdColecao());
             statement.setDouble(5, obj.getValor());
 
-            statement.execute();
+            ResultSet rs = statement.executeQuery();
+            idGerado = rs.getInt("ultimo_id");
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -45,6 +47,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
                 conexao.close();
             }
         }
+        return idGerado;
     }
 
     @Override

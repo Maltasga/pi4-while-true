@@ -9,6 +9,7 @@ import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
 import br.edu.senac.kkcommerce.model.Endereco;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -21,11 +22,12 @@ public class EnderecoDao implements IDaoBase<Endereco> {
     Connection conexao = null;
 
     @Override
-    public void inserir(Endereco obj) throws SQLException, Exception {
+    public int inserir(Endereco obj) throws SQLException, Exception {
+        int idGerado = 0;
         String query = "INSERT INTO Endereco "
                 + "(ID, CLIENTE_ID, LOGRADOURO, NUMERO, COMPLEMENTO, CIDADE, UF,"
                 + " CEP, PRINCIPAL) VALUES ("
-                + "?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "?, ?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
         PreparedStatement statement = null;
 
         try {
@@ -41,7 +43,8 @@ public class EnderecoDao implements IDaoBase<Endereco> {
             statement.setString(8, obj.getCep());
             statement.setBoolean(9, obj.isPrincipal());
 
-            statement.execute();
+            ResultSet rs = statement.executeQuery();
+            idGerado = rs.getInt("ultimo_id");
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -51,6 +54,7 @@ public class EnderecoDao implements IDaoBase<Endereco> {
                 conexao.close();
             }
         }
+        return idGerado;
     }
 
     @Override
