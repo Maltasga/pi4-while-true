@@ -31,7 +31,11 @@ public class ProdutoService extends ServiceBase {
             for (Estoque estoque : p.getEstoque()) {
                 estoque.setIdProduto(idProduto);
             }
-            // TODO - salvar estoque, salvar imagens do produto            
+            
+            // TODO - salvar estoque, salvar imagens do produto
+            
+            estoqueService.salvar(p.getEstoque());
+            imagemService.salvar(p.getImagens());
         } else {
             dao.atualizar(p);
         }

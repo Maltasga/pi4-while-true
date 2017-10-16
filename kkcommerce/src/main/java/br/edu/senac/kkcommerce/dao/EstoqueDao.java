@@ -16,13 +16,7 @@ import java.util.List;
 public class EstoqueDao implements IDaoBase<Estoque> {
 
     Connection conexao = null;
-
-    public void inserir(ArrayList<Estoque> lista) throws SQLException {
-        for (Estoque e : lista) {
-            inserir(e);
-        }
-    }
-
+    
     @Override
     public int inserir(Estoque e) throws SQLException {
         int idGerado = 0;

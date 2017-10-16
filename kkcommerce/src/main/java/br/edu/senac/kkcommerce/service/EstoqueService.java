@@ -1,7 +1,8 @@
-
 package br.edu.senac.kkcommerce.service;
 
 import br.edu.senac.kkcommerce.dao.EstoqueDao;
+import br.edu.senac.kkcommerce.model.Estoque;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,4 +14,9 @@ public class EstoqueService extends ServiceBase {
         super(new EstoqueDao());
     }
 
+    public void salvar(ArrayList<Estoque> listaEstoque) throws Exception {
+        for (Estoque estoque : listaEstoque) {
+            dao.inserir(estoque);
+        }
+    }
 }
