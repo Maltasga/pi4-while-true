@@ -4,10 +4,6 @@
 body{
     margin-top: 20px;
 }
-.glyphicon-large {
-    font-size: 2.5em;
-}
-
 .font-text{
     margin-top: 2%;
     font-size: 0.9em;
@@ -34,33 +30,12 @@ body{
     margin-left: 2%;
 }
 
-.txtPesquisa{
-    box-shadow: 0 0 0 0;
-    border: 0 none;
-    outline: 0;
-    border-bottom: solid;
-    display: block;
-    width: 50%;
-    height: 34px;
-    padding: 6px 12px;
-    font-size: 14px;   
-}
-.icon-search{
-    position: relative;
-    right: 2.2em;
-    top: 2.5em;
-}
-
-.pesquisa{
-    padding: 3%;
-}
-
 .icons{
-    font-size: 2.7vw;
+    font-size: 1.5vw;
 }
 
 .img-logo{
-    background: url(../content/imagens/logo-lg.png) no-repeat;
+    background: url(/imagens/logo-lg.png) no-repeat;
     width: 31em;
     height: 7.1em;
 }
@@ -78,7 +53,6 @@ body{
 
 .fundo{
     box-shadow: 2px 13px 60px 2px rgba(0,0,0,0.53);
-    /*background: url(http://api.thumbr.it/whitenoise-361x370.png?);*/
     background:#f7f7f7;
     border-radius: 15px;
     margin-bottom: 10px;
@@ -86,66 +60,22 @@ body{
 .teste{
     padding:1.5% !important;
 }
-
-thead{
-    background: #3598dc;
-    color: #FFF;
-}
-
-.tabela-pedidos {
-    /*    margin-top: 15px;
-        width: 100%;*/
-    text-align: center;
-    overflow:hidden;
-    border-collapse:separate;
-    border: solid #3598dc 1px;
-    border-radius: 10px;
-}
-
-
-.tabela-pedidos td {
-    color: #aaa;
-    background-color: white;
-    padding: 5px;
-    border: 1px solid #3598dc;
-}
-
-.tabela-pedidos th{
-    /*    color: white;*/
-    background-color: #3598dc;
-    font-weight: normal;
-    text-align: center;
-    padding: 5px;
-    font-size: 12px;
-}
-
-.produto-descricao{
-    margin-top: 12%;
-}
-
 .margem-valores{
     margin-top: 33%; 
 }
-/******@MEDIAS*******/
 
-@media screen and (max-width: 700px){
-    .header-lg {
-        display: none;
-    }
-
-    .header-sm {
-        display: block;
-    }
-
-    .produto>center{
-        padding: 20px;
-        min-height: 200px;
-    }
+.txtPesquisa{
+    margin-top: 4.9%;
 }
 
+.contaner-icons{
+    margin-top: 4.9%;
+}
+/******@MEDIAS*******/
+
 @media screen and (max-width: 993px){
-    .img-logo{
-        background: url(../content/imagens/logo-sm.png) no-repeat;
+    .img-logo{ 
+        background: url(/imagens/logo-sm.png) no-repeat;
     }
 
     .pesquisa{
@@ -172,13 +102,20 @@ thead{
 }
 @media screen and (max-width: 600px){
     .txtPesquisa{
-        width: 29%;
+        width: 95%;
+    }
+    .contaner-icons{
+        margin-right: 28px;
+    }
+    body {
+        overflow-x: hidden;
     }
 }
 
 @media screen and (max-width: 500px){
     .txtPesquisa{
         width: 90% !important;
+        /*margin-left: 20px;*/
     }
     .pesquisa{
         bottom: 1.5em;
@@ -186,9 +123,15 @@ thead{
     }
 
     .contaner-icons{
-        bottom: 8em;
+        bottom: 10em;
     }
     .icons{
         font-size: 5vw;
+    }
+
+    @media screen and (max-width: 400px){
+        body {
+            overflow-x: hidden;
+        }
     }
 }

@@ -1,0 +1,39 @@
+.produto-descricao{
+    margin-top: 12%;
+}
+.produto{
+    background-color: #fff;
+    margin: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    padding: 10px;
+}
+.produto>center{
+    padding: 20px;
+}
+.produto>.nome{
+    color:#6b6868;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.produto>.descricao{
+    color: gray;
+}
+.produto>.valor{
+    font-weight: bold;
+}
+.produto>.btn-comprar>button{
+    right: 45px;
+    bottom: 25px;
+    margin: auto;
+    position: absolute;
+}
+
+
+
+@media screen and (max-width: 700px){
+    .produto>center{
+        padding: 20px;
+        min-height: 200px;
+    }
+}
