@@ -29,8 +29,8 @@
                         <p class="p-descricao" th:text="${produto.descricao}">
                             Descrição
                         </p>
-                        <p class="p-preco">
-                        <fmt:formatNumber value="${model.valor}" type="currency" currencySymbol="R$ " ></fmt:formatNumber>
+                        <p class="p-preco" th:text="${#numbers.formatCurrency(produto.valor)}">
+                            Valor do produto
                         </p>
                     </div>
                 </div>
