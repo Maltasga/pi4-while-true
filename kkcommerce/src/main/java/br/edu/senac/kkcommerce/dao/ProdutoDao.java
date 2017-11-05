@@ -139,7 +139,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
     public Produto getById(int id) throws SQLException, Exception {
         Produto produto = null;
 
-        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHEREID = ?";
+        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHERE ID = ?";
         PreparedStatement statement = null;
 
         try {
