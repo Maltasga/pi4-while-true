@@ -1,9 +1,8 @@
 package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
-import br.edu.senac.kkcommerce.model.Colecao;
-import br.edu.senac.kkcommerce.model.Marca;
-import br.edu.senac.kkcommerce.model.Produto;
+import br.edu.senac.kkcommerce.model.Perfil;
+import br.edu.senac.kkcommerce.model.Usuario;
 import br.edu.senac.kkcommerce.model.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,31 +10,31 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author While True
+ * @author while true
  */
-public class ProdutoDao implements IDaoBase<Produto> {
+public class UsuarioDao implements IDaoBase<Usuario> {
 
     Connection conexao = null;
 
     @Override
-    public int inserir(Produto obj) throws SQLException, Exception {
+    public int inserir(Usuario obj) throws SQLException, Exception {
         int idGerado = 0;
-        String query = "INSERT INTO Produto "
-                + "(NOME, DESCRICAO, ID_MARCA, ID_COLECAO, Valor) "
-                + "VALUES (?, ?, ?, ?, ?);";
+        String query = "INSERT INTO Usuario (NOME, EMAIL, LOGIN, SENHA, ID_PERFIL) "
+                + "VALUES (?, ?, ?, ?, ?)";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, obj.getNome());
-            statement.setString(2, obj.getDescricao());
-            statement.setInt(3, obj.getIdMarca());
-            statement.setInt(4, obj.getIdColecao());
-            statement.setDouble(5, obj.getValor());
+            statement.setString(2, obj.getEmail());
+            statement.setString(3, obj.getLogin());
+            statement.setString(4, obj.getSenha());
+            statement.setInt(5, obj.getIdPerfil());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();
@@ -55,17 +54,15 @@ public class ProdutoDao implements IDaoBase<Produto> {
     }
 
     @Override
-    public void atualizar(Produto obj) throws SQLException, Exception {
-        String query = "UPDATE Produto SET Nome = ?, Descricao = ?, valor = ? "
-                + "WHERE Id = ?";
+    public void atualizar(Usuario obj) throws SQLException, Exception {
+        String query = "UPDATE Usuario SET Nome = ?, Email = ? WHERE Id = ?";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             statement.setString(1, obj.getNome());
-            statement.setString(2, obj.getDescricao());
-            statement.setDouble(3, obj.getValor());
+            statement.setString(2, obj.getEmail());
             statement.setInt(4, obj.getId());
             statement.execute();
         } finally {
@@ -81,7 +78,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
 
     @Override
     public void excluir(int id) throws SQLException, Exception {
-        String query = "UPDATE Produto SET Ativo = FALSE WHERE Id = ?";
+        String query = "UPDATE Usuario SET Ativo = FALSE WHERE Id = ?";
         PreparedStatement statement = null;
 
         try {
@@ -101,31 +98,31 @@ public class ProdutoDao implements IDaoBase<Produto> {
     }
 
     @Override
-    public ArrayList<Produto> listar() throws SQLException {
-        ArrayList<Produto> produtos = new ArrayList<>();
+    public List<Usuario> listar() throws SQLException, Exception {
+        ArrayList<Usuario> usuarios = new ArrayList<>();
 
-        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO";
+        String query = "SELECT * FROM SELECT_USUARIO_COMPLETO";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             ResultSet result = statement.executeQuery();
-            Produto p = null;
+            Usuario u = null;
             while (result.next()) {
-                p = new Produto(
+                u = new Usuario(
                         result.getInt("ID"),
+                        result.getInt("ID_PERFIL"),
                         result.getString("NOME"),
-                        result.getString("DESCRICAO"),
-                        result.getInt("ID_COLECAO"),
-                        result.getInt("ID_MARCA"),
-                        result.getDouble("VALOR"),
-                        result.getBoolean("ATIVO"),
+                        result.getString("EMAIL"),
+                        result.getString("LOGIN"),
+                        result.getString("SENHA"),
+                        result.getBoolean("Ativo"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
-                p.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
-                p.setColecao(new Colecao(result.getInt("ID_COLECAO"), result.getString("NM_COLECAO")));
-                produtos.add(p);
 
+                u.setPerfil(new Perfil(result.getInt("ID_PERFIL"), result.getString("NM_PERFIL")));
+
+                usuarios.add(u);
             }
         } finally {
             if (statement != null && !statement.isClosed()) {
@@ -136,14 +133,14 @@ public class ProdutoDao implements IDaoBase<Produto> {
                 conexao.close();
             }
         }
-        return produtos;
+        return usuarios;
     }
 
     @Override
-    public Produto getById(int id) throws SQLException, Exception {
-        Produto produto = null;
+    public Usuario getById(int id) throws SQLException, Exception {
+        Usuario usuario = null;
 
-        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHERE ID = ?";
+        String query = "SELECT * FROM SELECT_USUARIO_COMPLETO WHERE ID = ?";
         PreparedStatement statement = null;
 
         try {
@@ -152,18 +149,17 @@ public class ProdutoDao implements IDaoBase<Produto> {
             statement.setInt(1, id);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
-                produto = new Produto(
+                usuario = new Usuario(
                         result.getInt("ID"),
+                        result.getInt("ID_PERFIL"),
                         result.getString("NOME"),
-                        result.getString("DESCRICAO"),
-                        result.getInt("ID_COLECAO"),
-                        result.getInt("ID_MARCA"),
-                        result.getDouble("VALOR"),
-                        result.getBoolean("ATIVO"),
+                        result.getString("EMAIL"),
+                        result.getString("LOGIN"),
+                        result.getString("SENHA"),
+                        result.getBoolean("Ativo"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
 
-                produto.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
-                produto.setColecao(new Colecao(result.getInt("ID_Colecao"), result.getString("NM_COLECAO")));
+                usuario.setPerfil(new Perfil(result.getInt("ID_PERFIL"), result.getString("NM_PERFIL")));
             }
         } finally {
             if (statement != null && !statement.isClosed()) {
@@ -174,6 +170,6 @@ public class ProdutoDao implements IDaoBase<Produto> {
                 conexao.close();
             }
         }
-        return produto;
+        return usuario;
     }
 }

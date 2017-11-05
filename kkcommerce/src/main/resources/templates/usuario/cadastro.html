@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-admin}">
+    <head>
+        <title>KK Coolwear - Usuário</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h2>Novo Usuário</h2>
+            </div>
+            <form action="#" method="post"
+                  th:action="cadastrar-usuario" th:object="${usuario}">
+                <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" class="form-control" required
+                               th:field="*{nome}" />
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" name="email" class="form-control" required
+                               th:field="*{email}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Login</label>
+                        <input type="text" name="login" class="form-control" required
+                               th:field="*{login}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" name="senha" class="form-control" required
+                               th:field="*{senha}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Perfil</label>
+                        <select name="idPerfil" class="form-control" required
+                                th:field="*{idPerfil}" >
+                            <option value="" selected>Selecione o Perfil</option>
+                            <option th:each="p : ${perfis}" th:value="${p.id}" th:text="${p.nome}"></option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                        <a href="#" th:href="@{/kk-admin/listar-usuarios}"
+                           <span class="btn btn-default">Cancelar</span>
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <script type="text/javascript">
+                $(function () {
+                    $("#btnSalvar").on("click", function (event) {
+                        event.preventDefault();
+
+
+
+                        $("form").submit();
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

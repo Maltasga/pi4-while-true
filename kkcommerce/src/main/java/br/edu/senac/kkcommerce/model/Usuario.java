@@ -1,20 +1,23 @@
 package br.edu.senac.kkcommerce.model;
 
 import java.util.Date;
+import org.mindrot.jbcrypt.BCrypt;
 
 /**
  *
  * @author while true
  */
 public class Usuario {
-    private int id;
-    private int idPerfil;
+
+    private Integer id;
+    private Integer idPerfil;
     private String nome;
     private String email;
     private String login;
     private String senha;
-    private boolean ativo;
+    private Boolean ativo;
     private Date dataCadastro;
+    private Perfil perfil;
 
     public Usuario() {
     }
@@ -30,15 +33,18 @@ public class Usuario {
         this.dataCadastro = dataCadastro;
     }
 
-    public int getId() {
-        return id;
+    public Integer getId() {
+        if (this.id == null) {
+            return 0;
+        }
+        return this.id;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public int getIdPerfil() {
+    public Integer getIdPerfil() {
         return idPerfil;
     }
 
@@ -78,7 +84,7 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public boolean isAtivo() {
+    public Boolean isAtivo() {
         return ativo;
     }
 
@@ -93,5 +99,20 @@ public class Usuario {
     public void setDataCadastro(Date dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(Perfil perfil) {
+        this.perfil = perfil;
+    }
     
+    public void setHashSenha(String senha) {
+        this.senha = BCrypt.hashpw(senha, BCrypt.gensalt());
+    }
+
+    public static boolean validarSenha(String senhaInformada, String senhaHash) {
+        return BCrypt.checkpw(senhaInformada, senhaHash);
+    }
 }
