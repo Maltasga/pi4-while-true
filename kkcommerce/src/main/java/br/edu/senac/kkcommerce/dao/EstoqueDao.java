@@ -49,30 +49,7 @@ public class EstoqueDao implements IDaoBase<Estoque> {
         return idGerado;
     }
 
-    public void atualizar(Estoque e, int quantidade) throws SQLException {
-        String query = "UPDATE Estoque SET Quantidade = (Quantidade + ?)\n"
-                + "WHERE Id_Produto = ?\n"
-                + "AND Tamanho = ?";
-        PreparedStatement statement = null;
-
-        try {
-            conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
-            statement.setInt(1, quantidade);
-            statement.setInt(2, e.getId());
-            statement.setString(3, e.getTamanho());
-            statement.execute();
-        } finally {
-            if (statement != null && !statement.isClosed()) {
-                statement.close();
-            }
-
-            if (conexao != null && !conexao.isClosed()) {
-                conexao.close();
-            }
-        }
-    }
-
+    @Override
     public void atualizar(Estoque e) throws SQLException {
         String query = "UPDATE Estoque SET Quantidade = ? "
                 + "WHERE Id_Produto = ?"
@@ -98,49 +75,45 @@ public class EstoqueDao implements IDaoBase<Estoque> {
         }
     }
 
-    public ArrayList<Estoque> listarPorProduto(int idProduto) throws SQLException {
-        ArrayList<Estoque> lista = new ArrayList<>();
+    @Override
+    public List<Estoque> listar() throws SQLException, Exception {
+        ArrayList<Estoque> listaEstoque = new ArrayList<>();
+
         String query = "SELECT "
-                + "Id, "
-                + "Id_Produto, "
-                + "Tamanho, "
-                + "Quantidade "
-                + "FROM ESTOQUE "
-                + "WHERE Id_Produto = ?";
+                + "ID, "
+                + "ID_PRODUTO, "
+                + "TAMANHO, "
+                + "QUANTIDADE "
+                + "FROM Estoque";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setInt(1, idProduto);
             ResultSet result = statement.executeQuery();
-
+            Estoque e = null;
             while (result.next()) {
-                lista.add(new Estoque(
-                        result.getInt("Id"),
-                        result.getInt("Id_Produto"),
-                        result.getString("Tamanho"),
-                        result.getInt("Quantidade")));
+                e = new Estoque(
+                        result.getInt("ID"),
+                        result.getInt("ID_PRODUTO"),
+                        result.getString("TAMANHO"),
+                        result.getInt("QUANTIDADE"));
+                listaEstoque.add(e);
             }
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
             }
 
-            if (conexao != null && !conexao.isClosed()) {
+            if (conexao != null || !conexao.isClosed()) {
                 conexao.close();
             }
         }
-        return lista;
+        return listaEstoque;
     }
-
+    
     @Override
     public void excluir(int id) throws SQLException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public List<Estoque> listar() throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

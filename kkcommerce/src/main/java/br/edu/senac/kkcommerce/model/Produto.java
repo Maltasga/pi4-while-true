@@ -2,6 +2,7 @@ package br.edu.senac.kkcommerce.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 /**
@@ -136,8 +137,8 @@ public class Produto {
         return imagens;
     }
 
-    public void setImagens(ArrayList<ImagemProduto> imagens) {
-        this.imagens = imagens;
+    public void setImagens(List<ImagemProduto> imagens) {
+        this.imagens = (ArrayList<ImagemProduto>) imagens;
     }
 
     public void addImagem(ImagemProduto imagem) {

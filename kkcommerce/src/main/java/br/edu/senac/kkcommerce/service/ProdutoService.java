@@ -11,17 +11,22 @@ import java.util.List;
  * @author while true
  */
 public class ProdutoService extends ServiceBase {
+
     private final EstoqueService estoqueService = new EstoqueService();
     private final ImagemService imagemService = new ImagemService();
-    
+
     public ProdutoService() {
         super(new ProdutoDao());
     }
-    
+
     public List<Produto> listar() throws Exception {
-        return dao.listar();
+        List<Produto> produtos = dao.listar();
+        for (Produto p : produtos) {
+            p.setImagens(imagemService.listar(p.getId()));
+        }
+        return produtos;
     }
-    
+
     public void salvar(Produto p) throws Exception {
         if (dao.getById(p.getId()) == null) {
             int idProduto = dao.inserir(p);
@@ -31,19 +36,21 @@ public class ProdutoService extends ServiceBase {
             for (Estoque estoque : p.getEstoque()) {
                 estoque.setIdProduto(idProduto);
             }
-            
+
             estoqueService.salvar(p.getEstoque());
             imagemService.salvar(p.getImagens());
         } else {
             dao.atualizar(p);
         }
     }
-    
+
     public void remover(int id) throws Exception {
         dao.excluir(id);
     }
-    
+
     public Produto buscar(int id) throws Exception {
-        return (Produto) dao.getById(id);
+        Produto p = (Produto) dao.getById(id);
+        p.setImagens(imagemService.listar(id));
+        return p;
     }
 }
