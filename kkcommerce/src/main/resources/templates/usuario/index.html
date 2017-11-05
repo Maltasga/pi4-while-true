@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-admin}">
+    <head>
+        <title>KK Coolwear - Produtos</title>
+        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
+    </head>
+    <body>
+        <div layout:fragment="conteudo" class="corpo">
+            <h1>Produtos cadastrados</h1>
+            <div class="text-right">
+                <a href="#" th:href="@{/kk-admin/cadastrar-usuario}"
+                   <span class="btn btn-primary">Novo Usuário</span>
+                </a>
+            </div>
+            <p>&nbsp;</p>
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Login</th>
+                        <th>Data de Cadastro</th>
+                        <th>Situação</th>
+                        <th>&nbsp;</th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <tr th:each="p : ${usuario}">
+                        <td th:text="${p.nome}"></td>
+                        <td th:text="${p.login}"></td>
+                        <td th:text="${p.dataCadastro}"></td>
+                        <td>-</td>
+                        <td>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <a href="#" title="Detalhes do produto">
+                                        <span class="glyphicon glyphicon-search small"></span>
+                                    </a></li>
+                                <li>
+                                    <a href="#" title="Editar produto">
+                                        <span class="glyphicon glyphicon-pencil small"></span>
+                                    </a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
