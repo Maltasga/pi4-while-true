@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -22,12 +23,12 @@ public class ClienteDao implements IDaoBase<Cliente> {
         int idGerado = 0;
         String query = "INSERT INTO Cliente "
                 + "(NOME, CPF, EMAIL, DATA_NASC, SEXO, TELEFONE, CELULAR, SENHA)"
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
+            statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, obj.getNome());
             statement.setString(2, obj.getCpf());
             statement.setString(3, obj.getEmail());
@@ -36,9 +37,12 @@ public class ClienteDao implements IDaoBase<Cliente> {
             statement.setString(6, obj.getTelefone());
             statement.setString(7, obj.getCelular());
             statement.setString(8, obj.getSenha());
-            ResultSet rs = statement.executeQuery();
-            
-            idGerado = rs.getInt("ultimo_id");
+            statement.execute();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                idGerado = rs.getInt(1);
+            }
 
         } finally {
             if (statement != null && !statement.isClosed()) {

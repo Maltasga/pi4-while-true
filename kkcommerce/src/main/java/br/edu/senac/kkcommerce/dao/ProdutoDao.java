@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 /**
@@ -24,20 +25,23 @@ public class ProdutoDao implements IDaoBase<Produto> {
         int idGerado = 0;
         String query = "INSERT INTO Produto "
                 + "(NOME, DESCRICAO, ID_MARCA, ID_COLECAO, Valor) "
-                + "VALUES (?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
+                + "VALUES (?, ?, ?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
+            statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, obj.getNome());
             statement.setString(2, obj.getDescricao());
             statement.setInt(3, obj.getIdMarca());
             statement.setInt(4, obj.getIdColecao());
             statement.setDouble(5, obj.getValor());
+            statement.execute();
 
-            ResultSet rs = statement.executeQuery();
-            idGerado = rs.getInt("ultimo_id");
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                idGerado = rs.getInt(1);
+            }
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -158,6 +162,8 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getBoolean("ATIVO"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
 
+                produto.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
+                produto.setColecao(new Colecao(result.getInt("ID_Colecao"), result.getString("NM_COLECAO")));
             }
         } finally {
             if (statement != null && !statement.isClosed()) {

@@ -59,7 +59,7 @@ public class ProdutoController extends BaseAdminController {
         try {
             ArrayList<ImagemProduto> imagens = FileService.gravarArquivos(produto.getArquivos());
             produto.setImagens(imagens);
-//            produtoService.salvar(produto);
+            produtoService.salvar(produto);
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
