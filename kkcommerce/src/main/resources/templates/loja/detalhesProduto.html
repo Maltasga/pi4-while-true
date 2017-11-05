@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-xs-5 col-md-6 col-lg-6">
                     <form method="POST" action="checkout">
-                        <input type="hidden" value="${model.id}" name="id"/>
+                        <input type="hidden" th:value="${produto.id}" id="idProduto"/>
                         <div class="container-opcoes">
                             <div class="row">
                                 <p>Cores disponíveis</p>
