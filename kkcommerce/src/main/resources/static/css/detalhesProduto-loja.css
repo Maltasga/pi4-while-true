@@ -1,0 +1,101 @@
+.container-borda {
+    margin: 10px auto;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+}
+
+.container-opcoes {
+    top: 0;
+    bottom: 0;
+    position: relative;
+    margin: auto;
+    height: fit-content;
+}
+
+.container-opcoes>.row {
+    margin: 13px auto !important;
+}
+
+.container-opcoes>.row p:first-of-type {
+    font-size: .9em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+p.p-titulo{
+    font-size: 1.12em;
+    font-weight: bold;
+    color: #4b4b4b;
+}
+
+p.p-descricao{
+    font-size: 0.85em;
+    margin: 0px auto 25px;
+    color: gray;
+}
+
+p.p-preco{
+    font-weight: bold;
+    width: 100%;
+    text-align: right;
+}
+
+div.linha-btn {
+    width: 100%;
+    text-align: right;
+}
+
+div.linha-btn>[type=button] {
+    padding: 8px 30px;
+}
+
+.miniaturas {
+    margin: 10% auto;
+    overflow: auto;
+    max-height: 100%;
+}
+
+.miniaturas>a {
+    border: none;
+}
+
+#parcelamento {
+    width: 260px;
+}
+#parcelamento img {
+    margin-bottom: 15px;
+}
+
+@media only screen and (min-width: 1000px){
+    .container-borda {
+        margin-top: 15%;
+    }
+
+    p.p-descricao {
+        font-size: 0.95em;
+    }
+}
+
+@media only screen and (max-width: 1000px){
+    .miniaturas {
+        overflow: auto;
+        max-height: 350px;        
+    }
+}
+@media only screen and (max-width: 768px){
+    .miniaturas {
+        display: none;       
+    }
+    
+    #parcelamento {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+
+    div.linha-btn>[type=button] {
+        padding: 5px 18px;
+    }
+}
