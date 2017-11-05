@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,23 +17,26 @@ import java.util.List;
 public class EstoqueDao implements IDaoBase<Estoque> {
 
     Connection conexao = null;
-    
+
     @Override
     public int inserir(Estoque e) throws SQLException {
         int idGerado = 0;
-        String query = "INSERT INTO ESTOQUE (IdProduto, Tamanho, Quantidade) "
-                + "VALUES (?, ?, ?);  SELECT LAST_INSERT_ID() as 'ultimo_id';";
+        String query = "INSERT INTO ESTOQUE (Id_Produto, Tamanho, Quantidade) "
+                + "VALUES (?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
+            statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, e.getIdProduto());
             statement.setString(2, e.getTamanho());
             statement.setInt(3, e.getQuantidade());
-            ResultSet rs = statement.executeQuery();
-            
-            idGerado = rs.getInt("ultimo_id");
+            statement.execute();
+
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                idGerado = rs.getInt(1);
+            }
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
@@ -47,7 +51,7 @@ public class EstoqueDao implements IDaoBase<Estoque> {
 
     public void atualizar(Estoque e, int quantidade) throws SQLException {
         String query = "UPDATE Estoque SET Quantidade = (Quantidade + ?)\n"
-                + "WHERE IdProduto = ?\n"
+                + "WHERE Id_Produto = ?\n"
                 + "AND Tamanho = ?";
         PreparedStatement statement = null;
 
@@ -71,7 +75,7 @@ public class EstoqueDao implements IDaoBase<Estoque> {
 
     public void atualizar(Estoque e) throws SQLException {
         String query = "UPDATE Estoque SET Quantidade = ? "
-                + "WHERE IdProduto = ?"
+                + "WHERE Id_Produto = ?"
                 + "AND Tamanho = ?";
         PreparedStatement statement = null;
 
@@ -98,11 +102,11 @@ public class EstoqueDao implements IDaoBase<Estoque> {
         ArrayList<Estoque> lista = new ArrayList<>();
         String query = "SELECT "
                 + "Id, "
-                + "IdProduto, "
+                + "Id_Produto, "
                 + "Tamanho, "
                 + "Quantidade "
                 + "FROM ESTOQUE "
-                + "WHERE IdProduto = ?";
+                + "WHERE Id_Produto = ?";
         PreparedStatement statement = null;
 
         try {
@@ -114,7 +118,7 @@ public class EstoqueDao implements IDaoBase<Estoque> {
             while (result.next()) {
                 lista.add(new Estoque(
                         result.getInt("Id"),
-                        result.getInt("IdProduto"),
+                        result.getInt("Id_Produto"),
                         result.getString("Tamanho"),
                         result.getInt("Quantidade")));
             }

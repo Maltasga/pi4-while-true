@@ -11,8 +11,8 @@ import java.util.List;
  * @author while true
  */
 public class ProdutoService extends ServiceBase {
-    private EstoqueService estoqueService = new EstoqueService();
-    private ImagemService imagemService = new ImagemService();
+    private final EstoqueService estoqueService = new EstoqueService();
+    private final ImagemService imagemService = new ImagemService();
     
     public ProdutoService() {
         super(new ProdutoDao());
@@ -31,8 +31,6 @@ public class ProdutoService extends ServiceBase {
             for (Estoque estoque : p.getEstoque()) {
                 estoque.setIdProduto(idProduto);
             }
-            
-            // TODO - salvar estoque, salvar imagens do produto
             
             estoqueService.salvar(p.getEstoque());
             imagemService.salvar(p.getImagens());

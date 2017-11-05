@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 /**
@@ -27,12 +28,12 @@ public class EnderecoDao implements IDaoBase<Endereco> {
         String query = "INSERT INTO Endereco "
                 + "(ID, CLIENTE_ID, LOGRADOURO, NUMERO, COMPLEMENTO, CIDADE, UF,"
                 + " CEP, PRINCIPAL) VALUES ("
-                + "?, ?, ?, ?, ?, ?, ?, ?, ?); SELECT LAST_INSERT_ID() as 'ultimo_id';";
+                + "?, ?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
+            statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setInt(1, obj.getId());
             statement.setInt(2, obj.getClienteId());
             statement.setString(3, obj.getLogradouro());
@@ -42,9 +43,12 @@ public class EnderecoDao implements IDaoBase<Endereco> {
             statement.setString(7, obj.getUf());
             statement.setString(8, obj.getCep());
             statement.setBoolean(9, obj.isPrincipal());
+            statement.execute();
 
-            ResultSet rs = statement.executeQuery();
-            idGerado = rs.getInt("ultimo_id");
+            ResultSet rs = statement.getGeneratedKeys();
+            if (rs.next()) {
+                idGerado = rs.getInt(1);
+            }
         } finally {
             if (statement != null && !statement.isClosed()) {
                 statement.close();
