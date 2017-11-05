@@ -55,8 +55,8 @@ public class ImagemProduto {
 
     public String getUrlImagem() {
         if (this.nome == null || "".equals(this.nome)) {
-            return "htt://localhost:8080/static/imagens/produtos/img_not_found.jpg";
+            return "/imagens/produtos/img_not_found.jpg";
         }
-        return "htt://localhost:8080/static/imagens/produtos/" + this.nome;
+        return "/imagens/produtos/" + this.nome;
     }
 }
