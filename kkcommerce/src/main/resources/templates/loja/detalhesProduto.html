@@ -13,24 +13,25 @@
             <div class="container">
                 <div class="col-xs-12 col-md-6 col-lg-6">
                     <div class="miniaturas col-sm-2 col-md-2 col-lg-2">
-                        <a href="#" class="thumbnail"><img class="img-responsive" src="/imagens/produtos/p1-camiseta-reserva.jpg" alt="" /></a>
-                        <a href="#" class="thumbnail"><img class="img-responsive" src="/imagens/produtos/p1-camiseta-reserva.jpg" alt="" /></a>
-                        <a href="#" class="thumbnail"><img class="img-responsive" src="/imagens/produtos/p1-camiseta-reserva.jpg" alt="" /></a>
+                        <a href="#" class="thumbnail" th:each="imagem : ${produto.imagens}">
+                            <img class="img-responsive" th:src="@{${imagem.urlImagem}}"
+                                 th:alt="${imagem.descricao}" />
+                        </a>
                     </div>
                     <div class="col-sm-6 col-md-10 col-lg-10">
-                        <img class="img-responsive" src="/imagens/produtos/p1-camiseta-reserva.jpg" alt=""/>
+                        <img class="img-responsive" th:src="${produto.imagens[0].urlImagem}" alt=""/>
                     </div>
                 </div>
                 <div class="col-xs-7 col-md-6 col-lg-6">
                     <div class="container-borda">
                         <p class="p-titulo" th:text="${produto.nome}">
-                           Nome do produto 
+                            Nome do produto 
                         </p>
                         <p class="p-descricao" th:text="${produto.descricao}">
                             Descrição
                         </p>
                         <p class="p-preco" th:text="${#numbers.formatCurrency(produto.valor)}">
-                            Valor do produto
+                            valor do produto
                         </p>
                     </div>
                 </div>
@@ -49,11 +50,10 @@
                             </div>
                             <div class="row">
                                 <p>Tamanho</p>
-                                <select class="form-control" name="tamanho">
+                                <select class="form-control" name="estoque">
                                     <option value=""></option>
-                                    <c:forEach items="${tamanhos}" var="item">
-                                        <option value="${item.key}">${item.value}</option>
-                                    </c:forEach>
+                                    <option th:each="e : ${produto.estoque}"
+                                            th:value="${e.id}" th:text="${e.tamanho}"></option>
                                 </select>
                             </div>
                             <div class="row linha-btn">
@@ -65,13 +65,9 @@
                             <p>Parcelamento</p>
                             <img src="/imagens/bandeiras-parcelamento.gif" alt="Bandeiras de cartões de crédito aceitas" />  
                             <table class="table table-striped table-responsive">
-                                <c:forEach begin="1" end="5" var="i">
-                                    <tr>
-                                        <td>
-                                    <c:out  value="${i}"></c:out> x <fmt:formatNumber value="${model.valor / i}" type="currency" currencySymbol="R$ " ></fmt:formatNumber> sem juros
-                                    </td>
-                                    </tr>
-                                </c:forEach>
+                                <tr th:each="p : ${parcelas}">
+                                    <td th:text=" ${#numbers.formatCurrency(p)}"></td>
+                                </tr>
                             </table>   
                         </div>
                     </div>
