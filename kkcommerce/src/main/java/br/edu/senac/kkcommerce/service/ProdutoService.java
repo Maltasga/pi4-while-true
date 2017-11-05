@@ -21,9 +21,6 @@ public class ProdutoService extends ServiceBase {
 
     public List<Produto> listar() throws Exception {
         List<Produto> produtos = dao.listar();
-        for (Produto p : produtos) {
-            p.setImagens(imagemService.listar(p.getId()));
-        }
         return produtos;
     }
 
@@ -48,9 +45,10 @@ public class ProdutoService extends ServiceBase {
         dao.excluir(id);
     }
 
-    public Produto buscar(int id) throws Exception {
-        Produto p = (Produto) dao.getById(id);
-        p.setImagens(imagemService.listar(id));
+    public Produto buscar(int produtoId) throws Exception {
+        Produto p = (Produto) dao.getById(produtoId);
+        p.setImagens(imagemService.listar(produtoId));
+        p.setEstoque(estoqueService.listarPorProduto(produtoId));
         return p;
     }
 }
