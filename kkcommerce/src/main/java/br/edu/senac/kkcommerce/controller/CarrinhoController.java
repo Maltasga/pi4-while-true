@@ -15,8 +15,7 @@ public class CarrinhoController implements Serializable{
     @GetMapping("/checkout")
     public ModelAndView index() throws Exception {
         try {
-            return new ModelAndView("loja/carrinho.html")
-                    .addObject("produtos", produtoService.listar());
+            return new ModelAndView("loja/carrinho.html");
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
