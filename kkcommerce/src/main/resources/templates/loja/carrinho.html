@@ -7,11 +7,71 @@
         <link th:href="@{/css/carrinho.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/carrinho.css" />
+        <script th:src="@{../../js/carrinho.js}" type="text/javascript"></script>
     </head>
     <body>
         <div layout:fragment="conteudo">
             <div class="container">
-               
-        </div>
+                <div class="row">
+                    <div class="table-responsive teste">
+                        <table class="table table-striped tabela-pedidos" style="width:100%">
+                            <thead>
+                            <th>ITEN(S) COLOCADO(S) NA CARRINHO</th>
+                            <th>PREÇO UNITÁRIO</th>
+                            <th>QUANTIDADE</th>
+                            <th>SUBTOTAL</th>
+                            </thead>
+                            <tbody>
+                                <!--                            <c:forEach items="${carrinho}" var="produto">-->
+                                <tr th:each="item : ${carrinho.itens}">
+                                    <td>
+                                        <div class="flex">
+                                            <div>
+                                                <img class="img-responsive" style="width: 95px;" 
+                                                     th:src="${item.produto.imagens[0].urlImagem}" alt=""/>
+                                            </div>
+                                            <div class="produto-descricao">
+                                                <div>
+                                                    <span th:text="${item.produto.nome}"></span>                                                        
+                                                </div>
+                                                <div>
+                                                    <span th:text="${item.produto.descricao}"></span>                                                       
+                                                </div>          
+                                            </div>
+                                        </div>
+                                    </td>                    
+                                    <td>
+                                        <div class="margem-valores valor">
+                                            <span th:text="${item.produto.valor}"></span>                                            
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="margem-valores">
+                                            <input class="quantidade" produtoID="${item.produto.id}"  valor="${item.produto.valor}" style="text-align: center;" type="number" name="quantity" min="1" max="6" th:value="${item.quantidade}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div class="margem-valores sub-total">
+                                            <span produtoID="${produto.id}" th:text="${item.produto.valor}"></span>
+                                        </div>
+                                    </td>
+
+                                </tr>
+<!--                            </c:forEach>-->
+                            </tbody>
+                        </table>   
+                        <div class="botao flex-end" style="justify-content: space-between;">
+                            <div>
+                                <a href="/">
+                                    <button class="btn btn-info">Continuar comprando</button>
+                                </a> 
+                            </div>
+                            <div>
+                                <button class="btn btn-success">Finalizar a compra</button>
+                            </div>
+                        </div>
+                    </div>          
+                </div>
+            </div>
     </body>
 </html>

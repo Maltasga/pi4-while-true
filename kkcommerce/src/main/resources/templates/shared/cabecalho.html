@@ -1,13 +1,7 @@
-<!--<div class="col-lg-3">
-    <img class="img-responsive" th:src="@{/imagens/logo-lg.png}"
-         src="../../static/imagens/logo-lg.png"
-         alt="E-commerce KK Coolwear"/>    
-</div>-->
-
 <div class="row">
     <div class="col-lg-4 col-md-4">    
         <div class="flex-start margin-left">
-            <a href="#" class="img-logo"></a>
+            <a href="/" class="img-logo"></a>
         </div>                   
     </div>
     <div class="col-lg-5 col-md-5 col-sm-12">
@@ -35,10 +29,10 @@
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-2">
-                    <a href="checkout" style="text-decoration: none;">
+                    <a href="checkout/checkout" style="text-decoration: none;">
                         <span class="glyphicon glyphicon-shopping-cart icons" style="color: black;"></span>                    
                     </a>
-                    <span class="badge">0</span>
+                    <span class="badge" th:text='${@carrinhoController.quantidadeItens}'></span>
                 </div>  
             </div>
         </div>
@@ -58,7 +52,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <div class="flex-center">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="produtos">Home</a></li>
+                        <li class="active"><a href="/">Home</a></li>
                         <li><a href="#">Feminino</a></li>
                         <li><a href="#">Masculino</a></li>
                         <li><a href="#">Infantil</a></li>

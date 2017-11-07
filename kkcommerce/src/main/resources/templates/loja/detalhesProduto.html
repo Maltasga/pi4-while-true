@@ -36,18 +36,13 @@
                     </div>
                 </div>
                 <div class="col-xs-5 col-md-6 col-lg-6">
-                    <form method="POST" action="checkout">
-                        <input type="hidden" th:value="${produto.id}" id="idProduto"/>
+                    <form method="POST" action="/checkout/add-item">
+                        <input type="hidden" th:value="${produto.id}" name="id"/>
+                        <div class="row form-group">
+                            <label>Quantidade</label>
+                            <input type="text" name="qtde" class="form-control" />
+                        </div>
                         <div class="container-opcoes">
-                            <div class="row">
-                                <p>Cores disponíveis</p>
-                                <select class="form-control" name="cor">
-                                    <option value="0"></option>
-                                    <option value="1">Branco</option>
-                                    <option value="2">Cinza</option>
-                                    <option value="3">Preto</option>
-                                </select>
-                            </div>
                             <div class="row">
                                 <p>Tamanho</p>
                                 <select class="form-control" name="estoque">
@@ -57,8 +52,9 @@
                                 </select>
                             </div>
                             <div class="row linha-btn">
-                                <input type="submit" class="btn btn-primary" value="Comprar" />
+                                <input id="btnComprar" type="submit" class="btn btn-primary" value="Comprar" />
                             </div>
+                        </div>
                     </form>
                     <div class="row">
                         <div id="parcelamento">
