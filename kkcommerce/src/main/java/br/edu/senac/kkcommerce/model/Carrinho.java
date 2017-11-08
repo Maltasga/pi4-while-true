@@ -48,7 +48,7 @@ public class Carrinho {
     public void setClienteId(int clienteId) {
         this.clienteId = clienteId;
     }
-    
+
     public void addItem(CarrinhoItem item) {
         if (this.itens == null) {
             this.itens = new ArrayList<>();
@@ -74,9 +74,9 @@ public class Carrinho {
         Produto p2 = new Produto(10, "Agasalho Moleton", "Agasalho Moleton Cinza", 0, 0, 189.30, true, Calendar.getInstance().getTime());
         Produto p3 = new Produto(10, "Vestido Florido", "Vestido Florido", 0, 0, 87.0, true, Calendar.getInstance().getTime());
 
-        carrinho.addItem(new CarrinhoItem(0, p1, 3));
-        carrinho.addItem(new CarrinhoItem(0, p2, 1));
-        carrinho.addItem(new CarrinhoItem(0, p3, 1));
+        carrinho.addItem(new CarrinhoItem(0, p1, 3, "P"));
+        carrinho.addItem(new CarrinhoItem(0, p2, 1, "M"));
+        carrinho.addItem(new CarrinhoItem(0, p3, 1, "P"));
         return carrinho;
     }
 }

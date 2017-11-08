@@ -11,54 +11,55 @@
     <body>
         <div layout:fragment="conteudo">
             <div class="container">
-                <form action="#" method="post" class="form-group"
-                      th:action="/tdm-checkout/carrinho-e2" th:object="endereco">
-                    <div class="col-lg-4">
+                <form action="#" method="post"
+                      th:action="carrinho-e2" th:object="${endereco}">
+                    <div class="col-lg-8">
+                        <div class="col-lg-6">
 
-                        <div class="form-control">
-                            <label>Logradouro</label>
-                            <input type="text" name="logradouro" 
-                                   th:field="*{logradouro}" />
-                        </div>
+                            <div class="form-group">
+                                <label>Logradouro</label>
+                                <input type="text" name="logradouro" class="form-control" 
+                                       th:field="*{logradouro}" />
+                            </div>
 
-                        <div class="form-control">
-                            <label>Número</label>
-                            <input type="text" name="numero" 
-                                   th:field="*{numero}" />
-                        </div>
+                            <div class="form-group">
+                                <label>Número</label>
+                                <input type="text" name="numero"  class="form-control"
+                                       th:field="*{numero}" />
+                            </div>
 
-                        <div class="form-control">
-                            <label>Complemento</label>
-                            <input type="text" name="complemento" 
-                                   th:field="*{complemento}" />
-                        </div>
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input type="text" name="complemento"  class="form-control"
+                                       th:field="*{complemento}" />
+                            </div>
 
-                        <div class="form-control">
-                            <label>Cidade</label>
-                            <input type="text" name="cidade" 
-                                   th:field="*{cidade}" />
-                        </div>
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <input type="text" name="cidade"  class="form-control"
+                                       th:field="*{cidade}" />
+                            </div>
 
-                        <div class="form-control">
-                            <label>UF</label>
-                            <input type="text" name="uf" 
-                                   th:field="*{uf}" />
-                        </div>
+                            <div class="form-group">
+                                <label>UF</label>
+                                <input type="text" name="uf"  class="form-control"
+                                       th:field="*{uf}" />
+                            </div>
 
-                        <div class="form-control">
-                            <label>CEP</label>
-                            <input type="text" name="cep" 
-                                   th:field="*{cep}" />
+                            <div class="form-group">
+                                <label>CEP</label>
+                                <input type="text" name="cep"  class="form-control"
+                                       th:field="*{cep}" />
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-lg-4">
 
-                        <div class="form-control">
-                            <label>Bolero</label>
-                            <div class="text-center">
-                                <input type="radio" name="formaPgto" />
-                                <img th:src="@{}" />
+                        <div class="form-group">
+                            <div class="row">
+                                <input type="radio" name="formaPgto" checked="checked" /> <span>Boleto</span>
+                                <img class="img-responsive" width="150px" height="auto" th:src="@{/imagens/boleto.jpg}" />
                             </div>
                         </div>
 
