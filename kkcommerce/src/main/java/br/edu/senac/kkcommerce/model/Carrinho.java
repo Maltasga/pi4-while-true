@@ -12,15 +12,17 @@ public class Carrinho {
     private long id;
     private ArrayList<CarrinhoItem> itens;
     private double valorTotal;
+    private int clienteId;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
         this.valorTotal = 0;
     }
 
-    public Carrinho(ArrayList<CarrinhoItem> itens, double valorTotal) {
+    public Carrinho(ArrayList<CarrinhoItem> itens, double valorTotal, int clienteId) {
         this.itens = itens;
         this.valorTotal = valorTotal;
+        this.clienteId = clienteId;
     }
 
     public long getId() {
@@ -39,6 +41,14 @@ public class Carrinho {
         this.itens = itens;
     }
 
+    public int getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(int clienteId) {
+        this.clienteId = clienteId;
+    }
+    
     public void addItem(CarrinhoItem item) {
         if (this.itens == null) {
             this.itens = new ArrayList<>();

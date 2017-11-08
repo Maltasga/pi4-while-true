@@ -10,11 +10,13 @@ public class CarrinhoItem {
     private long carrinhoId;
     private Produto produto;
     private int quantidade;
+    private String tamanho;
 
-    public CarrinhoItem(long carrinhoId, Produto produto, int quantidade) {
+    public CarrinhoItem(long carrinhoId, Produto produto, int quantidade, String tamanho) {
         this.carrinhoId = carrinhoId;
         this.produto = produto;
         this.quantidade = quantidade;
+        this.tamanho = tamanho;
     }
 
     public long getId() {
@@ -51,5 +53,13 @@ public class CarrinhoItem {
 
     public double getValorItem() {
         return this.produto.getValor() * this.quantidade;
+    }
+
+    public String getTamanho() {
+        return tamanho;
+    }
+
+    public void setTamanho(String tamanho) {
+        this.tamanho = tamanho;
     }
 }
