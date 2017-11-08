@@ -4,10 +4,10 @@
       layout:decorate="~{shared/master-loja}">
     <head>
         <title>Pedidos</title>
-
     </head>
     <body>
         <div layout:fragment="conteudo">
+            <h2>Todos os seus Pedidos</h2>
             <div class="container">
                 <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >
                     <table class="table table-striped">
@@ -22,7 +22,7 @@
                             <tr th:each="p : ${pedidos}"> 
                                 <td th:text="${p.protocolo}"></td>
                                 <td th:text="${p.data_transacao}"></td>
-                                <td th:text="${#numbers.formatCurrency(p.valorTotal)}"></td>
+                                <td th:text="${p.valorFinal}"></td>
                             </tr>
                         </tbody>
                     </table>
