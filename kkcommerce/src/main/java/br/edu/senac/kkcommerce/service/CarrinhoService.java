@@ -35,6 +35,11 @@ public class CarrinhoService extends ServiceBase{
         return dao.listar();
     }
     
+    public List<Carrinho> listar(int id) throws Exception {
+        CarrinhoDao carrinhoDao = new CarrinhoDao();
+        return carrinhoDao.listar(id);
+    }
+    
     public void atualizar(Carrinho c) throws Exception {
         dao.atualizar(c);
     }
