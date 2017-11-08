@@ -67,14 +67,12 @@ public class TDMCarrinhoController {
             Endereco end = checkout.getEndereco();
             end.setClienteId(checkout.getClienteId());
 
+            long protocolo = Calendar.getInstance().getTimeInMillis();
+
+            carrinho.setProtocolo(protocolo);
             enderecoService.salvar(end);
             carrService.salvar(carrinho);
-            
-            long protocolo = Calendar.getInstance().getTimeInMillis();
-            
-            carrinho.setProtocolo(protocolo);
-            carrService.atualizar(carrinho);
-            
+
             redirectAttrs.addFlashAttribute("protocolo", protocolo);
             redirectAttrs.addFlashAttribute("tkey", "1984");
         } catch (Exception ex) {

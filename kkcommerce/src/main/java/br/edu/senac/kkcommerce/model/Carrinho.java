@@ -13,6 +13,7 @@ public class Carrinho {
     private long id;
     private ArrayList<CarrinhoItem> itens;
     private double valorTotal;
+    private double valorFinal;
     private int clienteId;
     private int formaPgto;
     private Date data_transacao;
@@ -30,9 +31,17 @@ public class Carrinho {
         this.data_transacao = data_transacao;
     }
 
-    public Carrinho(long id, double valorTotal, Date data_transacao) {
-        this.id = id;
+    public Carrinho(ArrayList<CarrinhoItem> itens, double valorTotal, int clienteId, Date data_transacao, long protocolo) {
+        this.itens = itens;
         this.valorTotal = valorTotal;
+        this.clienteId = clienteId;
+        this.data_transacao = data_transacao;
+        this.protocolo = protocolo;
+    }
+
+    public Carrinho(long protocolo, double valorFinal, Date data_transacao) {
+        this.protocolo = protocolo;
+        this.valorFinal = valorFinal;
         this.data_transacao = data_transacao;
     }
 
@@ -75,7 +84,7 @@ public class Carrinho {
     public void setProtocolo(long protocolo) {
         this.protocolo = protocolo;
     }
-    
+
     public void addItem(CarrinhoItem item) {
         if (this.itens == null) {
             this.itens = new ArrayList<>();
@@ -93,6 +102,14 @@ public class Carrinho {
 
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public double getValorFinal() {
+        return valorFinal;
+    }
+
+    public void setValorFinal(double valorFinal) {
+        this.valorFinal = valorFinal;
     }
 
     public static Carrinho getCarrinhoMock() {
@@ -114,5 +131,5 @@ public class Carrinho {
     public int getFormaPgto() {
         return formaPgto;
     }
-    
+
 }

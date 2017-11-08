@@ -27,9 +27,9 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
     public int inserir(Carrinho obj) throws SQLException, Exception {
         int idGerado = 0;
         String query = "INSERT INTO Carrinho "
-                + "(ID, CLIENTE_ID, VL_TOTAL"
+                + "(ID, CLIENTE_ID, VL_TOTAL, PROTOCOLO"
                 + " ) VALUES ("
-                + "?, ?, ?);";
+                + "?, ?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
@@ -38,6 +38,7 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
             statement.setLong(1, obj.getId());
             statement.setInt(2, obj.getClienteId());
             statement.setDouble(3, obj.getValorTotal());
+            statement.setLong(4, obj.getProtocolo());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();
@@ -102,7 +103,7 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
             Carrinho c = null;
             while (result.next()) {
                 c = new Carrinho(
-                        result.getInt("ID"),
+                        result.getLong("PROTOCOLO"),
                         result.getDouble("VL_TOTAL"),
                         result.getDate("DT_TRANSACAO")
                 );

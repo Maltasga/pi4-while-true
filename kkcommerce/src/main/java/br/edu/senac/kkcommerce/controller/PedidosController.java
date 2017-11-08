@@ -16,7 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Karolina G. K.
  */
 @Controller
-public class PedidosController extends BaseAdminController{
+public class PedidosController{
 
     CarrinhoService service = new CarrinhoService();
     
