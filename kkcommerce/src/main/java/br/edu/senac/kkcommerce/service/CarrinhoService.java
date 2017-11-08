@@ -10,6 +10,7 @@ import br.edu.senac.kkcommerce.dao.CarrinhoDao;
 import br.edu.senac.kkcommerce.dao.CarrinhoItemDao;
 import br.edu.senac.kkcommerce.model.Carrinho;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
+import java.util.List;
 
 /**
  * 
@@ -28,5 +29,9 @@ public class CarrinhoService extends ServiceBase{
             i.setCarrinhoId(idCarrinho);
             daoItem.inserir(i);
         }
+    }
+    
+    public List<Carrinho> listar() throws Exception {
+        return dao.listar();
     }
 }
