@@ -36,11 +36,11 @@ public class CarrinhoController implements Serializable {
     }
     
     @PostMapping("/add-item")
-    public ModelAndView addItem(@ModelAttribute("id") int id, @ModelAttribute("qtde") int qtde,
+    public ModelAndView addItem(@ModelAttribute("id") int id, @ModelAttribute("qtde") int qtde, String tam,
             RedirectAttributes redirectAttributes) {
         try {
             Produto p = service.buscar(id);
-            carrinho.addItem(new CarrinhoItem(0, p, qtde));
+            carrinho.addItem(new CarrinhoItem(0, p, qtde , tam));
             
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
