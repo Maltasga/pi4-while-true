@@ -16,6 +16,7 @@ public class Carrinho {
     private int clienteId;
     private int formaPgto;
     private Date data_transacao;
+    private long protocolo;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
@@ -65,6 +66,14 @@ public class Carrinho {
 
     public void setData_transacao(Date data_transacao) {
         this.data_transacao = data_transacao;
+    }
+
+    public long getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(long protocolo) {
+        this.protocolo = protocolo;
     }
     
     public void addItem(CarrinhoItem item) {

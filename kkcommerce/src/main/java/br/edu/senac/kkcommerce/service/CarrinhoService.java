@@ -34,4 +34,8 @@ public class CarrinhoService extends ServiceBase{
     public List<Carrinho> listar() throws Exception {
         return dao.listar();
     }
+    
+    public void atualizar(Carrinho c) throws Exception {
+        dao.atualizar(c);
+    }
 }
