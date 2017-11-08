@@ -48,5 +48,8 @@ public class CarrinhoItem {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
-    
+
+    public double getValorItem() {
+        return this.produto.getValor() * this.quantidade;
+    }
 }
