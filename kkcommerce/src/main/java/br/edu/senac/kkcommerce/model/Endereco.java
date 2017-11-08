@@ -101,4 +101,8 @@ public class Endereco {
     public void setPrincipal(boolean principal) {
         this.principal = principal;
     }
+
+    public static String[] getUFs() {
+        return new String[]{"AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"};
+    }
 }

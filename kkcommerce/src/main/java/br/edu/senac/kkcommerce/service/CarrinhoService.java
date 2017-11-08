@@ -8,10 +8,8 @@ package br.edu.senac.kkcommerce.service;
 
 import br.edu.senac.kkcommerce.dao.CarrinhoDao;
 import br.edu.senac.kkcommerce.dao.CarrinhoItemDao;
-import br.edu.senac.kkcommerce.dao.IDaoBase;
 import br.edu.senac.kkcommerce.model.Carrinho;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
-import java.util.List;
 
 /**
  * 
@@ -23,10 +21,10 @@ public class CarrinhoService extends ServiceBase{
         super(new CarrinhoDao());
     }
 
-    public void salvar(Carrinho c, List<CarrinhoItem> itens) throws Exception{
+    public void salvar(Carrinho c) throws Exception{
         CarrinhoItemDao daoItem = new CarrinhoItemDao();
         int idCarrinho = dao.inserir(c);
-        for (CarrinhoItem i : itens) {
+        for (CarrinhoItem i : c.getItens()) {
             i.setCarrinhoId(idCarrinho);
             daoItem.inserir(i);
         }

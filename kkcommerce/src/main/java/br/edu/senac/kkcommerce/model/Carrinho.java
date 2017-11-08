@@ -13,6 +13,7 @@ public class Carrinho {
     private ArrayList<CarrinhoItem> itens;
     private double valorTotal;
     private int clienteId;
+    private int formaPgto;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
@@ -79,4 +80,13 @@ public class Carrinho {
         carrinho.addItem(new CarrinhoItem(0, p3, 1, "P"));
         return carrinho;
     }
+
+    public void setFormaPgto(int formaPgto) {
+        this.formaPgto = formaPgto;
+    }
+
+    public int getFormaPgto() {
+        return formaPgto;
+    }
+    
 }
