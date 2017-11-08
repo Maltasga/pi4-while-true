@@ -2,6 +2,7 @@ package br.edu.senac.kkcommerce.model;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  *
@@ -13,16 +14,24 @@ public class Carrinho {
     private ArrayList<CarrinhoItem> itens;
     private double valorTotal;
     private int clienteId;
+    private Date data_transacao;
 
     public Carrinho() {
         this.itens = new ArrayList<>();
         this.valorTotal = 0;
     }
 
-    public Carrinho(ArrayList<CarrinhoItem> itens, double valorTotal, int clienteId) {
+    public Carrinho(ArrayList<CarrinhoItem> itens, double valorTotal, int clienteId, Date data_transacao) {
         this.itens = itens;
         this.valorTotal = valorTotal;
         this.clienteId = clienteId;
+        this.data_transacao = data_transacao;
+    }
+
+    public Carrinho(long id, double valorTotal, Date data_transacao) {
+        this.id = id;
+        this.valorTotal = valorTotal;
+        this.data_transacao = data_transacao;
     }
 
     public long getId() {
@@ -49,6 +58,14 @@ public class Carrinho {
         this.clienteId = clienteId;
     }
 
+    public Date getData_transacao() {
+        return data_transacao;
+    }
+
+    public void setData_transacao(Date data_transacao) {
+        this.data_transacao = data_transacao;
+    }
+    
     public void addItem(CarrinhoItem item) {
         if (this.itens == null) {
             this.itens = new ArrayList<>();

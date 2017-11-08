@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
@@ -13,14 +12,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ *
  * @author Karolina G. K.
  */
-public class CarrinhoDao implements IDaoBase<Carrinho>{
-    
+public class CarrinhoDao implements IDaoBase<Carrinho> {
+
     Connection conexao = null;
 
     @Override
@@ -69,6 +69,38 @@ public class CarrinhoDao implements IDaoBase<Carrinho>{
     @Override
     public List<Carrinho> listar() throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public List<Carrinho> listar(int idCliente) throws SQLException, Exception {
+        ArrayList<Carrinho> compras = new ArrayList<>();
+
+        String query = "SELECT * FROM Carrinho WHERE CLIENTE_ID = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, idCliente);
+            ResultSet result = statement.executeQuery();
+            Carrinho c = null;
+            while (result.next()) {
+                c = new Carrinho(
+                        result.getInt("ID"),
+                        result.getDouble("VL_TOTAL"),
+                        result.getDate("DT_TRANSACAO")
+                );
+                compras.add(c);
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return compras;
     }
 
     @Override

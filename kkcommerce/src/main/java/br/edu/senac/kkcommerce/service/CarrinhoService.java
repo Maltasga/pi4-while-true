@@ -31,4 +31,8 @@ public class CarrinhoService extends ServiceBase{
             daoItem.inserir(i);
         }
     }
+    
+    public List<Carrinho> listar() throws Exception {
+        return dao.listar();
+    }
 }
