@@ -7,7 +7,6 @@ package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
-import br.edu.senac.kkcommerce.model.Util;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
