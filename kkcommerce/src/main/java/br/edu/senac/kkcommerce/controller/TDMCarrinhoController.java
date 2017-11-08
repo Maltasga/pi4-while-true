@@ -19,8 +19,15 @@ public class TDMCarrinhoController {
     @RequestMapping("/carrinho")
     public ModelAndView checkout() {
         Carrinho carrinho = Carrinho.getCarrinhoMock();
-        
+
         return new ModelAndView("tdm/checkout")
                 .addObject("carrinho", carrinho);
+    }
+
+    @RequestMapping("/carrinho-e2")
+    public ModelAndView checkout2() {
+        Carrinho c = Carrinho.getCarrinhoMock();
+
+        return new ModelAndView("tdm/checkoutE2").addObject("valorTotal", c.getValorTotal());
     }
 }

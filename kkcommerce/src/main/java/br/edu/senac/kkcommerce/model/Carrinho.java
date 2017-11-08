@@ -47,11 +47,10 @@ public class Carrinho {
     }
 
     public double getValorTotal() {
-        double t = 0;
-        for (CarrinhoItem iten : itens) {
-            t += (iten.getProduto().getValor() * iten.getQuantidade());
+        valorTotal = 0;
+        for (CarrinhoItem item : itens) {
+            valorTotal += item.getValorItem();
         }
-        valorTotal = t;
         return valorTotal;
     }
 
