@@ -1,8 +1,2 @@
-INSERT INTO MARCA (NOME) VALUES ('Calvin Klein');
-INSERT INTO MARCA (NOME) VALUES ('Aramis');
-INSERT INTO MARCA (NOME) VALUES ('Lacoste');
-INSERT INTO MARCA (NOME) VALUES ('Joss');
-INSERT INTO MARCA (NOME) VALUES ('Reserva');
-INSERT INTO MARCA (NOME) VALUES ('Tommy Hilfiger');
-INSERT INTO MARCA (NOME) VALUES ('Colcci');
-INSERT INTO MARCA (NOME) VALUES ('Billabong');
+INSERT INTO MARCA (NOME) VALUES 
+    ('Calvin Klein'), ('Aramis'), ('Lacoste'), ('Joss'), ('Reserva'), ('Tommy Hilfiger'), ('Colcci'), ('Billabong');

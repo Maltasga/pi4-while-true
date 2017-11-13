@@ -1,27 +1,7 @@
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Blusa');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Camisa');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Camiseta');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Moletom');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Casaco');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Jaqueta');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Tricô');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Calça');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Bermuda');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Saia');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Legging');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Vestido');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Macacão');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'F', 'Jardineira');
-
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Blusa');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Camisa');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Camiseta');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Moletom');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Casaco');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Jaqueta');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Tricô');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Calça');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Bermuda');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Legging');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Macacão');
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES (	'M', 'Jardineira');
+INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
+    ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
+    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tricô'), ('F', 'Calça'), ('F', 'Bermuda'),
+    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macacão'), ('F', 'Jardineira'),
+    ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
+    ('M', 'Jaqueta'), ('M', 'Tricô'),  ('M', 'Calça'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
+    ('M', 'Macacão'),    ('M', 'Jardineira');

@@ -12,4 +12,4 @@ CREATE TABLE Cliente (
     DT_CADASTRO DATETIME DEFAULT NOW(),
     
     PRIMARY KEY (ID, CPF)
-)
+);
