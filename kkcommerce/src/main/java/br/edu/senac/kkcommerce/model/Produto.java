@@ -152,4 +152,12 @@ public class Produto {
     public void setArquivos(MultipartFile[] arquivo) {
         this.arquivos = arquivo;
     }
+
+    public String getUrlImagemPrincipal() {
+        if (this.imagens != null && this.imagens.size() > 0) {
+            return this.imagens.get(0).getUrlImagem();
+        } else {
+            return ImagemProduto.IMG_NOT_FOUND;
+        }
+    }
 }

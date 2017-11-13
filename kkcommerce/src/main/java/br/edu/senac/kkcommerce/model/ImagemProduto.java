@@ -6,6 +6,8 @@ package br.edu.senac.kkcommerce.model;
  */
 public class ImagemProduto {
 
+    public static String IMG_NOT_FOUND = "/imagens/produtos/img_not_found.jpg";
+    
     private int id;
     private int produtoId;
     private String nome;
