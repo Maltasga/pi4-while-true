@@ -22,13 +22,12 @@
                             <th>SUBTOTAL</th>
                             </thead>
                             <tbody>
-                                <!--                            <c:forEach items="${carrinho}" var="produto">-->
                                 <tr th:each="item : ${carrinho.itens}">
                                     <td>
                                         <div class="flex">
                                             <div>
                                                 <img class="img-responsive" style="width: 95px;" 
-                                                     th:src="${item.produto.imagens[0].urlImagem}" alt=""/>
+                                                     th:src="${item.produto.urlImagemPrincipal}" alt=""/>
                                             </div>
                                             <div class="produto-descricao">
                                                 <div>
@@ -55,9 +54,7 @@
                                             <span produtoID="${produto.id}" th:text="${item.produto.valor}"></span>
                                         </div>
                                     </td>
-
                                 </tr>
-<!--                            </c:forEach>-->
                             </tbody>
                         </table>   
                         <div class="botao flex-end" style="justify-content: space-between;">

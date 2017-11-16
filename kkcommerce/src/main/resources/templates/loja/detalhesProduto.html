@@ -35,20 +35,19 @@
                         </p>
                     </div>
                 </div>
-                <div class="col-xs-5 col-md-6 col-lg-6">
+                <div class="col-xs-5 col-md-6 col-lg-6" th:if="${produto.estaDisponivel}">                    
                     <form method="POST" action="/checkout/add-item">
                         <input type="hidden" th:value="${produto.id}" name="id"/>
-                        <div class="row form-group">
+                        <div class="form-group">
                             <label>Quantidade</label>
-                            <input type="text" name="qtde" class="form-control" />
+                            <input type="number" min="1" max="10" name="qtde" class="form-control" value="1" />
                         </div>
                         <div class="container-opcoes">
                             <div class="row">
                                 <p>Tamanho</p>
                                 <select class="form-control" name="estoque">
-                                    <option value=""></option>
-                                    <option th:each="e : ${produto.estoque}"
-                                            th:value="${e.id}" th:text="${e.tamanho}"></option>
+                                    <option value="" selected>Selecione o Tamanho</option>
+                                    <option th:each="e : ${produto.estoque}" th:value="${e.id}" th:text="${e.tamanho}"></option>
                                 </select>
                             </div>
                             <div class="row linha-btn">
@@ -57,7 +56,7 @@
                         </div>
                     </form>
                     <div class="row">
-                        <div id="parcelamento">
+                        <div id="parcelamento" class="pull-right">
                             <p>Parcelamento</p>
                             <img src="/imagens/bandeiras-parcelamento.gif" alt="Bandeiras de cartões de crédito aceitas" />  
                             <table class="table table-striped table-responsive">
@@ -68,6 +67,11 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-xs-5 col-md-6 col-lg-6" th:if="${!produto.estaDisponivel}">
+                    <div class="alert alert-warning">
+                        <p>Estoque indisponível</p>
+                    </div>
+                </div> 
             </div>
         </div>
     </body>

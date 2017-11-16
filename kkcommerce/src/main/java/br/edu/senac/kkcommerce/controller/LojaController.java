@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author while true
  */
 @Controller
-public class LojaController {
+public class LojaController extends BaseLojaController {
 
     ProdutoService produtoService = new ProdutoService();
 
@@ -35,10 +35,12 @@ public class LojaController {
             ModelAndView model = new ModelAndView("loja/detalhesProduto.html");
             Produto produto = produtoService.buscar(id);
             model.addObject("produto", produto);
+
             for (int i = 1; i < 6; i++) {
                 parcelas.add(produto.getValor() / i);
             }
             model.addObject("parcelas", parcelas);
+            
             return model;
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());

@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  *
- * @author gabri
+ * @author while true
  */
 @RequestMapping("/kk-admin")
 public abstract class BaseAdminController {

@@ -21,7 +21,7 @@
                         <p class="descricao" th:text="${p.descricao}"></p>
                         <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
                         <div class="btn-comprar">
-                            <a href="#" th:href="@{/detalhes-produto(id=${p.id})}"
+                            <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
                                 <button type="button" class="btn btn-info">
                                     Detalhes
                                 </button>

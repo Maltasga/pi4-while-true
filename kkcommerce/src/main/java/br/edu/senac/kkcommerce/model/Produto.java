@@ -160,4 +160,8 @@ public class Produto {
             return ImagemProduto.IMG_NOT_FOUND;
         }
     }
+
+    public boolean getEstaDisponivel() {
+        return this.estoque.size() > 0;
+    }
 }
