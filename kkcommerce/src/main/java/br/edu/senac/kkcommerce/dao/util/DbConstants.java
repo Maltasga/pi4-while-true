@@ -9,6 +9,6 @@ public class DbConstants {
 
     public static final String URL = "jdbc:mysql://localhost:3306/ecommercedb";
     public static final String USER = "root";
-    public static final String PASSWORD = "rootroot";
+    public static final String PASSWORD = "root";
 
 }
