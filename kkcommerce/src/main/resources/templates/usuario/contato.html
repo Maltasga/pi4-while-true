@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear - Novo Ticket</title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h1>Novo Ticket</h1>
+            </div>               
+            <form action="#" method="post" enctype="multipart/form-data"
+                  th:action="enviar-contato" th:object="${contato}">
+
+                <div class="col-lg-6">
+                    <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
+                    <input type="hidden" name="clienteid" th:field="*{clienteid}" th:value="${clienteid}" />
+                    <input type="hidden" name="dttransacao" th:field="*{dttransacao}" th:value="${dttransacao}" />
+                    <div class="form-group">
+                        <label>Tipo de Erro</label>
+                        <input type="text" name="nome" class="form-control" required
+                               th:field="*{nome}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea name="descricao" class="form-control" col="90" rows="4" required
+                                  th:field="*{descricao}" ></textarea>
+                    </div>
+                   
+                </div>
+                <div class="col-lg-12">
+                    <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                    <a href="#" th:href="@{}"
+                       <span class="btn btn-default">Cancelar</span>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </body>
+</html>
