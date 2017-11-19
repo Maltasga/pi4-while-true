@@ -2,6 +2,7 @@ package br.edu.senac.kkcommerce.model;
 
 import java.util.ArrayList;
 import java.util.Date;
+import org.springframework.format.annotation.DateTimeFormat;
 
 /**
  *
@@ -12,7 +13,9 @@ public class Cliente {
     private String nome;
     private String cpf;
     private String email;
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
+    
     private String sexo;
     private String telefone;
     private String celular;

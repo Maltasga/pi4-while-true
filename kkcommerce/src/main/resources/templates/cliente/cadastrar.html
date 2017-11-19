@@ -18,7 +18,7 @@
                 <div class="col-lg-6">
                     <div class="form-group">
                         <label>Nome</label>
-                        <input type="text" required name="nome" class="form-control"
+                        <input type="text" required="required" name="nome" class="form-control"
                                th:field="*{nome}" th:value="${cliente.nome}" />
                     </div>
 
@@ -38,7 +38,8 @@
 
                     <div class="form-group">
                         <label>Data de Nascimento</label>
-                        <input type="date" required name="dataNascimento" class="form-control"
+                        <input type="text" required name="dataNascimento" class="form-control"
+                               placeholder="dd/mm/aaaa"
                                th:field="*{dataNascimento}" th:value="${cliente.dataNascimento}" />
                     </div>
 
@@ -67,7 +68,7 @@
 
                     <div class="clear">
                         <div class="pull-right">
-                            <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                            <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
                             <a href="#" th:href="@{/loja}"
                                <span class="btn btn-default">Cancelar</span>
                             </a>
@@ -77,6 +78,15 @@
                 </div>
 
             </form>
+            <script type="text/javascript">
+                $(function () {
+                    $("[name='cpf']").inputmask("[9]99.999.999-99");
+                    $("[name='dataNascimento']").inputmask({"alias": "date"});
+                    $("[name='email']").inputmask({"alias": "email"});
+                    $("[name='telefone']").inputmask("(99)9999-9999");
+                    $("[name='celular']").inputmask("(99)9999[9]-9999");
+                });
+            </script>
         </div>
     </body>
 </html>
