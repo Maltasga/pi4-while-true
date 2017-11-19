@@ -11,14 +11,11 @@ function FinalizarCompras() {
     $.ajax({
         url: '/loja/finalizar-compra',
         type: 'post',
-        dataType: "json",
         data: {strCarrinho: JSON.stringify(arr)},
         success: function (result) {
-            debugger;
-//            location.href = '/';
+            location.href = '/loja';
         },
         error: function (xhr, status, error) {
-            debugger;
             console.log(error);
         }
     });
