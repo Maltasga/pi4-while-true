@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="col-xs-5 col-md-6 col-lg-6" th:if="${produto.estaDisponivel}">                    
-                    <form method="POST" action="/checkout/add-item">
+                    <form method="POST" action="/loja/add-item">
                         <input type="hidden" th:value="${produto.id}" name="id"/>
                         <div class="form-group">
                             <label>Quantidade</label>
@@ -45,9 +45,9 @@
                         <div class="container-opcoes">
                             <div class="row">
                                 <p>Tamanho</p>
-                                <select class="form-control" name="estoque">
+                                <select class="form-control" name="tamanho">
                                     <option value="" selected>Selecione o Tamanho</option>
-                                    <option th:each="e : ${produto.estoque}" th:value="${e.id}" th:text="${e.tamanho}"></option>
+                                    <option th:each="e : ${produto.estoque}" th:value="${e.tamanho}" th:text="${e.tamanho}"></option>
                                 </select>
                             </div>
                             <div class="row linha-btn">

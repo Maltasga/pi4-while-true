@@ -3,25 +3,29 @@ package br.edu.senac.kkcommerce.controller;
 import br.edu.senac.kkcommerce.model.Carrinho;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
 import br.edu.senac.kkcommerce.model.Produto;
+import br.edu.senac.kkcommerce.service.CarrinhoService;
 import br.edu.senac.kkcommerce.service.ProdutoService;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Calendar;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/checkout")
 @Scope("session")
-public class CarrinhoController implements Serializable {
+public class CarrinhoController extends BaseLojaController implements Serializable {
 
     ProdutoService service = new ProdutoService();
 
-    private final Carrinho carrinho = new Carrinho();
+    private Carrinho carrinho = new Carrinho();
 
     @GetMapping("/checkout")
     public ModelAndView index() throws Exception {
@@ -35,17 +39,54 @@ public class CarrinhoController implements Serializable {
     }
 
     @PostMapping("/add-item")
-    public ModelAndView addItem(@ModelAttribute("id") int id, @ModelAttribute("qtde") int qtde, String tam,
+    @ResponseBody()
+    public ModelAndView addItem(@ModelAttribute("id") int id, @ModelAttribute("qtde") int qtde, @ModelAttribute("tamanho") String tam,
             RedirectAttributes redirectAttributes) {
         try {
             Produto p = service.buscar(id);
-            carrinho.addItem(new CarrinhoItem(0, p, qtde , tam));
+            carrinho.addItem(new CarrinhoItem(0, p, qtde, tam));
 
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
 
-        return new ModelAndView("redirect:/checkout/checkout");
+        return new ModelAndView("redirect:/loja/checkout");
+    }
+
+    @PostMapping("/finalizar-compra")
+    @ResponseBody()
+    public String finalizarCompra(@ModelAttribute("strCarrinho") String strCarrinho) throws Exception {
+
+        try {
+            ArrayList<CarrinhoItem> arrAuxiliar = new ArrayList<>();
+            CarrinhoService carrService = new CarrinhoService();
+            long protocolo = Calendar.getInstance().getTimeInMillis();
+            carrinho.setProtocolo(protocolo);
+            carrinho.setClienteId(1);
+            carrinho.setFormaPgto(1);
+
+            Gson gson = new Gson();
+            arrAuxiliar = gson.fromJson(strCarrinho, new TypeToken<ArrayList<CarrinhoItem>>() {
+            }.getType());
+//          for que compara o ID do produto do carrinho(preenchido pela sessão) 
+//          com o id do produto recuperado diretamente do carrinho via ajax (array)
+//          para atualizar a quantidade
+            for (CarrinhoItem item : carrinho.getItens()) {
+                for (CarrinhoItem itemAux : arrAuxiliar) {
+                    if (itemAux.getId() == item.getProduto().getId()) {
+                        item.setQuantidade(itemAux.getQuantidade());
+                    }
+                }
+            }
+            //Salva os dados
+            carrService.salvar(carrinho);
+            //Limpa o carrinho
+            carrinho = new Carrinho();
+
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        return "";
     }
 
     public Carrinho getCarrinho() {

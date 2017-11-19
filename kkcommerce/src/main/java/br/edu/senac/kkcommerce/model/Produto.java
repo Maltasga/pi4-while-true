@@ -154,7 +154,7 @@ public class Produto {
     }
 
     public String getUrlImagemPrincipal() {
-        if (this.imagens != null && this.imagens.size() > 0) {
+        if (this.imagens.size() > 0) {
             return this.imagens.get(0).getUrlImagem();
         } else {
             return ImagemProduto.IMG_NOT_FOUND;
