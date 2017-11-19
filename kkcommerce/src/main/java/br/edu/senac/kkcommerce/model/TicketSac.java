@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author while true
  */
-public class Contato {
+public class TicketSac {
 
     private long id;
     private int clienteId;
@@ -21,7 +21,7 @@ public class Contato {
     private long protocolo;
     private String status;
 
-    public Contato(long id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
+    public TicketSac(long id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
         this.id = id;
         this.clienteId = clienteId;
         this.data_transacao = data_transacao;
@@ -30,7 +30,7 @@ public class Contato {
         this.protocolo = protocolo;
     }
 
-    public Contato(long id, String tipo_erro, String descricao, Date data_transacao, String status) {
+    public TicketSac(long id, String tipo_erro, String descricao, Date data_transacao, String status) {
         this.id = id;
         this.data_transacao = data_transacao;
         this.tipo_erro = tipo_erro;

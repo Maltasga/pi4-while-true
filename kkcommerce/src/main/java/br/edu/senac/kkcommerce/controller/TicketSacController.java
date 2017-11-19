@@ -5,19 +5,17 @@
  */
 package br.edu.senac.kkcommerce.controller;
 
-import br.edu.senac.kkcommerce.service.ContatoService;
+import br.edu.senac.kkcommerce.service.TicketSacService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author while_true
  */
 @Controller
-public class ContatoController {
+public class TicketSacController {
 
-    ContatoService service = new ContatoService();
+    TicketSacService service = new TicketSacService();
 
     
 }
