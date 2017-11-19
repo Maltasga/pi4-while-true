@@ -7,6 +7,8 @@ package br.edu.senac.kkcommerce.controller;
 
 import br.edu.senac.kkcommerce.service.TicketSacService;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
@@ -17,5 +19,13 @@ public class TicketSacController {
 
     TicketSacService service = new TicketSacService();
 
-    
+    @GetMapping("/ticket-sac")
+    public ModelAndView index() throws Exception {
+        try {
+            return new ModelAndView("usuario/ticketSac.html")
+                    .addObject("ticketSacs", service.listar());
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
 }

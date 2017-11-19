@@ -5,3 +5,4 @@ CREATE TABLE Colecao
     
     PRIMARY KEY (ID)
 );
+

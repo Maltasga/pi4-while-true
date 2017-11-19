@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class TicketSac {
 
-    private long id;
+    private Integer id;
     private int clienteId;
     private Date data_transacao;
     private String tipo_erro;
@@ -21,7 +21,7 @@ public class TicketSac {
     private long protocolo;
     private String status;
 
-    public TicketSac(long id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
+    public TicketSac(Integer id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
         this.id = id;
         this.clienteId = clienteId;
         this.data_transacao = data_transacao;
@@ -30,7 +30,7 @@ public class TicketSac {
         this.protocolo = protocolo;
     }
 
-    public TicketSac(long id, String tipo_erro, String descricao, Date data_transacao, String status) {
+    public TicketSac(Integer id, String tipo_erro, String descricao, Date data_transacao, String status) {
         this.id = id;
         this.data_transacao = data_transacao;
         this.tipo_erro = tipo_erro;
@@ -46,11 +46,11 @@ public class TicketSac {
         this.status = status;
     }
 
-    public long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
