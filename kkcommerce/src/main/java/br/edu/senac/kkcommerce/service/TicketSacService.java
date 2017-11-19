@@ -6,6 +6,8 @@
 package br.edu.senac.kkcommerce.service;
 
 import br.edu.senac.kkcommerce.dao.TicketSacDao;
+import br.edu.senac.kkcommerce.model.TicketSac;
+import java.util.List;
 
 /**
  *
@@ -17,4 +19,21 @@ public class TicketSacService extends ServiceBase {
         super(new TicketSacDao());
     }
 
+    public List<TicketSac> listar() throws Exception {
+        List<TicketSac> ticketSacs = dao.listar();
+        return ticketSacs;
+    }
+
+    public void salvar(TicketSac ts) throws Exception {
+        if (dao.getById(ts.getId()) == null) {
+            int idTicketSac = dao.inserir(ts);
+        } else {
+            dao.atualizar(ts);
+        }
+    }
+
+    public TicketSac buscar(int ticketSacId) throws Exception {
+        TicketSac ts = (TicketSac) dao.getById(ticketSacId);
+        return ts;
+    }
 }
