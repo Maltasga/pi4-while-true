@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,9 +64,14 @@ public class EnderecoDao implements IDaoBase<Endereco> {
 
     @Override
     public void atualizar(Endereco obj) throws SQLException, Exception {
-        String query = "UPDATE Endereco"
-                + "SET LOGRADOURO = ?, NUMERO = ?, COMPLEMENTO = ?, CIDADE = ?, UF = ?,"
-                + " CEP = ?, PRINCIPAL = ? "
+        String query = "UPDATE Endereco "
+                + "SET LOGRADOURO = ?"
+                + ", NUMERO = ?"
+                + ", COMPLEMENTO = ?"
+                + ", CIDADE = ?"
+                + ", UF = ?"
+                + ", CEP = ?"
+                + ", PRINCIPAL = ? "
                 + "WHERE ID = ?";
         PreparedStatement statement = null;
 
@@ -119,13 +125,98 @@ public class EnderecoDao implements IDaoBase<Endereco> {
     }
 
     @Override
-    public List<Endereco> listar() throws SQLException, Exception {
-        return null;
+    public List<Endereco> listar() throws SQLException {
+        ArrayList<Endereco> enderecos = new ArrayList<>();
+
+        String query = "SELECT * FROM Endereco WHERE ATIVO = TRUE";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            Endereco e = null;
+            while (result.next()) {
+                e = new Endereco(
+                        result.getInt("ID"),
+                        result.getInt("CLIENTE_ID"),
+                        result.getString("LOGRADOURO"),
+                        result.getString("NUMERO"),
+                        result.getString("COMPLEMENTO"),
+                        result.getString("CIDADE"),
+                        result.getString("UF"),
+                        result.getString("CEP"),
+                        result.getBoolean("PRINCIPAL"));
+                enderecos.add(e);
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return enderecos;
     }
 
     @Override
     public Endereco getById(int id) throws SQLException, Exception {
-        return null;
+        Endereco endereco = null;
+
+        String query = "SELECT * FROM Endereco WHERE ATIVO = TRUE AND ID = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                endereco = new Endereco(
+                        result.getInt("ID"),
+                        result.getInt("CLIENTE_ID"),
+                        result.getString("LOGRADOURO"),
+                        result.getString("NUMERO"),
+                        result.getString("COMPLEMENTO"),
+                        result.getString("CIDADE"),
+                        result.getString("UF"),
+                        result.getString("CEP"),
+                        result.getBoolean("PRINCIPAL"));
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return endereco;
+    }
+
+    public void rotinaSetEnderecoPrincipal(int id, int clienteId) throws SQLException {
+        PreparedStatement statement = null;
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement("UPDATE Endereco SET Principal = FALSE WHERE CLIENTE_ID = ?");
+            statement.setInt(1, clienteId);
+            statement.execute();
+            
+            statement = conexao.prepareStatement("UPDATE Endereco SET Principal = TRUE WHERE ID = ?");
+            statement.setInt(1, id);
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
     }
 
 }

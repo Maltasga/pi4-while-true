@@ -80,11 +80,11 @@
             </form>
             <script type="text/javascript">
                 $(function () {
-                    $("[name='cpf']").inputmask("[9]99.999.999-99");
+                    $("[name='cpf']").inputmask({mask: "999.999.999-99", removeMaskOnSubmit: true});
                     $("[name='dataNascimento']").inputmask({"alias": "date"});
-                    $("[name='email']").inputmask({"alias": "email"});
-                    $("[name='telefone']").inputmask("(99)9999-9999");
-                    $("[name='celular']").inputmask("(99)9999[9]-9999");
+                    $("[name='email']").inputmask({"alias": "email", removeMaskOnSubmit: true});
+                    $("[name='telefone']").inputmask({mask: "(99)9999-9999", removeMaskOnSubmit: true});
+                    $("[name='celular']").inputmask({mask: "(99)9999[9]-9999", removeMaskOnSubmit: true});
                 });
             </script>
         </div>

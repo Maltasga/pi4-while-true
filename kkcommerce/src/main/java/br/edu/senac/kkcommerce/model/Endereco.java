@@ -19,7 +19,15 @@ public class Endereco {
     public Endereco() {
     }
 
-    public Endereco(int id, int clienteId, String logradouro, String numero, String complemento, String cidade, String uf, String cep) {
+    public Endereco(int id,
+            int clienteId,
+            String logradouro,
+            String numero,
+            String complemento,
+            String cidade,
+            String uf,
+            String cep,
+            boolean principal) {
         this.id = id;
         this.clienteId = clienteId;
         this.logradouro = logradouro;
@@ -28,6 +36,7 @@ public class Endereco {
         this.cidade = cidade;
         this.uf = uf;
         this.cep = cep;
+        this.principal = principal;
     }
 
     public int getId() {
@@ -60,6 +69,10 @@ public class Endereco {
 
     public void setNumero(String numero) {
         this.numero = numero;
+    }
+
+    public String getLogradouroNumero() {
+        return this.logradouro + ", " + this.numero;
     }
 
     public String getComplemento() {

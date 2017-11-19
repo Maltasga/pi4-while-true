@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public class ClienteDao implements IDaoBase<Cliente> {
     public int inserir(Cliente obj) throws SQLException, Exception {
         int idGerado = 0;
         String query = "INSERT INTO Cliente "
-                + "(NOME, CPF, EMAIL, DATA_NASC, SEXO, TELEFONE, CELULAR, SENHA)"
+                + "(NOME, CPF, EMAIL, DT_NASCIMENTO, SEXO, TELEFONE, CELULAR, SENHA)"
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         PreparedStatement statement = null;
 
@@ -107,13 +108,96 @@ public class ClienteDao implements IDaoBase<Cliente> {
     }
 
     @Override
-    public List<Cliente> listar() throws SQLException, Exception {
-        return null;
+    public List<Cliente> listar() throws SQLException {
+        ArrayList<Cliente> clientes = new ArrayList<>();
+        String query = "SELECT "
+                + "ID, "
+                + "NOME, "
+                + "CPF, "
+                + "EMAIL, "
+                + "DT_NASCIMENTO, "
+                + "SEXO, "
+                + "TELEFONE, "
+                + "CELULAR, "
+                + "DT_CADASTRO, "
+                + "SENHA "
+                + "FROM Cliente "
+                + "WHERE ATIVO = TRUE";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            Cliente c = null;
+            while (result.next()) {
+                c = new Cliente(
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("CPF"),
+                        result.getString("EMAIL"),
+                        Util.toUtilDate(result.getDate("DT_NASCIMENTO")),
+                        result.getString("SEXO"),
+                        result.getString("TELEFONE"),
+                        result.getString("CELULAR"),
+                        result.getString("SENHA"));
+                clientes.add(c);
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return clientes;
     }
 
     @Override
-    public Cliente getById(int id) throws SQLException, Exception {
-        return null;
+    public Cliente getById(int id) throws SQLException {
+        Cliente cliente = null;
+        String query = "SELECT "
+                + "ID, "
+                + "NOME, "
+                + "CPF, "
+                + "EMAIL, "
+                + "DT_NASCIMENTO, "
+                + "SEXO, "
+                + "TELEFONE, "
+                + "CELULAR, "
+                + "DT_CADASTRO, "
+                + "SENHA "
+                + "FROM Cliente "
+                + "WHERE ID = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                cliente = new Cliente(
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("CPF"),
+                        result.getString("EMAIL"),
+                        Util.toUtilDate(result.getDate("DT_NASCIMENTO")),
+                        result.getString("SEXO"),
+                        result.getString("TELEFONE"),
+                        result.getString("CELULAR"),
+                        result.getString("SENHA"));
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return cliente;
     }
 
 }
