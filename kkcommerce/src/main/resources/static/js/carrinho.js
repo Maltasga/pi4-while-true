@@ -13,7 +13,8 @@ function FinalizarCompras() {
         type: 'post',
         data: {strCarrinho: JSON.stringify(arr)},
         success: function (result) {
-            location.href = '/loja';
+            debugger;
+            location.href = '/protocolo?protocoloID='+result;
         },
         error: function (xhr, status, error) {
             console.log(error);
@@ -26,13 +27,4 @@ $(document).ready(function () {
     $('#finalizar').click(function (e) {
         FinalizarCompras();
     });
-
-//    $.ajax({url: "/loja/finalizar-compra",
-//     type: "post", dataType: "application/json", 
-//     data: {strJson: JSON.stringify(arr)}, 
-//     success: function (response) {
-//            window.location = response;
-//        }});
-
-
 });

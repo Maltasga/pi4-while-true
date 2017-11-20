@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>Detalhes do Produto</title>
+        <link th:href="@{/css/carrinho.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/carrinho.css" />
+        <script th:src="@{/js/protocolo.js}" src="../../static/js/protocolo.js" type="text/javascript"></script>
+
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+        <div class="container">
+            <div class="alert alert-warning" th:if="${alerta != null}">
+                <h1 th:text="${alerta}"></h1>
+            </div>
+            <div>
+                <h1>Compra Finalizada com Sucesso!</h1>
+                <h2></h2>
+            </div>
+        </div>
+    </body>
+</html>

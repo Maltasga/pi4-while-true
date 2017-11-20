@@ -55,12 +55,12 @@ public class CarrinhoController extends BaseLojaController implements Serializab
 
     @PostMapping("/finalizar-compra")
     @ResponseBody()
-    public String finalizarCompra(@ModelAttribute("strCarrinho") String strCarrinho) throws Exception {
-
+    public long finalizarCompra(@ModelAttribute("strCarrinho") String strCarrinho) throws Exception {
+        long protocolo = 0;
         try {
             ArrayList<CarrinhoItem> arrAuxiliar = new ArrayList<>();
             CarrinhoService carrService = new CarrinhoService();
-            long protocolo = Calendar.getInstance().getTimeInMillis();
+            protocolo = Calendar.getInstance().getTimeInMillis();
             carrinho.setProtocolo(protocolo);
             carrinho.setClienteId(1);
             carrinho.setFormaPgto(1);
@@ -86,7 +86,7 @@ public class CarrinhoController extends BaseLojaController implements Serializab
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        return "";
+        return protocolo;
     }
 
     public Carrinho getCarrinho() {

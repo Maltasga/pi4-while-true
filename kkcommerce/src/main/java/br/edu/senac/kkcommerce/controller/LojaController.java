@@ -46,4 +46,13 @@ public class LojaController extends BaseLojaController {
             throw new Exception(ex.getMessage());
         }
     }
+    
+    @GetMapping("/protocolo")
+    public ModelAndView protocolo() throws Exception {
+        try {
+            return new ModelAndView("loja/protocolo.html");
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
 }
