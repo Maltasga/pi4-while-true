@@ -14,7 +14,7 @@
                   th:action="ticket-sac" th:object="${ticketSac}">
                 <div class="col-lg-6">
                     <div class="form-group">
-                        <label>Tipo de Erro</label>
+                        <label>Tipo de Erro</label><br>
                         <select th:field="*{tipo_erro}">
                             <option value="Conta">Problemas com conta</option>
                             <option value="Pedido">Problemas com pedido</option>
@@ -29,7 +29,7 @@
 
                 </div>
                 <div class="col-lg-12">
-                    <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                    <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
                     <a href="#" th:href="@{/loja}"
                        <span class="btn btn-default">Cancelar</span>
                     </a>

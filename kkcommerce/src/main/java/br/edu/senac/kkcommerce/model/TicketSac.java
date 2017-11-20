@@ -23,6 +23,16 @@ public class TicketSac {
 
     public TicketSac() {
     }
+
+    public TicketSac(Integer id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo, String status) {
+        this.id = id;
+        this.clienteId = clienteId;
+        this.data_transacao = data_transacao;
+        this.tipo_erro = tipo_erro;
+        this.descricao = descricao;
+        this.protocolo = protocolo;
+        this.status = status;
+    }
     
     public TicketSac(Integer id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
         this.id = id;
