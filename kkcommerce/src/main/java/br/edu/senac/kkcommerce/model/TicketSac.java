@@ -21,6 +21,9 @@ public class TicketSac {
     private long protocolo;
     private String status;
 
+    public TicketSac() {
+    }
+    
     public TicketSac(Integer id, int clienteId, Date data_transacao, String tipo_erro, String descricao, long protocolo) {
         this.id = id;
         this.clienteId = clienteId;
