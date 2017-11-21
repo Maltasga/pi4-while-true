@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear - checkout</title>
+        <link rel="stylesheet" type="text/css" href="../../static/css/carrinho.css"
+              th:href="@{/css/carrinho.css}" />
+        <script th:src="@{../../js/carrinho.js}" type="text/javascript"></script>
+        <style>
+            .margem-direita-15{
+                margin-right: 15px;
+            }
+            .holder-btn{
+                margin: 20% auto;
+                text-align: center;
+            }
+            .holder-btn>[type='submit']{
+                padding: 10px 120px;
+                font-size: 1.5em;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="container">
+                <form action="#" method="post"
+                      th:action="carrinho-e2" th:object="${checkout}">
+                    <input type="hidden" th:value="${clienteId}" th:field="*{clienteId}" />
+                    <div class="col-lg-6">
+                        <h3>Dados para Entrega</h3>
+
+                        <div class="form-group">
+                            <label>Logradouro</label>
+                            <input type="text" name="endereco.logradouro" class="form-control" 
+                                   th:field="*{endereco.logradouro}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Número</label>
+                            <input type="text" name="endereco.numero"  class="form-control"
+                                   th:field="*{endereco.numero}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>Complemento</label>
+                            <input type="text" name="endereco.complemento"  class="form-control"
+                                   th:field="*{endereco.complemento}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>UF</label>
+                            <select name="endereco.uf" class="form-control"
+                                    th:field="*{endereco.uf}">
+                                <option value="" selected>Selecione o Estado</option>
+                                <option th:each="i : ${listaUF}" th:value="${i}" th:text="${i}"></option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Cidade</label>
+                            <input type="text" name="endereco.cidade"  class="form-control"
+                                   th:field="*{endereco.cidade}" />
+                        </div>
+
+                        <div class="form-group">
+                            <label>CEP</label>
+                            <input type="text" name="endereco.cep"  class="form-control"
+                                   th:field="*{endereco.cep}" />
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="row">
+                            <h3 th:text="${'Valor da Compra: ' + #numbers.formatCurrency(valorTotal)}"></h3>
+                        </div>
+                        <div class="form-inline">
+                            <div class="form-group margem-direita-15">
+                                <input type="radio" name="formaPgto" value="1" checked="checked" /> <span>Boleto</span>
+                                <img class="img-responsive" width="100px" height="auto" th:src="@{/imagens/boleto.jpg}" />                            
+                            </div>
+                            <div class="form-group margem-direita-15">
+                                <input type="radio" name="formaPgto" value="2" disabled="disabled" /> <span>Cartão de Crédito</span>
+                                <img class="img-responsive" width="100px" height="auto" th:src="@{/imagens/creditcart.png}" />
+                            </div>
+                            <div class="form-group margem-direita-15">
+                                <input type="radio" name="formaPgto" value="3" disabled="disabled" /> <span>PayPal</span>
+                                <img class="img-responsive" width="70px" height="auto" th:src="@{/imagens/paypal.jpg}" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5">
+                        <p>&nbsp;</p>
+                        <div class="col-lg-6">
+                            <label>Calcular frete</label>
+                            <input type="text" id="txtCalcFrete" placeholder="CEP" class="form-control" />
+                        </div>
+                        <div class="col-lg-6">
+                            <input type="button" id="btnCalcFrete" class="btn btn-default" value="Calcular" />
+                        </div>
+                        <div class="col-lg-12">
+                            <p>
+                                <br>
+                                <label id="pFreteCalculado"></label>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-5">
+                        <div class="holder-btn">
+                            <input type="submit" value="Finalizar Compra" class="btn btn-primary" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <script>
+                $(function () {
+                    $("input[name='endereco.cep']").on("input",function(){
+                        $("#txtCalcFrete").val(this.value);
+                    });
+                    
+                    $("#btnCalcFrete").on("click", function () {
+                        var self = $(this);
+                        self.prop("disabled", true);
+                        $.ajax({
+                            url: "/tdm-checkout/calc-frete",
+                            type: "post",
+                            data: {cep: $("#txtCalcFrete").val()},
+                            success: function (response) {
+                                $("#pFreteCalculado").text(response);
+                                self.prop("disabled", false);
+                            }
+                        });
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

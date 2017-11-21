@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <link th:href="@{/css/pedidos.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/pedidos.css" />
+        <title>Pedidos</title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="container fundo">
+                <p>&nbsp;</p>
+                <h2>Pedidos</h2>
+                <p>&nbsp;</p>
+                <!--<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" >-->
+                <div class="panel panel-info panel-default">
+                    <div class="panel-heading">Esta é sua lista com todos as suas compras</div>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Protocolo</th>
+                                <th>Data da Compra</th>
+                                <th>Valor total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="p : ${pedidos}"> 
+                                <td th:text="${p.protocolo}"></td>
+                                <td th:text="${p.data_transacao}"></td>
+                                <td th:text="${#numbers.formatCurrency(p.valorFinal)}"></td>
+                            </tr>
+                            <tr> 
+                                <td>1234567891234</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 129,00</td>
+                            </tr>
+                            <tr> 
+                                <td>9876543213214</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 39,99</td>
+                            </tr>
+                            <tr> 
+                                <td>7412589637894</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 189,00</td>
+                            </tr>
+                            <tr> 
+                                <td>8463175934563</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 56,97</td>
+                            </tr>
+                             <tr> 
+                                <td>2478513694589</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 77,77</td>
+                            </tr>
+                             <tr> 
+                                <td>7536984127895</td>
+                                <td>01/11/2017</td>
+                                <td>R$ 66,66</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div> 
+                <!--</div>-->
+            </div>
+        </div>
+    </body>
+</html>

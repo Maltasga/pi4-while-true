@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear - Novo Produto</title>
+        <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h1>Cadastro de Cliente</h1>
+            </div>               
+
+            <form action="#" method="POST"
+                  th:action="cadastrar-cliente" th:object="${cliente}">
+                <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" required="required" name="nome" class="form-control"
+                               th:field="*{nome}" th:value="${cliente.nome}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" required name="cpf" class="form-control"
+                               placeholder="xxx.xxx.xxx-xx"
+                               th:field="*{cpf}" th:value="${cliente.cpf}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" required name="email" class="form-control"
+                               placeholder="meuemail@example.com.br"
+                               th:field="*{email}" th:value="${cliente.email}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Data de Nascimento</label>
+                        <input type="text" required name="dataNascimento" class="form-control"
+                               placeholder="dd/mm/aaaa"
+                               th:field="*{dataNascimento}" th:value="${cliente.dataNascimento}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Sexo</label>
+                        <select name="sexo" th:field="*{sexo}" class="form-control">
+                            <option value="" selected>Selecione o sexo</option>
+                            <option value="M">Masculino</option>
+                            <option value="F">Feminino</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" name="telefone" class="form-control"
+                               placeholder="(xx)xxxx-xxxx"
+                               th:field="*{telefone}" th:value="${cliente.telefone}" />
+                    </div>
+
+                    <div class="form-group">
+                        <label>Celular</label>
+                        <input type="tel" required name="celular" class="form-control"
+                               placeholder="(xx)xxxxx-xxxx"
+                               th:field="*{celular}" th:value="${cliente.celular}" />
+                    </div>
+
+                    <div class="clear">
+                        <div class="pull-right">
+                            <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
+                            <a href="#" th:href="@{/loja}"
+                               <span class="btn btn-default">Cancelar</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </form>
+            <script type="text/javascript">
+                $(function () {
+                    $("[name='cpf']").inputmask({mask: "999.999.999-99", removeMaskOnSubmit: true});
+                    $("[name='dataNascimento']").inputmask({"alias": "date"});
+                    $("[name='email']").inputmask({"alias": "email", removeMaskOnSubmit: true});
+                    $("[name='telefone']").inputmask({mask: "(99)9999-9999", removeMaskOnSubmit: true});
+                    $("[name='celular']").inputmask({mask: "(99)9999[9]-9999", removeMaskOnSubmit: true});
+                });
+            </script>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>KK Coolwear</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+              th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+              rel="stylesheet" media="screen" />
+
+        <script src="http://cdn.jsdelivr.net/webjars/jquery/2.2.4/jquery.min.js"
+        th:src="@{/webjars/jquery/2.2.4/jquery.min.js}"></script>
+
+        <script src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/bootstrap.min.js"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}" type="text/javascript"></script>
+
+
+        <link href="../../static/css/kkcoolwear.ecommerce.css"
+              th:href="@{/css/kkcoolwear.ecommerce.css}" rel="stylesheet" type="text/css"/>
+
+        <style type="text/css">
+            #form-login {
+                padding: 20px;
+                width: 50%;
+                height: 25%;
+                border: 1px solid #337ab7;
+                border-radius: 20px;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: auto;
+                position: relative;
+            }
+            .btn-holder {
+                text-align: right;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="barra-sup"></div>
+        <div class="col-lg-3">
+            <img class="img-responsive" th:src="@{/imagens/logo-lg.png}"
+                 src="../../static/imagens/logo-lg.png"
+                 alt="E-commerce KK Coolwear"/>    
+        </div>
+        <div class="container">
+            <div id="form-login">
+                <form th:action="entrar" th:object="${user}" action="entrar" method="post">
+                    <div th:if="${msg != null}" class="alert alert-warning">
+                        <span th:text="${msg}">Mensagem</span>
+                    </div>
+                    <div class="form-group">
+                        <label>Login</label>
+                        <input class="form-control"th:field="${user.login}" type="text" name="login" required />
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input class="form-control" type="password" name="senha" required />
+                    </div>
+                    <div class="btn-holder">
+                        <button type="submit" class="btn btn-primary">Entrar</button>
+                        <button type="reset" class="btn btn-default">Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

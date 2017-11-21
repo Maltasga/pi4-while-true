@@ -1,0 +1,56 @@
+.flex{
+    display:flex;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+thead{
+    background: #3598dc;
+    color: #FFF;
+}
+
+.tabela-pedidos {
+    /*    margin-top: 15px;
+        width: 100%;*/
+    text-align: center;
+    overflow:hidden;
+    border-collapse:separate;
+    border: solid #3598dc 1px;
+    border-radius: 10px;
+}
+
+
+.tabela-pedidos td {
+    color: #aaa;
+    background-color: white;
+    padding: 5px;
+    border: 1px solid #3598dc;
+}
+
+.tabela-pedidos th{
+    /*    color: white;*/
+    background-color: #3598dc;
+    font-weight: normal;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+}
+
+.produto-descricao{
+    margin-top: 12%;
+}
+
+.margem-valores{
+    margin-top: 33%; 
+}

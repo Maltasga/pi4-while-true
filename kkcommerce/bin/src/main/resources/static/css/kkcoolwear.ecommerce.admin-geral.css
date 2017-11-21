@@ -1,0 +1,17 @@
+.corpo {
+    margin-top: 60px;
+}
+.img-acesso {
+    height: 250px;
+    width: auto;
+}
+
+@media screen and (max-width: 768px){
+    .img-acesso {
+        height: 125px;
+        width: auto;
+    }
+    .corpo {
+        margin-top: 0px;
+    }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear</title>
+        <link th:href="@{/css/listaProdutos-loja.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/listaProdutos-loja.css" />
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="container fundo">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" th:each="p : ${produtos}">
+                    <div class="produto" >
+                        <center>
+                            <img class="img-responsive"
+                                  th:src="@{${p.urlImagemPrincipal}}" alt=""/>
+                        </center>
+                        <p class="nome" th:text="${p.nome}"></p>
+                        <p class="descricao" th:text="${p.descricao}"></p>
+                        <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
+                        <div class="btn-comprar">
+                            <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
+                                <button type="button" class="btn btn-info">
+                                    Detalhes
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

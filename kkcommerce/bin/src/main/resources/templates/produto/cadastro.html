@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-admin}">
+    <head>
+        <title>KK Coolwear - Novo Produto</title>
+        <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
+        <style>
+            .label-estoque {
+                display: inline-block;
+                min-width: 25px;
+                margin: 5px;
+                text-align: right;
+            }
+            .campo-estoque {
+                width: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h1>Novo Produto</h1>
+            </div>               
+            <form action="#" method="post" enctype="multipart/form-data"
+                  th:action="cadastrar-produto" th:object="${produto}">
+
+                <div class="col-lg-6">
+                    <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
+                    <input type="hidden" name="estoque" th:field="*{estoque}" th:value="${estoque}" />
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" name="nome" class="form-control" required
+                               th:field="*{nome}" />
+                    </div>
+                    <div class="form-group">
+                        <label>Descrição</label>
+                        <textarea name="descricao" class="form-control" col="90" rows="4" required
+                                  th:field="*{descricao}" ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <label>Coleção</label>
+                            <select name="idColecao" class="form-control"
+                                    th:field="*{idColecao}" >
+                                <option value="" selected>Selecione a coleção</option>
+                                <option th:each="c : ${colecoes}" th:value="${c.id}" th:text="${c.nome}"></option>
+                            </select>
+                            <label>Tipo</label>
+                            <select name="idMarca" class="form-control"
+                                    th:field="*{idMarca}" >
+                                <option value="" selected>Selecione a marca</option>
+                                <option th:each="m : ${marcas}" th:value="${m.id}" th:text="${m.nome}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Valor</label>
+                        <input class="form-control" name="valor" typet="text" required
+                               th:field="*{valor}" />
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="form-group">
+                        <label>Imagens do produto</label>
+                        <input type="file" name="arquivos" th:field="*{arquivos}" multiple  />
+                    </div>
+                    <div class="form-group">
+                        <label>Estoque</label>
+                        <ul id="lista-estoque" class="list-unstyled">
+                            
+                            <li th:each="e, eStatus : ${estoque}">
+                                <div class="label-estoque" th:text="${e.tamanho}"></div>
+                                <input type="hidden" th:field="*{estoque[__${eStatus.index}__].tamanho}" th:value="${e.tamanho}" />
+                                <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" class="campo-estoque" />
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="col-lg-12">
+                    <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                    <a href="#" th:href="@{/kk-admin/listar-produtos}"
+                       <span class="btn btn-default">Cancelar</span>
+                    </a>
+                </div>
+
+            </form>
+            <script type="text/javascript">
+                $(function () {
+                    $("input[name='valor'").inputmask({"alias": "currency", removeMaskOnSubmit: true});
+                    $("input.campo-estoque").inputmask({"alias": "integer"});
+
+                    $("#btnSalvar").on("click", function (event) {
+                        event.preventDefault();
+
+
+
+                        $("form").submit();
+                    });
+                });
+            </script>
+        </div>
+    </body>
+</html>

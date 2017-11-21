@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear - Meus Tickets</title>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h1>Meus Tickets</h1>
+            </div>
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Descricao</th>
+                        <th>Tipo de Erro</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="item : ${ticketSacs}">
+                        <td th:text="${item.descricao}"></td>
+                        <td th:text="${item.tipo_erro}"></td>
+                        <td th:text="${item.status}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,137 @@
+/**{
+    box-sizing: border-box;
+}*/
+body{
+    margin-top: 20px;
+}
+.font-text{
+    margin-top: 2%;
+    font-size: 0.9em;
+}
+
+.flex{
+    display:flex;
+}
+
+.flex-center{
+    display: flex;
+    justify-content: center;
+}
+
+.flex-start{
+    display: flex;
+    justify-content: flex-start;
+}
+.flex-end{
+    display: flex;
+    justify-content: flex-end;
+}
+.margin-left{
+    margin-left: 2%;
+}
+
+.icons{
+    font-size: 1.5vw;
+}
+
+.img-logo{
+    background: url(/imagens/logo-lg.png) no-repeat;
+    width: 31em;
+    height: 7.1em;
+}
+.icons,.img-logo:hover{
+    cursor: pointer;
+}
+.navbar-default{
+    border:none;
+}
+
+.navbar{
+    background-color: white;
+    box-shadow: 0px 12px 12px -16px #000;
+}
+
+.fundo{
+    box-shadow: 2px 13px 60px 2px rgba(0,0,0,0.53);
+    background:#f7f7f7;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+.teste{
+    padding:1.5% !important;
+}
+.margem-valores{
+    margin-top: 33%; 
+}
+
+.txtPesquisa{
+    margin-top: 4.9%;
+}
+
+.contaner-icons{
+    margin-top: 4.9%;
+}
+/******@MEDIAS*******/
+
+@media screen and (max-width: 993px){
+    .img-logo{ 
+        background: url(/imagens/logo-sm.png) no-repeat;
+    }
+
+    .pesquisa{
+        position: relative;
+        bottom: 5.5em;
+        left: 5em;
+    }
+
+    .contaner-icons{
+        position: relative;
+        bottom: 10em;
+    }
+}
+
+@media screen and (max-width: 2000px) and (min-width: 994px) {
+    .txtPesquisa{
+        width: 100%;
+    }
+}
+@media screen and (max-width: 993px) and (min-width: 805px) {
+    .txtPesquisa{
+        width: 60%;
+    }
+}
+@media screen and (max-width: 600px){
+    .txtPesquisa{
+        width: 95%;
+    }
+    .contaner-icons{
+        margin-right: 28px;
+    }
+    body {
+        overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .txtPesquisa{
+        width: 90% !important;
+        /*margin-left: 20px;*/
+    }
+    .pesquisa{
+        bottom: 1.5em;
+        left: 0em;
+    }
+
+    .contaner-icons{
+        bottom: 10em;
+    }
+    .icons{
+        font-size: 5vw;
+    }
+
+    @media screen and (max-width: 400px){
+        body {
+            overflow-x: hidden;
+        }
+    }
+}

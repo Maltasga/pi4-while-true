@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>Detalhes do Produto</title>
+        <link th:href="@{/css/detalhesProduto-loja.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/detalhesProduto-loja.css" />
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="container">
+                <div class="col-xs-12 col-md-6 col-lg-6">
+                    <div class="miniaturas col-sm-2 col-md-2 col-lg-2">
+                        <a href="#" class="thumbnail" th:each="imagem : ${produto.imagens}">
+                            <img class="img-responsive" th:src="@{${imagem.urlImagem}}"
+                                 th:alt="${imagem.descricao}" />
+                        </a>
+                    </div>
+                    <div class="col-sm-6 col-md-10 col-lg-10">
+                        <img class="img-responsive" th:src="@{${produto.urlImagemPrincipal}}" alt=""/>
+                    </div>
+                </div>
+                <div class="col-xs-7 col-md-6 col-lg-6">
+                    <div class="container-borda">
+                        <p class="p-titulo" th:text="${produto.nome}">
+                            Nome do produto 
+                        </p>
+                        <p class="p-descricao" th:text="${produto.descricao}">
+                            Descrição
+                        </p>
+                        <p class="p-preco" th:text="${#numbers.formatCurrency(produto.valor)}">
+                            valor do produto
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-md-6 col-lg-6" th:if="${produto.estaDisponivel}">                    
+                    <form method="POST" action="/loja/add-item">
+                        <input type="hidden" th:value="${produto.id}" name="id"/>
+                        <div class="form-group">
+                            <label>Quantidade</label>
+                            <input type="number" min="1" max="10" name="qtde" class="form-control" value="1" />
+                        </div>
+                        <div class="container-opcoes">
+                            <div class="row">
+                                <p>Tamanho</p>
+                                <select class="form-control" name="tamanho">
+                                    <option value="" selected>Selecione o Tamanho</option>
+                                    <option th:each="e : ${produto.estoque}" th:value="${e.tamanho}" th:text="${e.tamanho}"></option>
+                                </select>
+                            </div>
+                            <div class="row linha-btn">
+                                <input id="btnComprar" type="submit" class="btn btn-primary" value="Comprar" />
+                            </div>
+                        </div>
+                    </form>
+                    <div class="row">
+                        <div id="parcelamento" class="pull-right">
+                            <p>Parcelamento</p>
+                            <img src="/imagens/bandeiras-parcelamento.gif" alt="Bandeiras de cartões de crédito aceitas" />  
+                            <table class="table table-striped table-responsive">
+                                <tr th:each="p, i : ${parcelas}">
+                                    <td th:text="${i.count + ' x ' + #numbers.formatCurrency(p) + ' sem juros'}"></td>
+                                </tr>
+                            </table>   
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-5 col-md-6 col-lg-6" th:if="${!produto.estaDisponivel}">
+                    <div class="alert alert-warning">
+                        <p>Estoque indisponível</p>
+                    </div>
+                </div> 
+            </div>
+        </div>
+    </body>
+</html>
