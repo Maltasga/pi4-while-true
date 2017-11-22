@@ -1,0 +1,2 @@
+INSERT INTO StatusFormularioDetalhe (STATUS_ID, FORMULARIO_ID, DT_CADASTRO) VALUES 
+(1,1,NOW()),(2,2,NOW()),(1,3,NOW())
