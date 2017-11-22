@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-admin}">
+    <head>
+        <title>KK Coolwear - Status Pedido</title>
+        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
+        <script th:src="@{/js/StatusPedidos.js}" src="../../static/js/StatusPedidos.js" type="text/javascript"></script>
+
+    <body>
+        <div layout:fragment="conteudo" class="corpo">
+            <h1>Status dos Pedidos</h1>
+
+            <p>&nbsp;</p>
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Status</th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <tr th:each="s : ${status}">
+                        <td th:text="${s.nome}"></td>
+                        <td th:text="${s.status}"></td>
+                        <td>
+                            <ul class="list-unstyled list-inline">
+                                <li>
+                                    <a href="#" title="Detalhes do produto">
+                                        <span id="faturar" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-search small"> Faturar</span>
+                                    </a></li>
+                                <li>
+                                    <a href="#" title="Editar produto">
+                                        <span id="despachar" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-pencil small"> Despachar</span>
+                                    </a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>
