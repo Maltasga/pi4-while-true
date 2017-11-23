@@ -79,9 +79,11 @@ public class StatusCarrinhoDetalheDAO implements IDaoBase<StatusCarrinhoDetalhe>
                         result.getInt("CARRINHO_ID"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")),
                         result.getString("STATUS"),
-                        result.getString("NOME"));
+                        result.getString("NOME"),
+                        result.getInt("PROTOCOLO"),
+                        Util.toUtilDate(result.getDate("DT_TRANSACAO")),
+                        result.getDouble("VL_TOTAL"));                
                 status.add(s);
-
             }
         } finally {
             if (statement != null && !statement.isClosed()) {

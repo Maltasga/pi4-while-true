@@ -7,6 +7,7 @@ package br.edu.senac.kkcommerce.dao;
 
 import br.edu.senac.kkcommerce.dao.util.ConnectionUtils;
 import br.edu.senac.kkcommerce.model.Carrinho;
+import br.edu.senac.kkcommerce.model.DetalhePedido;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -123,7 +124,74 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
 
     @Override
     public Carrinho getById(int id) throws SQLException, Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Carrinho carrinho = new Carrinho();
+
+        String query = "SELECT * FROM SELECT_DETALHE_PEDIDO WHERE ID_COMPRA = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                carrinho.setDetalhePedido(new DetalhePedido(
+                        result.getInt("ID_COMPRA"),
+                        result.getInt("PROTOCOLO"),
+                        result.getInt("QUANTIDADE"),
+                        result.getInt("PRODUTO_ID"),
+                        result.getString("NOME_PRODUTO"),
+                        result.getDouble("VALOR"),
+                        result.getString("NOME_CLIENTE")
+                ));
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return carrinho;
+
     }
 
+    public ArrayList<DetalhePedido> listaDetalhe(int id) throws SQLException {
+        ArrayList<DetalhePedido> lista = new ArrayList<>();
+
+        String query = "SELECT * FROM SELECT_DETALHE_PEDIDO WHERE ID_COMPRA = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, id);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                lista.add(new DetalhePedido(
+                        result.getInt("ID_COMPRA"),
+                        result.getInt("PROTOCOLO"),
+                        result.getInt("QUANTIDADE"),
+                        result.getInt("PRODUTO_ID"),
+                        result.getString("NOME_PRODUTO"),
+                        result.getDouble("VALOR"),
+                        result.getString("NOME_CLIENTE")
+                ));
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+
+        return lista;
+    }
 }

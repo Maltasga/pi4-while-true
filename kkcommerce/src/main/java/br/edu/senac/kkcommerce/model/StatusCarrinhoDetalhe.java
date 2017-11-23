@@ -19,16 +19,47 @@ public class StatusCarrinhoDetalhe {
     private Date dt_cadastro;
     private String Status;
     private String nome;
+    private int protocolo;
+    private Date dt_transacao;
+    private double vl_total;
 
-    public StatusCarrinhoDetalhe(Integer id, Integer Status_id, Integer Carrinho_id, Date dt_cadastro, String Status, String nome) {
+    public StatusCarrinhoDetalhe(Integer id, Integer Status_id, Integer Carrinho_id, Date dt_cadastro, String Status, String nome, int protocolo, Date dt_transacao, double vl_total) {
         this.id = id;
         this.Status_id = Status_id;
         this.Carrinho_id = Carrinho_id;
         this.dt_cadastro = dt_cadastro;
         this.Status = Status;
         this.nome = nome;
+        this.protocolo = protocolo;
+        this.dt_transacao = dt_transacao;
+        this.vl_total = vl_total;
     }
 
+    public int getProtocolo() {
+        return protocolo;
+    }
+
+    public void setProtocolo(int protocolo) {
+        this.protocolo = protocolo;
+    }
+
+    public Date getDt_transacao() {
+        return dt_transacao;
+    }
+
+    public void setDt_transacao(Date dt_transacao) {
+        this.dt_transacao = dt_transacao;
+    }
+
+    public double getVl_total() {
+        return vl_total;
+    }
+
+    public void setVl_total(double vl_total) {
+        this.vl_total = vl_total;
+    }
+
+    
     public StatusCarrinhoDetalhe() {
     }
 
@@ -47,8 +78,6 @@ public class StatusCarrinhoDetalhe {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-
 
     public Integer getId() {
         return id;

@@ -18,28 +18,43 @@
                 <thead>
                     <tr>
                         <th>Cliente</th>
+                        <th>Protocolo</th>
+                        <th>Data da Compa</th>
                         <th>Status</th>
+                        <th>Ultima atualização</th>
+                        <th>Detalhes</th>
+                        <th>Alterar</th>
                     </tr>                
                 </thead>
                 <tbody>
                     <tr th:each="s : ${status}">
                         <td th:text="${s.nome}"></td>
+                        <td th:text="${s.protocolo}"></td>
+                        <td th:text="${s.dt_transacao}"></td>
                         <td th:text="${s.status}"></td>
+                        <td th:text="${s.dt_cadastro}"></td>
                         <td>
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <a href="#" title="Detalhes do produto">
-                                        <span id="faturar" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-search small"> Faturar</span>
-                                    </a></li>
-                                <li>
-                                    <a href="#" title="Editar produto">
-                                        <span id="despachar" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-pencil small"> Despachar</span>
-                                    </a></li>
+                                    <a href="#" title="Detalhes da compra"
+                                       th:href="@{/kk-admin/detalhePedido(pedido_id=${s.carrinho_id})}">
+                                        <span id="detalhes" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-search small"> Visualizar</span>
+                                    </a>
+                                </li>
                             </ul>
+                        </td>
+                        <td>
+                            <select class="comboStatus" th:carrinhoID="${s.carrinho_id}">
+                                <option value="0">Selecione</option>
+                                <option value="1">Aguardando pagamento</option>
+                                <option value="2">Aguardando liberação do produto</option>
+                                <option value="3">Pedido enviado</option>
+                                <option value="4">Pedido entregue</option>
+                            </select>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </div>        
     </body>
 </html>

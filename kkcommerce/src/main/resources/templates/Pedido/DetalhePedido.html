@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-admin}">
+    <head>
+        <title>KK Coolwear - Detalhe do Pedido</title>
+        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
+        <script th:src="@{/js/StatusPedidos.js}" src="../../static/js/StatusPedidos.js" type="text/javascript"></script>
+
+    <body>
+        <div layout:fragment="conteudo" class="corpo">
+            <h1>Detalhes do Pedido</h1>
+
+            <p>&nbsp;</p>
+            <h3 th:text="'Cliente: ' +${detalheCompra[0].nome_cliente}">Cliente: </h3>
+            <h2 th:text="'Protocolo: '+${detalheCompra[0].protocolo}">Protocolo: </h2>
+            <h3 th:text="'Valor total: '+${total}">Valor total: </h3>
+            <table class="table table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Código do produto</th>
+                        <th>Descrição</th>
+                        <th>Quantidade</th>
+                        <th>Valor total</th>
+                    </tr>                
+                </thead>
+                <tbody>
+                    <tr th:each="c : ${detalheCompra}">
+                        <td th:text="${c.id_produto}"></td>
+                        <td th:text="${c.nome_produto}"></td>
+                        <td th:text="${c.quantidade}"></td>
+                        <td th:text="${c.valorTotal}"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <div>
+
+                <select class="comboStatus">
+                    <option value="0">Selecione</option>
+                    <option value="1">Aguardando pagamento</option>
+                    <option value="2">Aguardando liberação do produto</option>
+                    <option value="3">Pedido enviado</option>
+                    <option value="4">Pedido entregue</option>
+                </select>
+                <br>
+                <input id='btn' th:id='${detalheCompra[0].id_compra}' type='button' value='Salvar' class='btn btn-success' />
+            </div>
+            <script>
+                $("#btn").on("click", function () {
+                    debugger;
+                    var carrinhoID = $(this).attr('id');
+                    var status = $("select").val();
+                    $.ajax({
+                        url: "/kk-admin/AlterarStatusCarrinho",
+                        type: "POST",
+                        async: false,
+                        data: {
+                            carrinho_id: carrinhoID,
+                            status_id: status
+                        },
+                        success: function (response) {
+                            alert('Alterado com Sucesso!');
+                            location.href = '/kk-admin/statusPedidos';
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                });
+            </script>
+        </div>        
+    </body>
+</html>
