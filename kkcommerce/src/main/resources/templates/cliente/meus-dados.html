@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/master-loja}">
+    <head>
+        <title>KK Coolwear - Novo Produto</title>
+        <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
+    </head>
+    <body>
+        <div layout:fragment="conteudo">
+            <div class="header">
+                <h1>Minha Conta</h1>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-6 col-md-6">
+                    <p>
+                        <b>Nome</b>&nbsp;
+                        <span th:text="${cliente.nome}">nome-do-cliente</span>
+                    </p>
+                    <p>
+                        <b>Sexo</b>&nbsp;
+                        <span th:text="${cliente.sexo}">sexo-do-cliente</span>
+                    </p>
+                    <p>
+                        <b>Data de Nascimento</b>&nbsp;
+                        <span th:text="${cliente.dataNascimento}">data-de-nascimento</span>
+                    </p>
+                </div>
+                <div class="col-xs-6 col-md-6">
+                    <p>
+                        <b>CPF</b>&nbsp;
+                        <span th:text="${cliente.cpf}">cpf-do-cliente</span>
+                    </p>
+                    <p>
+                        <b>E-mail</b>&nbsp;
+                        <span th:text="${cliente.email}">email-do-cliente</span>
+                    </p>
+                    <p>
+                        <b>Contato</b>&nbsp;
+                        <span th:text="${cliente.celular}">celular-do-cliente</span>
+                    </p>
+                </div>
+            </div>
+            <p>&nbsp;</p>
+            <div class="row">
+                <a href="#" class="btn btn-default"
+                   th:href="@{/loja/cadastrar-cliente(id=${cliente.id})}">
+                    Alterar Cadastro
+                </a>
+                &nbsp;
+                <a href="#" class="btn btn-default"
+                   th:href="@{/loja/meus-enderecos(id=${cliente.id})}">
+                    Meus Endereços
+                </a>
+            </div>
+        </div>
+    </body>
+</html>

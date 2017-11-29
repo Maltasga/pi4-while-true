@@ -24,15 +24,38 @@ public class ClienteController extends BaseLojaController {
     ClienteService clienteService = new ClienteService();
     EnderecoService enderecoService = new EnderecoService();
 
+    @GetMapping("/meus-dados")
+    public ModelAndView meusDados(@ModelAttribute("id") Integer id) throws Exception {
+        try {
+            if (id == null || id <= 0) {
+                return new ModelAndView("redirect:/loja");
+            }
+
+            return new ModelAndView("cliente/meus-dados")
+                    .addObject("cliente", clienteService.buscar(id));
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
     @GetMapping("/cadastrar-cliente")
-    public ModelAndView index() {
-        return new ModelAndView("cliente/cadastrar-cliente")
-                .addObject("cliente", new Cliente())
-                .addObject("listaUF", Endereco.getUFs());
+    public ModelAndView cadastrarCliente(@ModelAttribute("id") Integer id) throws Exception {
+        try {
+            Cliente c = new Cliente();
+            if (id != null || id > 0) {
+                c = clienteService.buscar(id);
+            }
+
+            return new ModelAndView("cliente/cadastrar-cliente")
+                    .addObject("cliente", c)
+                    .addObject("listaUF", Endereco.getUFs());
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
     }
 
     @PostMapping("/cadastrar-cliente")
-    public ModelAndView index(@ModelAttribute("cliente") Cliente cliente,
+    public ModelAndView cadastrarCliente(@ModelAttribute("cliente") Cliente cliente,
             BindingResult bindingResult,
             RedirectAttributes redirectAttrs) throws Exception {
         try {
@@ -59,7 +82,7 @@ public class ClienteController extends BaseLojaController {
     }
 
     @GetMapping("/cadastrar-endereco")
-    public ModelAndView endereco(@RequestParam("id") Integer id,
+    public ModelAndView cadastrarEndereco(@RequestParam("id") Integer id,
             @RequestParam("eid") Integer eid) throws Exception {
         Endereco endereco;
         try {
@@ -79,7 +102,7 @@ public class ClienteController extends BaseLojaController {
     }
 
     @PostMapping("/cadastrar-endereco")
-    public ModelAndView endereco(@ModelAttribute("endereco") Endereco endereco,
+    public ModelAndView cadastrarEndereco(@ModelAttribute("endereco") Endereco endereco,
             BindingResult bindingResult,
             RedirectAttributes redirectAttrs) throws Exception {
         try {
