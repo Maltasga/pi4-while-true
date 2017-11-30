@@ -81,7 +81,7 @@
                 </div>
                 
                 <div class="col-lg-12">
-                    <input id="btnSalvar" type="button" value="Salvar" class="btn btn-primary" />
+                    <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
                     <a href="#" th:href="@{/kk-admin/listar-produtos}"
                        <span class="btn btn-default">Cancelar</span>
                     </a>
@@ -92,14 +92,6 @@
                 $(function () {
                     $("input[name='valor'").inputmask({"alias": "currency", removeMaskOnSubmit: true});
                     $("input.campo-estoque").inputmask({"alias": "integer"});
-
-                    $("#btnSalvar").on("click", function (event) {
-                        event.preventDefault();
-
-
-
-                        $("form").submit();
-                    });
                 });
             </script>
         </div>

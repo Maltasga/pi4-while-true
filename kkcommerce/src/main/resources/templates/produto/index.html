@@ -41,18 +41,16 @@
                         <td>
                             <ul class="list-unstyled list-inline">
                                 <li>
-                                    <a href="#" title="Detalhes do produto">
-                                        <span class="glyphicon glyphicon-search small"></span>
-                                    </a>
-                                </li>
-                                <li>
                                     <a href="#" title="Editar produto"
-                                       th:href="@{/kk-admin/cadastrar-produto(id=${p.id})}">
+                                       th:href="@{/kk-admin/editar-cadastro-produto(id=${p.id})}">
                                         <span class="glyphicon glyphicon-pencil small"></span>
                                     </a>
                                 </li>                                
-                                <li th:if="${p.possuiDesconto}">
-                                    <span class="glyphicon glyphicon-star small"></span>
+                                <li>
+                                    <a href="#" title="Manutenção de Desconto"
+                                       th:href="@{/kk-admin/manutencao-desconto(id=${p.id})}">
+                                        <span class="glyphicon glyphicon-tags small"></span>
+                                    </a>
                                 </li>
                             </ul>
                         </td>

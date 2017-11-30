@@ -13,10 +13,16 @@ import java.util.regex.Pattern;
 public class Util {
 
     public static java.sql.Date toSQLDate(java.util.Date data) {
+        if (data == null) {
+            return null;
+        }
         return new java.sql.Date(data.getTime());
     }
 
     public static java.util.Date toUtilDate(java.sql.Date data) {
+        if (data == null) {
+            return null;
+        }
         return new java.util.Date(data.getTime());
     }
 
@@ -36,9 +42,9 @@ public class Util {
     public static boolean isNullOrEmpty(String s) {
         return s == null || "".equals(s.trim());
     }
-    
-    public static boolean isInMinLength(String s,int minLength){
-        if(!Util.isNullOrEmpty(s)){
+
+    public static boolean isInMinLength(String s, int minLength) {
+        if (!Util.isNullOrEmpty(s)) {
             return s.trim().length() >= minLength;
         }
         return false;

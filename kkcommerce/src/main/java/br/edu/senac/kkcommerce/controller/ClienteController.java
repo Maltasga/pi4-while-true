@@ -38,7 +38,7 @@ public class ClienteController extends BaseLojaController {
         }
     }
 
-    @GetMapping("/cadastrar-cliente")
+    @GetMapping(value = {"/cadastrar-cliente", "/editar-cadastro-cliente"})
     public ModelAndView cadastrarCliente(@ModelAttribute("id") Integer id) throws Exception {
         try {
             Cliente c = new Cliente();
