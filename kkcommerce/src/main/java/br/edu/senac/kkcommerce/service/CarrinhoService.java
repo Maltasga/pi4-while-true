@@ -22,13 +22,14 @@ public class CarrinhoService extends ServiceBase{
         super(new CarrinhoDao());
     }
 
-    public void salvar(Carrinho c) throws Exception{
+    public int salvar(Carrinho c) throws Exception{
         CarrinhoItemDao daoItem = new CarrinhoItemDao();
         int idCarrinho = dao.inserir(c);
         for (CarrinhoItem i : c.getItens()) {
             i.setCarrinhoId(idCarrinho);
             daoItem.inserir(i);
         }
+        return idCarrinho;
     }
     
     public List<Carrinho> listar() throws Exception {

@@ -5,6 +5,7 @@ import br.edu.senac.kkcommerce.model.DetalhePedido;
 import br.edu.senac.kkcommerce.model.StatusCarrinhoDetalhe;
 import br.edu.senac.kkcommerce.service.StatusCarrinhoService;
 import java.util.ArrayList;
+import java.util.Date;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -55,11 +56,12 @@ public class StatusCarrinhoController extends BaseAdminController {
             @ModelAttribute("status_id") int status_id) throws Exception {
         try {
             StatusCarrinhoDetalhe status = new StatusCarrinhoDetalhe();
-            
+            Date date = new Date();
             status.setCarrinho_id(carrinho_id);
             status.setStatus_id(status_id);
+            status.setDt_cadastro(date);
             
-            statusService.salvar(status);
+            statusService.atualizarStatus(status);
             return "ok";
         } catch (Exception ex) {
             return ex.getMessage();

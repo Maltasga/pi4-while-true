@@ -3,8 +3,10 @@ package br.edu.senac.kkcommerce.controller;
 import br.edu.senac.kkcommerce.model.Carrinho;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
 import br.edu.senac.kkcommerce.model.Produto;
+import br.edu.senac.kkcommerce.model.StatusCarrinhoDetalhe;
 import br.edu.senac.kkcommerce.service.CarrinhoService;
 import br.edu.senac.kkcommerce.service.ProdutoService;
+import br.edu.senac.kkcommerce.service.StatusCarrinhoService;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import java.io.Serializable;
@@ -57,9 +59,13 @@ public class CarrinhoController extends BaseLojaController implements Serializab
     @ResponseBody()
     public long finalizarCompra(@ModelAttribute("strCarrinho") String strCarrinho) throws Exception {
         long protocolo = 0;
+        int carrinhoID;
         try {
             ArrayList<CarrinhoItem> arrAuxiliar = new ArrayList<>();
             CarrinhoService carrService = new CarrinhoService();
+            StatusCarrinhoService statusService = new StatusCarrinhoService();
+            
+            
             protocolo = Calendar.getInstance().getTimeInMillis();
             carrinho.setProtocolo(protocolo);
             carrinho.setClienteId(1);
@@ -79,7 +85,14 @@ public class CarrinhoController extends BaseLojaController implements Serializab
                 }
             }
             //Salva os dados
-            carrService.salvar(carrinho);
+            carrinhoID = carrService.salvar(carrinho);
+            
+            //Insere status do pedido
+            StatusCarrinhoDetalhe status = new StatusCarrinhoDetalhe();
+            status.setCarrinho_id(carrinhoID);
+            status.setStatus_id(1);// Status 1 = Pendente de pgt
+            
+            statusService.salvar(status);// Insere status do pedido
             //Limpa o carrinho
             carrinho = new Carrinho();
 
