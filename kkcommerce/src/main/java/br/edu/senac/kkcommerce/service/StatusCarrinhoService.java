@@ -23,4 +23,8 @@ public class StatusCarrinhoService extends ServiceBase {
     public void salvar(StatusCarrinhoDetalhe s) throws Exception {
         dao.inserir(s);
     }
+    
+    public void atualizarStatus(StatusCarrinhoDetalhe s) throws Exception {
+        dao.atualizar(s);
+    }
 }

@@ -3,7 +3,7 @@ $(document).ready(function () {
     $('.comboStatus').change(function (e) {
         var carrinhoID = $(this).attr('carrinhoid');
         var status = $(this).val();
-
+        debugger;
         $.ajax({
             url: "/kk-admin/AlterarStatusCarrinho",
             type: "POST",

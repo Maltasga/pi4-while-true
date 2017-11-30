@@ -52,7 +52,28 @@ public class StatusCarrinhoDetalheDAO implements IDaoBase<StatusCarrinhoDetalhe>
 
     @Override
     public void atualizar(StatusCarrinhoDetalhe obj) throws SQLException, Exception {
-        throw new UnsupportedOperationException("Not supported yet.");
+        String query = "UPDATE StatusCarrinhoDetalhe "
+                + "SET STATUS_ID = ?, DT_CADASTRO = ? "
+                + "WHERE CARRINHO_ID = ?";
+
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, obj.getStatus_id());
+            statement.setDate(2, Util.toSQLDate(obj.getDt_cadastro()));
+            statement.setInt(3, obj.getCarrinho_id());
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
     }
 
     @Override
@@ -80,9 +101,9 @@ public class StatusCarrinhoDetalheDAO implements IDaoBase<StatusCarrinhoDetalhe>
                         Util.toUtilDate(result.getDate("DT_CADASTRO")),
                         result.getString("STATUS"),
                         result.getString("NOME"),
-                        result.getInt("PROTOCOLO"),
+                        result.getLong("PROTOCOLO"),
                         Util.toUtilDate(result.getDate("DT_TRANSACAO")),
-                        result.getDouble("VL_TOTAL"));                
+                        result.getDouble("VL_TOTAL"));
                 status.add(s);
             }
         } finally {
