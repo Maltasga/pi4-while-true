@@ -73,7 +73,7 @@
                             <li th:each="e, eStatus : ${estoque}">
                                 <div class="label-estoque" th:text="${e.tamanho}"></div>
                                 <input type="hidden" th:field="*{estoque[__${eStatus.index}__].tamanho}" th:value="${e.tamanho}" />
-                                <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" class="campo-estoque" />
+                                <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" th:value="${e.quantidade}" class="campo-estoque" />
                             </li>
 
                         </ul>

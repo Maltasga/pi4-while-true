@@ -24,6 +24,7 @@
                         <th>Marca</th>
                         <th>Preço</th>
                         <th>Estoque</th>
+                        <th>% Desconto</th>
                         <th>&nbsp;</th>
                     </tr>                
                 </thead>
@@ -32,17 +33,27 @@
                         <td th:text="${p.nome}"></td>
                         <td th:text="${p.marca.nome}"></td>
                         <td th:text="${#numbers.formatCurrency(p.valor)}"></td>
-                        <td>0</td>
+                        <td th:text="${p.quantidadeTotalEstoque}"></td>
+                        <td>
+                            <span th:if="${p.possuiDesconto}" 
+                                  th:text="${#numbers.formatDecimal(p.percDesconto/100, 1, 'DEFAULT', 2, 'DEFAULT')}"></span>
+                        </td>
                         <td>
                             <ul class="list-unstyled list-inline">
                                 <li>
                                     <a href="#" title="Detalhes do produto">
                                         <span class="glyphicon glyphicon-search small"></span>
-                                    </a></li>
+                                    </a>
+                                </li>
                                 <li>
-                                    <a href="#" title="Editar produto">
+                                    <a href="#" title="Editar produto"
+                                       th:href="@{/kk-admin/cadastrar-produto(id=${p.id})}">
                                         <span class="glyphicon glyphicon-pencil small"></span>
-                                    </a></li>
+                                    </a>
+                                </li>                                
+                                <li th:if="${p.possuiDesconto}">
+                                    <span class="glyphicon glyphicon-star small"></span>
+                                </li>
                             </ul>
                         </td>
                     </tr>

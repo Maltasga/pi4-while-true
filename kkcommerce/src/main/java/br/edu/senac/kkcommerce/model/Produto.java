@@ -17,6 +17,7 @@ public class Produto {
     private Integer idColecao;
     private Integer idMarca;
     private Double valor;
+    private Double percDesconto;
     private Boolean ativo;
     private Date dataCadastro;
     private Marca marca;
@@ -93,6 +94,14 @@ public class Produto {
         this.valor = valor;
     }
 
+    public Double getPercDesconto() {
+        return percDesconto;
+    }
+
+    public void setPercDesconto(Double percDesconto) {
+        this.percDesconto = percDesconto;
+    }
+
     public Boolean isAtivo() {
         return ativo;
     }
@@ -163,5 +172,26 @@ public class Produto {
 
     public boolean getEstaDisponivel() {
         return this.estoque.size() > 0;
+    }
+
+    public boolean getPossuiDesconto() {
+        return this.percDesconto != null && this.percDesconto > 0;
+    }
+
+    public Double getValorComDesconto() {
+        if (this.getPossuiDesconto()) {
+            return this.valor * ((100 - this.percDesconto) / 100);
+        }
+        return null;
+    }
+
+    public int getQuantidadeTotalEstoque() {
+        int qtde = 0;
+        if (this.estoque != null) {
+            for (Estoque e : this.estoque) {
+                qtde += e.getQuantidade();
+            }
+        }
+        return qtde;
     }
 }

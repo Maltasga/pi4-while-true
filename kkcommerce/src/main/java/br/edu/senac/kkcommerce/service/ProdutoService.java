@@ -21,9 +21,10 @@ public class ProdutoService extends ServiceBase {
 
     public List<Produto> listar() throws Exception {
         List<Produto> produtos = dao.listar();
-        
+
         for (Produto p : produtos) {
             p.setImagens(imagemService.listar(p.getId()));
+            p.setEstoque(estoqueService.listarPorProduto(p.getId()));
         }
         return produtos;
     }

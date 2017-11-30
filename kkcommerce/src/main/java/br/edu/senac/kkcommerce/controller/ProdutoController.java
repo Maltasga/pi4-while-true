@@ -36,11 +36,15 @@ public class ProdutoController extends BaseAdminController {
     }
 
     @GetMapping("/cadastrar-produto")
-    public ModelAndView cadastrar(Model model) {
+    public ModelAndView cadastrar(@ModelAttribute("id") Integer id, Model model) throws Exception {
         MarcaService marcaService = new MarcaService();
         ColecaoService colecaoService = new ColecaoService();
 
         Produto produtoModel = new Produto();
+
+        if (id != null && id > 0) {
+            produtoModel = produtoService.buscar(id);
+        }
         produtoModel.setEstoque(Estoque.getRelacaoEstoque());
         model.addAttribute("produto", produtoModel);
         try {
@@ -48,7 +52,7 @@ public class ProdutoController extends BaseAdminController {
             model.addAttribute("marcas", marcaService.listar());
             model.addAttribute("colecoes", colecaoService.listar());
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            throw new Exception(ex.getMessage());
         }
         return new ModelAndView("produto/cadastro");
     }

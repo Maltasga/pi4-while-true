@@ -122,6 +122,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getDouble("VALOR"),
                         result.getBoolean("ATIVO"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
+                p.setPercDesconto(result.getDouble("PERC_DESCONTO"));
                 p.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
                 p.setColecao(new Colecao(result.getInt("ID_COLECAO"), result.getString("NM_COLECAO")));
                 produtos.add(p);
@@ -162,6 +163,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getBoolean("ATIVO"),
                         Util.toUtilDate(result.getDate("DT_CADASTRO")));
 
+                produto.setPercDesconto(result.getDouble("PERC_DESCONTO"));
                 produto.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
                 produto.setColecao(new Colecao(result.getInt("ID_Colecao"), result.getString("NM_COLECAO")));
             }
