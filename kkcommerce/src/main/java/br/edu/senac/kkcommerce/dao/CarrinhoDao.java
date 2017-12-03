@@ -137,7 +137,7 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
             while (result.next()) {
                 carrinho.setDetalhePedido(new DetalhePedido(
                         result.getInt("ID_COMPRA"),
-                        result.getInt("PROTOCOLO"),
+                        result.getLong("PROTOCOLO"),
                         result.getInt("QUANTIDADE"),
                         result.getInt("PRODUTO_ID"),
                         result.getString("NOME_PRODUTO"),
@@ -173,7 +173,7 @@ public class CarrinhoDao implements IDaoBase<Carrinho> {
             while (result.next()) {
                 lista.add(new DetalhePedido(
                         result.getInt("ID_COMPRA"),
-                        result.getInt("PROTOCOLO"),
+                        result.getLong("PROTOCOLO"),
                         result.getInt("QUANTIDADE"),
                         result.getInt("PRODUTO_ID"),
                         result.getString("NOME_PRODUTO"),

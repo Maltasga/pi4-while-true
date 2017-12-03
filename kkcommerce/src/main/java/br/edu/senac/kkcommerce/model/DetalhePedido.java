@@ -12,14 +12,14 @@ package br.edu.senac.kkcommerce.model;
 public class DetalhePedido {
 
     private int id_compra;
-    private int protocolo;
+    private long protocolo;
     private int quantidade;
     private int id_produto;
     private String nome_produto;
     private double valor;
     private String nome_cliente;
 
-    public DetalhePedido(int id_compra, int protocolo, int quantidade, int id_produto, String nome_produto, double valor, String nome_cliente) {
+    public DetalhePedido(int id_compra, long protocolo, int quantidade, int id_produto, String nome_produto, double valor, String nome_cliente) {
         this.id_compra = id_compra;
         this.protocolo = protocolo;
         this.quantidade = quantidade;
@@ -37,11 +37,11 @@ public class DetalhePedido {
         this.id_compra = id_compra;
     }
 
-    public int getProtocolo() {
+    public long getProtocolo() {
         return protocolo;
     }
 
-    public void setProtocolo(int protocolo) {
+    public void setProtocolo(long protocolo) {
         this.protocolo = protocolo;
     }
 

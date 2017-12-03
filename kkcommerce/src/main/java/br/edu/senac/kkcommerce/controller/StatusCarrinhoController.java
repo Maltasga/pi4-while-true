@@ -22,7 +22,7 @@ public class StatusCarrinhoController extends BaseAdminController {
     
     StatusCarrinhoService statusService = new StatusCarrinhoService();
     
-    @GetMapping("/statusPedidos")
+    @GetMapping("/status-pedidos")
     public ModelAndView index() throws Exception {
         try {
             return new ModelAndView("Pedido/StatusPedidos.html")
@@ -32,7 +32,7 @@ public class StatusCarrinhoController extends BaseAdminController {
         }
     }
     
-    @GetMapping("/detalhePedido")
+    @GetMapping("/detalhes-pedido")
     public ModelAndView detalhePedido(@ModelAttribute("pedido_id") int pedido_id) throws Exception {
         try {
             CarrinhoDao dao = new CarrinhoDao();
