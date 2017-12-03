@@ -7,28 +7,31 @@
         <link th:href="@{/css/listaProdutos-loja.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/listaProdutos-loja.css" />
+        <script th:src="@{/js/index.js}" src="../../static/js/index.js" type="text/javascript"></script>
     </head>
     <body>
         <div layout:fragment="conteudo">
             <div class="container fundo">
-                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" th:each="p : ${produtos}">
-                    <div class="produto" >
-                        <center>
-                            <img class="img-responsive"
-                                  th:src="@{${p.urlImagemPrincipal}}" alt=""/>
-                        </center>
-                        <p class="nome" th:text="${p.nome}"></p>
-                        <p class="descricao" th:text="${p.descricao}"></p>
-                        <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
-                        <div class="btn-comprar">
-                            <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
-                                <button type="button" class="btn btn-info">
-                                    Detalhes
-                                </button>
-                            </a>
+                <div id="lista-produtos">
+                    <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" th:each="p : ${produtos}">
+                        <div class="produto">
+                            <center>
+                                <img class="img-responsive"
+                                     th:src="@{${p.urlImagemPrincipal}}" alt=""/>
+                            </center>
+                            <p class="nome" th:text="${p.nome}"></p>
+                            <p class="descricao" th:text="${p.descricao}"></p>
+                            <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
+                            <div class="btn-comprar">
+                                <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
+                                   <button type="button" class="btn btn-info">
+                                        Detalhes
+                                    </button>
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div> 
+                </div>               
             </div>
         </div>
     </body>
