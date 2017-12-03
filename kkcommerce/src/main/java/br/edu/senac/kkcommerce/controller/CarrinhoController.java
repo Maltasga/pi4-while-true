@@ -2,9 +2,11 @@ package br.edu.senac.kkcommerce.controller;
 
 import br.edu.senac.kkcommerce.model.Carrinho;
 import br.edu.senac.kkcommerce.model.CarrinhoItem;
+import br.edu.senac.kkcommerce.model.Estoque;
 import br.edu.senac.kkcommerce.model.Produto;
 import br.edu.senac.kkcommerce.model.StatusCarrinhoDetalhe;
 import br.edu.senac.kkcommerce.service.CarrinhoService;
+import br.edu.senac.kkcommerce.service.EstoqueService;
 import br.edu.senac.kkcommerce.service.ProdutoService;
 import br.edu.senac.kkcommerce.service.StatusCarrinhoService;
 import com.google.gson.Gson;
@@ -65,7 +67,6 @@ public class CarrinhoController extends BaseLojaController implements Serializab
             CarrinhoService carrService = new CarrinhoService();
             StatusCarrinhoService statusService = new StatusCarrinhoService();
             
-            
             protocolo = Calendar.getInstance().getTimeInMillis();
             carrinho.setProtocolo(protocolo);
             carrinho.setClienteId(1);
@@ -93,6 +94,18 @@ public class CarrinhoController extends BaseLojaController implements Serializab
             status.setStatus_id(1);// Status 1 = Pendente de pgt
             
             statusService.salvar(status);// Insere status do pedido
+            
+            //Remove do estoque
+              for (CarrinhoItem item : carrinho.getItens()) {
+                  int produtoID = item.getProduto().getId();
+                  String tamanho = item.getTamanho();
+                  int qtd = item.getQuantidade();
+                  Estoque estoque = new Estoque(0, produtoID,tamanho,qtd);
+                  EstoqueService eservice = new EstoqueService();
+                  
+                  eservice.atualizarEstoque(estoque);
+            }
+            
             //Limpa o carrinho
             carrinho = new Carrinho();
 

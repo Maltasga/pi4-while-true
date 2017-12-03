@@ -13,6 +13,16 @@ public class Estoque {
     private String tamanho;
     private int quantidade;
 
+        public Estoque() {
+    }
+
+    public Estoque(int id, int idProduto, String tamanho, int quantidade) {
+        this.id = id;
+        this.idProduto = idProduto;
+        this.tamanho = tamanho;
+        this.quantidade = quantidade;
+    }    
+    
     public int getId() {
         if (this.id == null) {
             return 0;
@@ -48,16 +58,6 @@ public class Estoque {
     }
 
     public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
-    public Estoque() {
-    }
-
-    public Estoque(int id, int idProduto, String tamanho, int quantidade) {
-        this.id = id;
-        this.idProduto = idProduto;
-        this.tamanho = tamanho;
         this.quantidade = quantidade;
     }
 

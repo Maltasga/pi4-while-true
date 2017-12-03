@@ -22,13 +22,23 @@
                             <p class="nome" th:text="${p.nome}"></p>
                             <p class="descricao" th:text="${p.descricao}"></p>
                             <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
-                            <div class="btn-comprar">
-                                <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
-                                   <button type="button" class="btn btn-info">
-                                        Detalhes
-                                    </button>
-                                </a>
+                            <div class="row">
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <div class="btn-comprar">
+                                        <a href="#" th:href="@{/loja/detalhes-produto(id=${p.id})}"
+                                           <button type="button" class="btn btn-info">
+                                                Detalhes 
+                                            </button>
+                                        </a>
+                                    </div>  
+                                </div>
+                                <div class="col-md-6 col-xs-12 col-sm-6">
+                                    <span><b>Disponibilidade: </b>
+                                        <span th:text="${p.QuantidadeTotalEstoque}"></span>
+                                    </span>
+                                </div>
                             </div>
+
                         </div>
                     </div> 
                 </div>               

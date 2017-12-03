@@ -51,9 +51,9 @@ public class EstoqueDao implements IDaoBase<Estoque> {
 
     @Override
     public void atualizar(Estoque e) throws SQLException {
-        String query = "UPDATE Estoque SET Quantidade = ? "
+        String query = "UPDATE Estoque SET Quantidade = (Quantidade - ?) "
                 + "WHERE Id_Produto = ?"
-                + "AND Tamanho = ?";
+                + " AND Tamanho = ?";
         PreparedStatement statement = null;
 
         try {

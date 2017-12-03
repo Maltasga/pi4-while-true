@@ -17,8 +17,9 @@ public class EstoqueService extends ServiceBase {
 
     public void salvar(ArrayList<Estoque> listaEstoque) throws Exception {
         for (Estoque estoque : listaEstoque) {
-            if(estoque.equals(estoque))
-            dao.inserir(estoque);
+            if (estoque.equals(estoque)) {
+                dao.inserir(estoque);
+            }
         }
     }
 
@@ -32,5 +33,9 @@ public class EstoqueService extends ServiceBase {
             }
         }
         return estoque;
+    }
+
+    public void atualizarEstoque(Estoque e) throws Exception {
+        dao.atualizar(e);
     }
 }
