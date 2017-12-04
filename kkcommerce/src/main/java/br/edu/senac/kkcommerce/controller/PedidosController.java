@@ -16,11 +16,11 @@ import org.springframework.web.servlet.ModelAndView;
  * @author Karolina G. K.
  */
 @Controller
-public class PedidosController{
+public class PedidosController extends BaseLojaController{
 
     CarrinhoService service = new CarrinhoService();
     
-    @GetMapping("/pedidos")
+    @GetMapping("/lista-pedidos")
     public ModelAndView pedidos() throws Exception{
         try {
             return new ModelAndView("loja/pedidos.html").addObject("pedidos", service.listar(1));
