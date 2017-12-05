@@ -22,16 +22,30 @@
                             <tr>
                                 <th>Protocolo</th>
                                 <th>Data da Compra</th>
-                                <th>Valor total</th>
+                                <th>Status</th>
+                                <th>Ultima Atualização</th>
+                                <th>Detalhes</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr th:each="p : ${pedidos}"> 
                                 <td th:text="${p.protocolo}"></td>
-                                <td th:text="${p.data_transacao}"></td>
-                                <td th:text="${#numbers.formatCurrency(p.valorFinal)}"></td>
+                                <td th:text="${p.dt_compra}"></td>
+                                <td th:text="${p.status}"></td>
+                                <td th:text="${p.dt_atualizacao_status}"></td>
+                                <td>
+                                    <ul class="list-unstyled list-inline">
+                                        <li>
+                                            <a href="#" title="Detalhes da compra">
+                                                <span id="detalhes" th:carrinhoID="${p.carrinho_id}" class="glyphicon glyphicon-search small"> Visualizar</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </td>
+
+                                <!--                                <td th:text="${#numbers.formatCurrency(p.valorFinal)}"></td>-->
                             </tr>
-                           
+
                         </tbody>
                     </table>
                 </div> 
