@@ -30,8 +30,10 @@
                         <p class="p-descricao" th:text="${produto.descricao}">
                             Descrição
                         </p>
-                        <p class="p-preco" th:text="${#numbers.formatCurrency(produto.valor)}">
-                            valor do produto
+                        <p th:if="${produto.getPossuiDesconto()}">
+                            De <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(produto.valor)}"></span>
+                            <br />
+                            Por <span class="p-preco" th:text="${#numbers.formatCurrency(produto.getValorComDesconto())}"></span>
                         </p>
                     </div>
                 </div>

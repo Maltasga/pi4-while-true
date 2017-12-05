@@ -1,12 +1,11 @@
 package br.edu.senac.kkcommerce.dao;
 
-import br.edu.senac.kkcommerce.model.Carrinho;
 import java.sql.SQLException;
 import java.util.List;
 
 /**
  *
- * @author gabri
+ * @author gabriel.malta
  * @param <T>
  */
 public interface IDaoBase<T> {

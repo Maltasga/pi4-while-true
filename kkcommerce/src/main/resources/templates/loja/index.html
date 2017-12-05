@@ -21,7 +21,13 @@
                             </center>
                             <p class="nome" th:text="${p.nome}"></p>
                             <p class="descricao" th:text="${p.descricao}"></p>
-                            <p class="valor" th:text="${#numbers.formatCurrency(p.valor)}"></p>
+                            <p th:if="${!p.getPossuiDesconto()}" class="valor" th:text="${#numbers.formatCurrency(p.valor)}">
+                                <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(p.valor)}"></span>
+                            </p>
+                            <p th:if="${p.getPossuiDesconto()}">
+                                De <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(p.valor)}"></span>
+                                por <span style="font-weight: bold;" th:text="${#numbers.formatCurrency(p.getValorComDesconto())}"></span>
+                            </p>
                             <div class="row">
                                 <div class="col-md-6 col-xs-12 col-sm-6">
                                     <div class="btn-comprar">
