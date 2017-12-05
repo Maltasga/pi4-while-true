@@ -9,42 +9,24 @@ import java.util.Date;
 
 /**
  *
- * @author gabib
+ * @author While True
  */
 public class PedidosCliente {
 
-    private Integer status_id;
-    private Integer carrinho_id;    
+    private Integer carrinho_id;
     private Integer cliente_id;
     private Date dt_compra;
     private String Status;
-    private String nome;
     private long protocolo;
     private Date dt_atualizacao_status;
-    private double vl_total;
 
-    public PedidosCliente(Integer carrinho_id, long protocolo,Date dt_compra, Integer cliente_id,  String Status, Date dt_atualizacao_status) {
+    public PedidosCliente(Integer carrinho_id, long protocolo, Date dt_compra, Integer cliente_id, String Status, Date dt_atualizacao_status) {
         this.carrinho_id = carrinho_id;
         this.protocolo = protocolo;
         this.dt_compra = dt_compra;
         this.cliente_id = cliente_id;
         this.Status = Status;
         this.dt_atualizacao_status = dt_atualizacao_status;
-    }    
-    
-    //    CARRINHO_ID,
-//    PROTOCOLO,
-//    DT_COMPRA,
-//    CLIENTE_ID,
-//    STATUS,
-//    DT_ATUALIZACAO_STATUS
-    
-    public Integer getStatus_id() {
-        return status_id;
-    }
-
-    public void setStatus_id(Integer status_id) {
-        this.status_id = status_id;
     }
 
     public Integer getCarrinho_id() {
@@ -79,14 +61,6 @@ public class PedidosCliente {
         this.Status = Status;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public long getProtocolo() {
         return protocolo;
     }
@@ -103,16 +77,4 @@ public class PedidosCliente {
         this.dt_atualizacao_status = dt_atualizacao_status;
     }
 
-    public double getVl_total() {
-        return vl_total;
-    }
-
-    public void setVl_total(double vl_total) {
-        this.vl_total = vl_total;
-    }
-
-
-
-    
-    
 }
