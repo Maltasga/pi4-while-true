@@ -23,19 +23,19 @@
     font-weight: bold;
 }
 
-p.p-titulo{
+.p-titulo{
     font-size: 1.12em;
     font-weight: bold;
     color: #4b4b4b;
 }
 
-p.p-descricao{
+.p-descricao{
     font-size: 0.85em;
     margin: 0px auto 25px;
     color: gray;
 }
 
-p.p-preco{
+.p-preco{
     font-weight: bold;
     width: 100%;
     text-align: right;
