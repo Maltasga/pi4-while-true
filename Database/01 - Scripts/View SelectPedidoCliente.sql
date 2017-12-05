@@ -8,6 +8,7 @@ CREATE VIEW SELECT_PEDIDO_CLIENTE
     DT_ATUALIZACAO_STATUS
 )
 AS
+(
 SELECT
     c.ID AS CARRINHO_ID,
     c.PROTOCOLO,
@@ -19,3 +20,4 @@ FROM carrinho c
 INNER JOIN statusCarrinhoDetalhe sc on sc.CARRINHO_ID = c.ID
 INNER JOIN statusCarrinho s on s.STATUS_ID = sc.STATUS_ID
 INNER JOIN cliente ct ON ct.ID = c.CLIENTE_ID
+);

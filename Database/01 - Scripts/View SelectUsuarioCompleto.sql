@@ -11,6 +11,7 @@ CREATE VIEW SELECT_USUARIO_COMPLETO
     NM_PERFIL
 )
 AS
+(
     SELECT
         U.ID,
         U.NOME,
@@ -23,3 +24,4 @@ AS
         P.NOME AS 'NM_PERFIL'
     FROM Usuario U
         JOIN Perfil P on P.ID = U.ID_PERFIL
+);
