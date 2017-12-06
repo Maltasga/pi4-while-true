@@ -9,6 +9,7 @@ CREATE VIEW SELECT_DETALHE_PEDIDO
     ,NOME_CLIENTE
 )
 AS 
+(
 SELECT
     c.ID AS ID_COMPRA,
     c.PROTOCOLO,
@@ -21,3 +22,4 @@ FROM carrinho c
 INNER JOIN carrinhoitem ci ON ci.CARRINHO_ID = c.ID
 INNER JOIN cliente ct ON ct.ID = c.CLIENTE_ID
 INNER JOIN produto p on p.ID = ci.PRODUTO_ID
+);

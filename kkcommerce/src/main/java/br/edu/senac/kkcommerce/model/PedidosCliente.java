@@ -9,52 +9,48 @@ import java.util.Date;
 
 /**
  *
- * @author gabib
+ * @author While True
  */
 public class PedidosCliente {
 
-    private Integer Status_id;
-    private Integer Carrinho_id;
-    private Date dt_cadastro;
+    private Integer carrinho_id;
+    private Integer cliente_id;
+    private Date dt_compra;
     private String Status;
-    private String nome;
     private long protocolo;
-    private Date dt_transacao;
-    private double vl_total;
+    private Date dt_atualizacao_status;
 
-    public PedidosCliente(Integer Status_id, Integer Carrinho_id, Date dt_cadastro, String Status, String nome, long protocolo, Date dt_transacao, double vl_total) {
-        this.Status_id = Status_id;
-        this.Carrinho_id = Carrinho_id;
-        this.dt_cadastro = dt_cadastro;
-        this.Status = Status;
-        this.nome = nome;
+    public PedidosCliente(Integer carrinho_id, long protocolo, Date dt_compra, Integer cliente_id, String Status, Date dt_atualizacao_status) {
+        this.carrinho_id = carrinho_id;
         this.protocolo = protocolo;
-        this.dt_transacao = dt_transacao;
-        this.vl_total = vl_total;
-    }
-
-    public Integer getStatus_id() {
-        return Status_id;
-    }
-
-    public void setStatus_id(Integer Status_id) {
-        this.Status_id = Status_id;
+        this.dt_compra = dt_compra;
+        this.cliente_id = cliente_id;
+        this.Status = Status;
+        this.dt_atualizacao_status = dt_atualizacao_status;
     }
 
     public Integer getCarrinho_id() {
-        return Carrinho_id;
+        return carrinho_id;
     }
 
-    public void setCarrinho_id(Integer Carrinho_id) {
-        this.Carrinho_id = Carrinho_id;
+    public void setCarrinho_id(Integer carrinho_id) {
+        this.carrinho_id = carrinho_id;
     }
 
-    public Date getDt_cadastro() {
-        return dt_cadastro;
+    public Integer getCliente_id() {
+        return cliente_id;
     }
 
-    public void setDt_cadastro(Date dt_cadastro) {
-        this.dt_cadastro = dt_cadastro;
+    public void setCliente_id(Integer cliente_id) {
+        this.cliente_id = cliente_id;
+    }
+
+    public Date getDt_compra() {
+        return dt_compra;
+    }
+
+    public void setDt_compra(Date dt_compra) {
+        this.dt_compra = dt_compra;
     }
 
     public String getStatus() {
@@ -65,14 +61,6 @@ public class PedidosCliente {
         this.Status = Status;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public long getProtocolo() {
         return protocolo;
     }
@@ -81,21 +69,12 @@ public class PedidosCliente {
         this.protocolo = protocolo;
     }
 
-    public Date getDt_transacao() {
-        return dt_transacao;
+    public Date getDt_atualizacao_status() {
+        return dt_atualizacao_status;
     }
 
-    public void setDt_transacao(Date dt_transacao) {
-        this.dt_transacao = dt_transacao;
+    public void setDt_atualizacao_status(Date dt_atualizacao_status) {
+        this.dt_atualizacao_status = dt_atualizacao_status;
     }
 
-    public double getVl_total() {
-        return vl_total;
-    }
-
-    public void setVl_total(double vl_total) {
-        this.vl_total = vl_total;
-    }
-    
-    
 }

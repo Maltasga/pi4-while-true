@@ -3,6 +3,7 @@ package br.edu.senac.kkcommerce.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -90,7 +91,19 @@ public class Carrinho {
         if (this.itens == null) {
             this.itens = new ArrayList<>();
         }
-        this.itens.add(item);
+        boolean flag = true;
+
+        for (CarrinhoItem c : this.itens) {
+            if (Objects.equals(item.getProduto().getId(), c.getProduto().getId())) {
+                if (item.getTamanho().equals(c.getTamanho())) {
+                    c.setQuantidade(c.getQuantidade() + item.getQuantidade());
+                    flag = false;
+                }
+            }
+        }
+        if (flag) {
+            this.itens.add(item);
+        }
     }
 
     public double getValorTotal() {
@@ -140,5 +153,5 @@ public class Carrinho {
     public void setDetalhePedido(DetalhePedido detalhePedido) {
         this.detalhePedido = detalhePedido;
     }
-    
+
 }

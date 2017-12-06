@@ -7,23 +7,24 @@
 package br.edu.senac.kkcommerce.controller;
 
 import br.edu.senac.kkcommerce.service.CarrinhoService;
+import br.edu.senac.kkcommerce.service.PedidosClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
  * 
- * @author Karolina G. K.
+ * @author While True
  */
 @Controller
 public class PedidosController extends BaseLojaController{
 
-    CarrinhoService service = new CarrinhoService();
+    PedidosClienteService service = new PedidosClienteService();
     
     @GetMapping("/lista-pedidos")
     public ModelAndView pedidos() throws Exception{
         try {
-            return new ModelAndView("loja/pedidos.html").addObject("pedidos", service.listar(1));
+            return new ModelAndView("loja/pedidos.html").addObject("pedidos", service.listar());
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

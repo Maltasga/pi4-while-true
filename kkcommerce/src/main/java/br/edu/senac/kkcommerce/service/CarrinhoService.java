@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * 
- * @author Karolina G. K.
+ * @author While True
  */
 public class CarrinhoService extends ServiceBase{
 

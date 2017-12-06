@@ -14,7 +14,7 @@ $(document).ready(function () {
             },
             success: function (response) {
                 alert('Alterado com Sucesso!');
-                location.href = '/kk-admin/statusPedidos';
+                location.href = '/kk-admin/status-pedidos';
             },
             error: function (xhr, status, error) {
                 console.log(error);
