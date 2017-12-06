@@ -5,7 +5,9 @@
  */
 package br.edu.senac.kkcommerce.controller;
 
+import br.edu.senac.kkcommerce.model.Categoria;
 import br.edu.senac.kkcommerce.model.Relatorio;
+import br.edu.senac.kkcommerce.service.CategoriaService;
 import br.edu.senac.kkcommerce.service.RelatorioService;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,12 +27,26 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class RelatorioController extends BaseAdminController {
 
-    RelatorioService service = new RelatorioService();
+    private RelatorioService service = new RelatorioService();
+
+    private CategoriaService catService = new CategoriaService();
 
     @GetMapping("/relatorios")
     public ModelAndView index() throws Exception {
         try {
-            return new ModelAndView("relatorio/relatorios.html");
+
+            List<Categoria> categorias = catService.listar();
+            List<Categoria> catFem = new ArrayList<>();
+            List<Categoria> catMasc = new ArrayList<>();
+
+            for (Categoria c : categorias) {
+                if (c.getGenero().equals("F")) {
+                    catFem.add(c);
+                } else {
+                    catMasc.add(c);
+                }
+            }
+            return new ModelAndView("relatorio/relatorios.html").addObject("catfem", catFem).addObject("catmasc", catMasc);
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
@@ -39,7 +55,7 @@ public class RelatorioController extends BaseAdminController {
     @PostMapping("/gerar-relatorio")
     public ModelAndView gerarRelatorio(@ModelAttribute("inicio") String inicio, @ModelAttribute("fim") String fim,
             BindingResult bindingResult) throws Exception {
-        
+
         try {
             List<Relatorio> relatorio = service.listarTudo(inicio, fim);
             return new ModelAndView("/relatorio/relatorios.html").addObject("relatorio", relatorio);
