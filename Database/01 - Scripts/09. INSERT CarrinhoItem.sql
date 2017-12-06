@@ -1,5 +1,5 @@
 INSERT INTO carrinhoitem (CARRINHO_ID, PRODUTO_ID, QUANTIDADE, TAMANHO, VL_ITEM) VALUES 
-(26,28,2,'P',30),
-(26,29,3,'M',40),
-(27,30,2,'G',50),
-(28,30,3,'GG',45)
+(9,28,2,'P',30),
+(10,29,3,'M',40),
+(11,30,2,'G',50),
+(12,30,3,'GG',45)

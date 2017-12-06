@@ -24,8 +24,8 @@ public class ProdutoDao implements IDaoBase<Produto> {
     public int inserir(Produto obj) throws SQLException, Exception {
         int idGerado = 0;
         String query = "INSERT INTO Produto "
-                + "(NOME, DESCRICAO, ID_MARCA, ID_COLECAO, Valor) "
-                + "VALUES (?, ?, ?, ?, ?);";
+                + "(NOME, DESCRICAO, ID_CATEGORIA, ID_MARCA, ID_COLECAO, Valor) "
+                + "VALUES (?, ?, ?, ?, ?, ?);";
         PreparedStatement statement = null;
 
         try {
@@ -33,9 +33,10 @@ public class ProdutoDao implements IDaoBase<Produto> {
             statement = conexao.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             statement.setString(1, obj.getNome());
             statement.setString(2, obj.getDescricao());
-            statement.setInt(3, obj.getIdMarca());
-            statement.setInt(4, obj.getIdColecao());
-            statement.setDouble(5, obj.getValor());
+            statement.setInt(3, obj.getIdCategoria());
+            statement.setInt(4, obj.getIdMarca());
+            statement.setInt(5, obj.getIdColecao());
+            statement.setDouble(6, obj.getValor());
             statement.execute();
 
             ResultSet rs = statement.getGeneratedKeys();
@@ -117,6 +118,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getInt("ID"),
                         result.getString("NOME"),
                         result.getString("DESCRICAO"),
+                        result.getInt("ID_CATEGORIA"),
                         result.getInt("ID_COLECAO"),
                         result.getInt("ID_MARCA"),
                         result.getDouble("VALOR"),
@@ -157,6 +159,7 @@ public class ProdutoDao implements IDaoBase<Produto> {
                         result.getInt("ID"),
                         result.getString("NOME"),
                         result.getString("DESCRICAO"),
+                        result.getInt("ID_CATEGORIA"),
                         result.getInt("ID_COLECAO"),
                         result.getInt("ID_MARCA"),
                         result.getDouble("VALOR"),

@@ -1,30 +1,44 @@
 -- CREATE TABLE
+CREATE TABLE CATEGORIA (
+
+ID INT NOT NULL AUTO_INCREMENT,
+GENERO CHAR NOT NULL,
+NOME VARCHAR(50) NOT NULL,
+PRIMARY KEY (ID)
+
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Colecao
 (
     ID INT NOT NULL AUTO_INCREMENT,
     NOME VARCHAR(50) NOT NULL,    
     PRIMARY KEY (ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Marca
 (
     ID INT NOT NULL AUTO_INCREMENT,
     NOME VARCHAR(50) NOT NULL,
     PRIMARY KEY (ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Produto
 (
     ID INT NOT NULL AUTO_INCREMENT,
     NOME VARCHAR(50) NOT NULL,
     DESCRICAO VARCHAR(100),
+    ID_CATEGORIA INT NOT NULL,
     ID_MARCA INT NOT NULL,
     ID_COLECAO INT NOT NULL,
     VALOR DOUBLE NOT NULL,
     ATIVO BOOLEAN DEFAULT TRUE,
     DT_CADASTRO DATETIME DEFAULT NOW(),
     PRIMARY KEY (ID),
+    FOREIGN KEY (ID_CATEGORIA) REFERENCES Categoria(ID),
     FOREIGN KEY (ID_COLECAO) REFERENCES Colecao(ID),
     FOREIGN KEY (ID_MARCA) REFERENCES Marca(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Estoque
 (
     ID BIGINT NOT NULL AUTO_INCREMENT,
@@ -33,7 +47,8 @@ CREATE TABLE Estoque
     TAMANHO VARCHAR(5) NOT NULL,
     PRIMARY KEY (ID, ID_PRODUTO, TAMANHO),
     FOREIGN KEY (ID_PRODUTO)  REFERENCES PRODUTO(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE ProdutoImagem
 (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -41,15 +56,9 @@ CREATE TABLE ProdutoImagem
     Nome VARCHAR(50) NOT NULL,
     PRIMARY KEY (ID, ID_PRODUTO),
     FOREIGN KEY (ID_PRODUTO) REFERENCES Produto(ID)
-);
-CREATE TABLE CATEGORIA (
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 
-ID INT NOT NULL AUTO_INCREMENT,
-GENERO CHAR NOT NULL,
-NOME VARCHAR(50) NOT NULL,
-PRIMARY KEY (ID)
-
-);
 CREATE TABLE Cliente (
     ID INT NOT NULL AUTO_INCREMENT,
     NOME VARCHAR(100) NOT NULL,
@@ -63,7 +72,8 @@ CREATE TABLE Cliente (
     ATIVO BOOLEAN DEFAULT TRUE,
     DT_CADASTRO DATETIME DEFAULT NOW(),    
     PRIMARY KEY (ID, CPF)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE ENDERECO(
 
     ID INT NOT NULL AUTO_INCREMENT,
@@ -79,13 +89,15 @@ CREATE TABLE ENDERECO(
     PRIMARY KEY (ID, CLIENTE_ID),
     FOREIGN KEY (CLIENTE_ID) REFERENCES CLIENTE(ID)
 
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Perfil
 (
     ID INT NOT NULL UNIQUE,
     Nome VARCHAR(50) NOT NULL UNIQUE,
     PRIMARY KEY (ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE Usuario
 (
     ID INT NOT NULL AUTO_INCREMENT,
@@ -98,7 +110,8 @@ CREATE TABLE Usuario
     DT_CADASTRO DATETIME NOT NULL DEFAULT NOW(),
     PRIMARY KEY (ID),
     FOREIGN KEY (ID_PERFIL) REFERENCES Perfil(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 CREATE TABLE CARRINHO
 (
     ID BIGINT NOT NULL AUTO_INCREMENT,
@@ -109,7 +122,8 @@ CREATE TABLE CARRINHO
     PROTOCOLO BIGINT,
     PRIMARY KEY(ID),
     FOREIGN KEY (CLIENTE_ID) REFERENCES CLIENTE(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 
 CREATE TABLE CARRINHOITEM
 (
@@ -121,7 +135,8 @@ CREATE TABLE CARRINHOITEM
     VL_ITEM DECIMAL(9, 2) NOT NULL,
     PRIMARY KEY (ID),
     FOREIGN KEY (CARRINHO_ID) REFERENCES CARRINHO(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 
 CREATE TABLE TICKETSAC
 (
@@ -134,7 +149,8 @@ CREATE TABLE TICKETSAC
 	STATUS VARCHAR(10) NOT NULL DEFAULT 'PENDENTE',
     PRIMARY KEY(ID),
     FOREIGN KEY (CLIENTE_ID) REFERENCES CLIENTE(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 
 CREATE TABLE promocao
 (
@@ -145,34 +161,35 @@ CREATE TABLE promocao
     PERC_DESCONTO DOUBLE NOT NULL,
     PRIMARY KEY (ID),
     FOREIGN KEY (PRODUTO_ID) REFERENCES produto(ID)
-);
+) DEFAULT CHARACTER SET utf8
+  DEFAULT COLLATE utf8_general_ci;
 -- FIM CREATE TABLE
 
 -- INSERT 
+INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
+    ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
+    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'TricÙ¥'), ('F', 'CalÁa'), ('F', 'Bermuda'),
+    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macac„o'), ('F', 'Jardineira'),
+    ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
+    ('M', 'Jaqueta'), ('M', 'TricÙ'),  ('M', 'CalÁa'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
+    ('M', 'Macac„o'),    ('M', 'Jardineira');
+
 INSERT INTO COLECAO (NOME) 
     VALUES 
-    ('Casual 2k17'), ('Prima Vera'), ('Ver√£o Ver√£o');
+    ('Casual 2k17'), ('Prima Vera'), ('Ver„o Ver„o');
 
 INSERT INTO MARCA (NOME) 
     VALUES 
     ('Calvin Klein'), ('Aramis'), ('Lacoste'), ('Joss'), ('Reserva'), 
     ('Tommy Hilfiger'), ('Colcci'), ('Billabong');
 
-INSERT INTO PRODUTO (NOME, DESCRICAO, ID_MARCA, ID_COLECAO, VALOR) 
+INSERT INTO PRODUTO (NOME, DESCRICAO, ID_CATEGORIA, ID_MARCA, ID_COLECAO, VALOR) 
     VALUES
-    ('produto teste 1', 'descricao do produto teste 1', 1, 1, 87.79),
-    ('produto teste 2', 'descricao do produto teste 2', 5, 3, 57.30),
-    ('produto teste 3', 'descricao do produto teste 3', 7, 3, 99.90),
-    ('produto teste 4', 'descricao do produto teste 3', 7, 3, 99.90),
-    ('produto teste 5', 'descricao do produto teste 3', 7, 3, 99.90);
-
-INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
-    ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
-    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tric√¥'), ('F', 'Cal√ßa'), ('F', 'Bermuda'),
-    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macac√£o'), ('F', 'Jardineira'),
-    ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
-    ('M', 'Jaqueta'), ('M', 'Tric√¥'),  ('M', 'Cal√ßa'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
-    ('M', 'Macac√£o'),    ('M', 'Jardineira');
+    ('produto teste 1', 'descricao do produto teste 1', 1, 1, 1, 87.79),
+    ('produto teste 2', 'descricao do produto teste 2', 12, 5, 3, 57.30),
+    ('produto teste 3', 'descricao do produto teste 3', 20, 7, 3, 99.90),
+    ('produto teste 4', 'descricao do produto teste 3', 9, 7, 3, 99.90),
+    ('produto teste 5', 'descricao do produto teste 3', 17, 7, 3, 99.90);
 
 INSERT INTO Perfil (ID, NOME)
     VALUES 

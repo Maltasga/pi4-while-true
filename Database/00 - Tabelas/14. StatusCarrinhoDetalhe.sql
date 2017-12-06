@@ -6,6 +6,3 @@ CREATE TABLE StatusCarrinhoDetalhe
     DT_CADASTRO DATETIME NOT NULL DEFAULT NOW(), 
     PRIMARY KEY (ID)
 )
-
-
-select MAX(DT_CADASTRO) from StatusCarrinhoDetalhe

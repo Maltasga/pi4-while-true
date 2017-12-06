@@ -20,31 +20,31 @@ import java.util.List;
  *
  * @author Karolina
  */
-public class RelatorioDao implements IDaoBase<Relatorio>{
+public class RelatorioDao implements IDaoBase<Relatorio> {
 
     Connection conexao = null;
 
     public ArrayList<Relatorio> listarTudo(Date dataMin, Date dataMax) throws SQLException {
 
         ArrayList<Relatorio> relatorio = new ArrayList<>();
-        
+
         String query = "SELECT \n"
                 + "C.PROTOCOLO,\n"
-                + "COUNT(CI.*) AS QUANTPROD,\n"
-                + "C.FRETE,\n"
+                + "SUM(CI.quantidade) AS QUANTPROD,\n"
                 + "C.VL_TOTAL,\n"
                 + "C.DT_TRANSACAO\n"
                 + "FROM CARRINHO AS C\n"
                 + "INNER JOIN CARRINHOITEM AS CI\n"
-                + "ON CI.CARIINHO_ID = C.ID\n"
-                + "WHERE DT_TRANSACAO BETWEEN ? AND ?";
+                + "ON CI.CARRINHO_ID = C.ID\n"
+                + "WHERE DT_TRANSACAO BETWEEN ? AND ?"
+                + "GROUP BY C.PROTOCOLO, C.VL_TOTAL, C.DT_TRANSACAO";
 
         PreparedStatement statement = null;
 
         try {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
-            statement.setDate(2, Util.toSQLDate(dataMin));
+            statement.setDate(1, Util.toSQLDate(dataMin));
             statement.setDate(2, Util.toSQLDate(dataMax));
             ResultSet result = statement.executeQuery();
             Relatorio r = null;
@@ -52,7 +52,7 @@ public class RelatorioDao implements IDaoBase<Relatorio>{
                 r = new Relatorio(
                         result.getString("C.PROTOCOLO"),
                         result.getInt("QUANTPROD"),
-                        result.getDouble("C.FRETE"),
+                        0,
                         result.getDouble("C.VL_TOTAL"),
                         Util.toUtilDate(result.getDate("C.DT_TRANSACAO")));
                 relatorio.add(r);
@@ -72,7 +72,7 @@ public class RelatorioDao implements IDaoBase<Relatorio>{
     public ArrayList<Relatorio> listarTudoGenero(Date dataMin, Date dataMax, String genero) throws SQLException {
 
         ArrayList<Relatorio> relatorio = new ArrayList<>();
-        
+
         String query = "SELECT \n"
                 + "C.PROTOCOLO,\n"
                 + "COUNT(CI.*) AS QUANTPROD,\n"
@@ -122,7 +122,7 @@ public class RelatorioDao implements IDaoBase<Relatorio>{
     public ArrayList<Relatorio> listarCat(Date dataMin, Date dataMax, int idCat) throws SQLException {
 
         ArrayList<Relatorio> relatorio = new ArrayList<>();
-        
+
         String query = "SELECT \n"
                 + "C.PROTOCOLO,\n"
                 + "COUNT(CI.*) AS QUANTPROD,\n"
@@ -131,7 +131,7 @@ public class RelatorioDao implements IDaoBase<Relatorio>{
                 + "C.DT_TRANSACAO\n"
                 + "FROM CARRINHO AS C\n"
                 + "INNER JOIN CARRINHOITEM AS CI\n"
-                + "ON CI.CARIINHO_ID = C.ID\n"
+                + "ON CI.CARRINHO_ID = C.ID\n"
                 + "INNER JOIN PRODUTO AS P\n"
                 + "ON P.ID = CI.PRODUTO_ID AND ID_CATEGORIA = ?\n"
                 + "WHERE DT_TRANSACAO BETWEEN ? AND ?";

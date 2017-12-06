@@ -14,6 +14,7 @@ public class Produto {
     private Integer id;
     private String nome;
     private String descricao;
+    private Integer idCategoria;
     private Integer idColecao;
     private Integer idMarca;
     private Double valor;
@@ -32,10 +33,11 @@ public class Produto {
         imagens = new ArrayList<>();
     }
 
-    public Produto(int id, String nome, String descricao, int idColecao, int idMarca, double valor, boolean ativo, Date dataCadastro) {
+    public Produto(int id, String nome, String descricao, int idCategoria, int idColecao, int idMarca, double valor, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.idCategoria = idColecao;
         this.idColecao = idColecao;
         this.idMarca = idMarca;
         this.valor = valor;
@@ -70,6 +72,14 @@ public class Produto {
         this.descricao = descricao;
     }
 
+    public Integer getIdCategoria() {
+        return idCategoria;
+    }
+
+    public void setIdCategoria(Integer idCategoria) {
+        this.idCategoria = idCategoria;
+    }
+    
     public Integer getIdColecao() {
         return idColecao;
     }
