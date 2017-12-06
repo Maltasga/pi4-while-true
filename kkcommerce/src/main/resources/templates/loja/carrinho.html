@@ -61,7 +61,11 @@
                                     </td>                    
                                     <td>
                                         <div class="margem-valores valor">
-                                            <span th:text="${item.produto.valor}"></span>                                            
+                                            <p th:if="${item.produto.getPossuiDesconto()}">
+                                                De <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(item.produto.valor)}"></span>
+                                                <br />
+                                                Por <span class="p-preco" th:text="${#numbers.formatCurrency(item.produto.getValorComDesconto())}"></span>
+                                            </p>                                      
                                         </div>
                                     </td>
                                     <td>
@@ -71,12 +75,15 @@
                                     </td>
                                     <td>
                                         <div class="margem-valores sub-total">
-                                            <span th:text="${item.valorItem}"></span>
+                                            <span th:text="${#numbers.formatCurrency(item.valorItem)}"></span>
                                         </div>
                                     </td>
                                 </tr>
                             </tbody>
-                        </table>   
+                        </table> 
+                        <div class="row text-right">
+                            <h3 th:text="'Valor Total: ' +${#numbers.formatCurrency(carrinho.valorTotal)}"></h3>
+                        </div>
                         <div class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">

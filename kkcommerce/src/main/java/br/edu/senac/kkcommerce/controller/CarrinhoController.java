@@ -66,7 +66,7 @@ public class CarrinhoController extends BaseLojaController implements Serializab
             ArrayList<CarrinhoItem> arrAuxiliar = new ArrayList<>();
             CarrinhoService carrService = new CarrinhoService();
             StatusCarrinhoService statusService = new StatusCarrinhoService();
-            
+
             protocolo = Calendar.getInstance().getTimeInMillis();
             carrinho.setProtocolo(protocolo);
             carrinho.setClienteId(1);
@@ -75,6 +75,7 @@ public class CarrinhoController extends BaseLojaController implements Serializab
             Gson gson = new Gson();
             arrAuxiliar = gson.fromJson(strCarrinho, new TypeToken<ArrayList<CarrinhoItem>>() {
             }.getType());
+
 //          for que compara o ID do produto do carrinho(preenchido pela sessão) 
 //          com o id do produto recuperado diretamente do carrinho via ajax (array)
 //          para atualizar a quantidade
@@ -85,27 +86,28 @@ public class CarrinhoController extends BaseLojaController implements Serializab
                     }
                 }
             }
+            
             //Salva os dados
             carrinhoID = carrService.salvar(carrinho);
-            
+
             //Insere status do pedido
             StatusCarrinhoDetalhe status = new StatusCarrinhoDetalhe();
             status.setCarrinho_id(carrinhoID);
             status.setStatus_id(1);// Status 1 = Pendente de pgt
-            
+
             statusService.salvar(status);// Insere status do pedido
-            
+
             //Remove do estoque
-              for (CarrinhoItem item : carrinho.getItens()) {
-                  int produtoID = item.getProduto().getId();
-                  String tamanho = item.getTamanho();
-                  int qtd = item.getQuantidade();
-                  Estoque estoque = new Estoque(0, produtoID,tamanho,qtd);
-                  EstoqueService eservice = new EstoqueService();
-                  
-                  eservice.atualizarEstoque(estoque);
+            for (CarrinhoItem item : carrinho.getItens()) {
+                int produtoID = item.getProduto().getId();
+                String tamanho = item.getTamanho();
+                int qtd = item.getQuantidade();
+                Estoque estoque = new Estoque(0, produtoID, tamanho, qtd);
+                EstoqueService eservice = new EstoqueService();
+
+                eservice.atualizarEstoque(estoque);
             }
-            
+
             //Limpa o carrinho
             carrinho = new Carrinho();
 
