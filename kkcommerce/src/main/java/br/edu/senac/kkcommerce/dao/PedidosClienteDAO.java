@@ -35,7 +35,9 @@ public class PedidosClienteDAO implements IDaoBase<PedidosCliente> {
             conexao = ConnectionUtils.getConnection();
             statement = conexao.prepareStatement(query);
             ResultSet result = statement.executeQuery();
+            
             PedidosCliente p = null;
+            
             while (result.next()) {
                 p = new PedidosCliente(
                         result.getInt("CARRINHO_ID"),

@@ -32,11 +32,12 @@
                                 <td th:text="${p.protocolo}"></td>
                                 <td th:text="${p.dt_compra}"></td>
                                 <td th:text="${p.status}"></td>
-                                <td th:text="${p.dt_atualizacao_status}"></td>
+                                <td th:text="${#dates.format(p.dt_atualizacao_status,'dd/MM/yyyy')}"></td>
                                 <td>
                                     <ul class="list-unstyled list-inline">
                                         <li>
-                                            <a href="#" title="Detalhes da compra">
+                                            <a href="#" title="Detalhes da compra" 
+                                               th:href="@{/loja/pedido-detalhes-cliente(pedido_id=${p.carrinho_id})}">
                                                 <span id="detalhes" th:carrinhoID="${p.carrinho_id}" class="glyphicon glyphicon-search small"> Visualizar</span>
                                             </a>
                                         </li>
