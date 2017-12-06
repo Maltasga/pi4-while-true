@@ -52,7 +52,15 @@ public class CarrinhoItem {
     }
 
     public double getValorItem() {
-        return this.produto.getValor() * this.quantidade;
+        double valor = 0;
+
+        if (this.produto.getPossuiDesconto()) {
+            valor = this.produto.getValorComDesconto();
+        } else {
+            valor = this.produto.getValor();
+        }
+
+        return valor * this.quantidade;
     }
 
     public String getTamanho() {

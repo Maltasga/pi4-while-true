@@ -28,7 +28,7 @@ public class EstoqueService extends ServiceBase {
         List<Estoque> arrEstoque = dao.listar();
 
         for (Estoque e : arrEstoque) {
-            if (e.getIdProduto() == produtoId) {
+            if (e.getIdProduto() == produtoId && e.getQuantidade() > 0) {
                 estoque.add(e);
             }
         }

@@ -3,6 +3,7 @@ package br.edu.senac.kkcommerce.model;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Objects;
 
 /**
  *
@@ -90,7 +91,19 @@ public class Carrinho {
         if (this.itens == null) {
             this.itens = new ArrayList<>();
         }
-        this.itens.add(item);
+        boolean flag = true;
+
+        for (CarrinhoItem c : this.itens) {
+            if (Objects.equals(item.getProduto().getId(), c.getProduto().getId())) {
+                if (item.getTamanho().equals(c.getTamanho())) {
+                    c.setQuantidade(c.getQuantidade() + item.getQuantidade());
+                    flag = false;
+                }
+            }
+        }
+        if (flag) {
+            this.itens.add(item);
+        }
     }
 
     public double getValorTotal() {
@@ -113,18 +126,6 @@ public class Carrinho {
         this.valorFinal = valorFinal;
     }
 
-    public static Carrinho getCarrinhoMock() {
-        Carrinho carrinho = new Carrinho();
-        Produto p1 = new Produto(10, "Camiseta Azul", "Camiseta Azul", 0, 0, 39.90, true, Calendar.getInstance().getTime());
-        Produto p2 = new Produto(10, "Agasalho Moleton", "Agasalho Moleton Cinza", 0, 0, 189.30, true, Calendar.getInstance().getTime());
-        Produto p3 = new Produto(10, "Vestido Florido", "Vestido Florido", 0, 0, 87.0, true, Calendar.getInstance().getTime());
-
-        carrinho.addItem(new CarrinhoItem(0, p1, 3, "P"));
-        carrinho.addItem(new CarrinhoItem(0, p2, 1, "M"));
-        carrinho.addItem(new CarrinhoItem(0, p3, 1, "P"));
-        return carrinho;
-    }
-
     public void setFormaPgto(int formaPgto) {
         this.formaPgto = formaPgto;
     }
@@ -140,5 +141,16 @@ public class Carrinho {
     public void setDetalhePedido(DetalhePedido detalhePedido) {
         this.detalhePedido = detalhePedido;
     }
-    
+
+    public static Carrinho getCarrinhoMock() {
+        Carrinho carrinho = new Carrinho();
+        Produto p1 = new Produto(10, "Camiseta Azul", "Camiseta Azul", 0, 0, 39.90, true, Calendar.getInstance().getTime());
+        Produto p2 = new Produto(10, "Agasalho Moleton", "Agasalho Moleton Cinza", 0, 0, 189.30, true, Calendar.getInstance().getTime());
+        Produto p3 = new Produto(10, "Vestido Florido", "Vestido Florido", 0, 0, 87.0, true, Calendar.getInstance().getTime());
+
+        carrinho.addItem(new CarrinhoItem(0, p1, 3, "P"));
+        carrinho.addItem(new CarrinhoItem(0, p2, 1, "M"));
+        carrinho.addItem(new CarrinhoItem(0, p3, 1, "P"));
+        return carrinho;
+    }
 }
