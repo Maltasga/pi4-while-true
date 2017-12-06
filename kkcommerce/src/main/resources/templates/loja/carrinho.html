@@ -84,6 +84,31 @@
                         <div class="row text-right">
                             <h3 th:text="'Valor Total: ' +${#numbers.formatCurrency(carrinho.valorTotal)}"></h3>
                         </div>
+                        <div class="row">
+                            <p>Endereços</p>
+                            <table class="table table-responsive table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>&nbsp;</th>
+                                        <th>Logradouro</th>
+                                        <th>Cidade</th>
+                                        <th>UF</th>
+                                        <th>CEP</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="item : ${enderecos}">
+                                        <td>
+                                            <input type="radio" th:enderecoid="${item.id}" th:checked="${item.principal}" />
+                                        </td>
+                                        <td th:text="${item.logradouroNumero}"></td>
+                                        <td th:text="${item.cidade}"></td>
+                                        <td th:text="${item.uf}"></td>
+                                        <td th:text="${item.cep}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                         <div class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">
