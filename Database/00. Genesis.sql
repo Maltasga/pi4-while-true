@@ -188,15 +188,15 @@ CREATE TABLE StatusCarrinhoDetalhe
 -- INSERT 
 INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
     ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
-    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tricô´'), ('F', 'Calça'), ('F', 'Bermuda'),
-    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macacão'), ('F', 'Jardineira'),
+    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tricï¿½'), ('F', 'Calï¿½a'), ('F', 'Bermuda'),
+    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macacï¿½o'), ('F', 'Jardineira'),
     ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
-    ('M', 'Jaqueta'), ('M', 'Tricô'),  ('M', 'Calça'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
-    ('M', 'Macacão'),    ('M', 'Jardineira');
+    ('M', 'Jaqueta'), ('M', 'Tricï¿½'),  ('M', 'Calï¿½a'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
+    ('M', 'Macacï¿½o'),    ('M', 'Jardineira');
 
 INSERT INTO COLECAO (NOME) 
     VALUES 
-    ('Casual 2k17'), ('Prima Vera'), ('Verão Verão');
+    ('Casual 2k17'), ('Prima Vera'), ('Verï¿½o Verï¿½o');
 
 INSERT INTO MARCA (NOME) 
     VALUES 
@@ -330,6 +330,9 @@ CREATE VIEW SELECT_PRODUTO_COMPLETO
     VALOR,
     ATIVO,
     DT_CADASTRO,
+    ID_CATEGORIA,
+    GENERO,
+    NM_CATEGORIA,
     ID_MARCA,
     NM_MARCA,
     ID_COLECAO,
@@ -345,6 +348,9 @@ AS
         P.VALOR,
         P.ATIVO,
         P.DT_CADASTRO,
+        CT.ID AS ID_CATEGORIA,
+        CT.GENERO,
+        CT.NOME AS NM_CATEGORIA,
         M.ID AS ID_MARCA,
         M.NOME AS NM_MARCA,
         C.ID AS ID_COLECAO,
@@ -353,6 +359,7 @@ AS
     FROM PRODUTO P
         JOIN MARCA M ON M.ID = P.ID_MARCA
         JOIN COLECAO C ON C.ID = P.ID_COLECAO
+        JOIN CATEGORIA CT ON CT.ID = P.ID_CATEGORIA
         LEFT JOIN PROMOCAO PROMO ON PROMO.PRODUTO_ID = P.ID 
                 AND (PROMO.DT_INICIO <= NOW() AND (PROMO.DT_FIM IS NULL OR PROMO.DT_FIM >= NOW()))
 );
