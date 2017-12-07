@@ -188,15 +188,15 @@ CREATE TABLE StatusCarrinhoDetalhe
 -- INSERT 
 INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
     ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
-    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tric?'), ('F', 'Cal?a'), ('F', 'Bermuda'),
-    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macac?o'), ('F', 'Jardineira'),
+    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tricô'), ('F', 'Calça'), ('F', 'Bermuda'),
+    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macacão'), ('F', 'Jardineira'),
     ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
-    ('M', 'Jaqueta'), ('M', 'Tric?'),  ('M', 'Cal?a'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
-    ('M', 'Macac?o'),    ('M', 'Jardineira');
+    ('M', 'Jaqueta'), ('M', 'Tricô'),  ('M', 'Cal?a'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
+    ('M', 'Macacão'), ('M', 'Jardineira');
 
 INSERT INTO COLECAO (NOME) 
     VALUES 
-    ('Casual 2017'), ('Primavera'), ('Ver�o Ver�o');
+    ('Casual 2017'), ('Primavera'), ('Verão Verão');
 
 INSERT INTO MARCA (NOME) 
     VALUES 
@@ -247,7 +247,7 @@ INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,20,'G');
 INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,20,'GG');
 
 INSERT INTO statuscarrinho (STATUS_ID,STATUS) VALUES (1,'Aguardando pagamento');
-INSERT INTO statuscarrinho (STATUS_ID,STATUS) VALUES (2,'Aguardando libera��o do produto');
+INSERT INTO statuscarrinho (STATUS_ID,STATUS) VALUES (2,'Aguardando liberação do produto');
 INSERT INTO statuscarrinho (STATUS_ID,STATUS) VALUES (3,'Pedido enviado');
 INSERT INTO statuscarrinho (STATUS_ID,STATUS) VALUES (4,'Pedido entregue');
 
