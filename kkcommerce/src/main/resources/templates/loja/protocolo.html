@@ -8,18 +8,45 @@
               rel="stylesheet" type="text/css"
               href="../../static/css/carrinho.css" />
         <script th:src="@{/js/protocolo.js}" src="../../static/js/protocolo.js" type="text/javascript"></script>
-
+        <style>
+            .centered {
+                margin: 0 auto !important;
+                float: none !important;
+            }
+            .textoDecorado{
+                color: #969696;
+                font-weight: bold;
+                font-family: 'Merriweather', serif;
+                /*                text-shadow: 0 0 black;*/
+            }
+            .sombraTexto{
+                text-shadow: 0 0 black;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="conteudo">
-        <div class="container">
-            <div class="alert alert-warning" th:if="${alerta != null}">
-                <h1 th:text="${alerta}"></h1>
+            <div class="container fundo" style="padding: 2em;">
+                <div class="row">
+                    <div class="col-sm-12 col-md-20 col-lg-12">
+                        <img class="img-responsive centered" th:src="@{/imagens/checkAzul.png}" style="width: 190px;" alt="Imagem de check azul"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-20 col-lg-12">
+                        <div class="text-center">
+                            <h1 class='textoDecorado'>Pedido finalizado com Sucesso!</h1>
+                            <h2></h2>
+                        </div>  
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-20 col-lg-12">
+                        <div class="text-center">
+                            <h4 class='textoDecorado sombraTexto'>Acompanhe seu pedido <a href='/loja/lista-pedidos'>aqui</a></h4>
+                        </div>  
+                    </div>
+                </div>
             </div>
-            <div>
-                <h1>Compra Finalizada com Sucesso!</h1>
-                <h2></h2>
-            </div>
-        </div>
     </body>
 </html>

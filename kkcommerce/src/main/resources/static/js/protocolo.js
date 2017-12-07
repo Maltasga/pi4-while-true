@@ -6,6 +6,6 @@ function getParameterByName(name) {
 }
 
 $(document).ready(function () {
-    console.log(getParameterByName("protocoloID"));
-    $('h2').text('Protocolo: '+ getParameterByName("protocoloID"))
+    var protocolo = getParameterByName("protocoloID");
+    $('h2').html('Protocolo: <b>' + protocolo + '</b>').css({"color": "#969696"});
 });
