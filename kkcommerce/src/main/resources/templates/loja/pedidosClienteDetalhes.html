@@ -4,42 +4,54 @@
       layout:decorate="~{shared/master-loja}">
     <head>
         <title>KK Coolwear - Detalhe do Pedido</title>
-        <!--        <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
-                      rel="stylesheet" type="text/css"
-                      href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
-                <script th:src="@{/js/StatusPedidos.js}" src="../../static/js/StatusPedidos.js" type="text/javascript"></script>-->
-
+        <link th:href="@{/css/pedidos.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/pedidos.css" />
+        <link th:href="@{/css/geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/geral.css" />
     <body>
-       <div layout:fragment="conteudo" class="corpo">
-            <h1>Detalhes do Pedido</h1>
-
-            <p>&nbsp;</p>
-            <h3 th:text="'Cliente: ' +${pedido[0].nome_cliente}">Cliente: </h3>
-            <h2 th:text="'Protocolo: '+${pedido[0].protocolo}">Protocolo: </h2>
-<!--                        <h3 th:text="'Valor total: '+${total}">Valor total: </h3>-->
-            <table class="table table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Descrição</th>
-                        <th>Tamanho</th>
-                        <th>Quantidade</th>
-                        <th>Valor Unitário</th>
-                        <th>Valor total</th>
-                    </tr>                
-                </thead>
-                <tbody>
-                    <tr th:each="p : ${pedido}">
-                        <td th:text="${p.nome_produto}"></td>
-                        <td th:text="${p.descricao}"></td>
-                        <td th:text="${p.tamanho}"></td>
-                        <td th:text="${p.quantidade}"></td>
-                        <td th:text="${p.vl_unitario}"></td>
-                        <td th:text="${p.vl_item}"></td>
-<!--                                                <td th:text="${c.valorTotal}"></td>-->
-                    </tr>
-                </tbody>
-            </table>
-        </div>        
+        <div layout:fragment="conteudo" class="corpo">
+            <div class="container fundo">
+                <p>&nbsp;</p>
+                <h2>Detalhes do Pedido</h2>
+                <span>
+                    <i class="glyphicon glyphicon-circle-arrow-left">voltar</i>
+                </span>
+                <div class="panel panel-info panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-lg-9 col-md-9 col-xs-12">
+                                <span style="font-weight: bold" th:text="'Protocolo: '+${pedido[0].protocolo}"></span>
+                            </div>
+                            <div class="col-lg-3 col-md-9 col-xs-12">
+                                <span style="font-weight: bold">Total das compras: INSERIR</span>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-striped no-more-tables">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Descrição</th>
+                                <th>Tamanho</th>
+                                <th>Quantidade</th>
+                                <th>Valor Unitário</th>
+                                <th>Valor total</th>
+                            </tr>                
+                        </thead>
+                        <tbody>
+                            <tr th:each="p : ${pedido}">
+                                <td th:text="${p.nome_produto}"></td>
+                                <td th:text="${p.descricao}"></td>
+                                <td th:text="${p.tamanho}"></td>
+                                <td th:text="${p.quantidade}"></td>
+                                <td th:text="${p.vl_unitario}"></td>
+                                <td th:text="${p.vl_item}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>        
     </body>
 </html>
