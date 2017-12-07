@@ -4,6 +4,7 @@ import br.edu.senac.kkcommerce.model.Estoque;
 import br.edu.senac.kkcommerce.model.ImagemProduto;
 import br.edu.senac.kkcommerce.model.Produto;
 import br.edu.senac.kkcommerce.model.Promocao;
+import br.edu.senac.kkcommerce.service.CategoriaService;
 import br.edu.senac.kkcommerce.service.ColecaoService;
 import br.edu.senac.kkcommerce.service.FileService;
 import br.edu.senac.kkcommerce.service.MarcaService;
@@ -29,6 +30,7 @@ public class ProdutoController extends BaseAdminController {
 
     ProdutoService produtoService = new ProdutoService();
     PromocaoService promocaoService = new PromocaoService();
+    CategoriaService categoriaService = new CategoriaService();
 
     @GetMapping("/listar-produtos")
     public ModelAndView index() throws Exception {
@@ -56,6 +58,7 @@ public class ProdutoController extends BaseAdminController {
             model.addAttribute("estoque", produtoModel.getEstoque());
             model.addAttribute("marcas", marcaService.listar());
             model.addAttribute("colecoes", colecaoService.listar());
+            model.addAttribute("categorias", categoriaService.listar());
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }

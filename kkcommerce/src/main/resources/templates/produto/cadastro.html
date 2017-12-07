@@ -46,6 +46,12 @@
                                 <option value="" selected>Selecione a coleção</option>
                                 <option th:each="c : ${colecoes}" th:value="${c.id}" th:text="${c.nome}"></option>
                             </select>
+                            <label>Categoria</label>
+                            <select name="idCategoria" class="form-control"
+                                    th:field="*{idCategoria}" >
+                                <option value="" selected>Selecione a marca</option>
+                                <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome + ' - ' + c.genero}"></option>
+                            </select>
                             <label>Tipo</label>
                             <select name="idMarca" class="form-control"
                                     th:field="*{idMarca}" >

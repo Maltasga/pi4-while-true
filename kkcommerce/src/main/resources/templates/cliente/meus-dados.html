@@ -24,7 +24,7 @@
                     </p>
                     <p>
                         <b>Data de Nascimento</b>&nbsp;
-                        <span th:text="${cliente.dataNascimento}">data-de-nascimento</span>
+                        <span th:text="${#dates.format(cliente.dataNascimento, 'dd/MM/yyyy')}">data-de-nascimento</span>
                     </p>
                 </div>
                 <div class="col-xs-6 col-md-6">
