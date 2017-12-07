@@ -1,5 +1,6 @@
 package br.edu.senac.kkcommerce.service;
 
+import br.edu.senac.kkcommerce.dao.EstoqueDao;
 import br.edu.senac.kkcommerce.dao.ProdutoDao;
 import br.edu.senac.kkcommerce.model.Estoque;
 import br.edu.senac.kkcommerce.model.ImagemProduto;
@@ -42,7 +43,13 @@ public class ProdutoService extends ServiceBase {
             estoqueService.salvar(p.getEstoque());
             imagemService.salvar(p.getImagens());
         } else {
+            EstoqueDao estoqueDao = new EstoqueDao();
             dao.atualizar(p);
+            estoqueDao.excluirPorProduto(p.getId());
+            for (Estoque estoque : p.getEstoque()) {
+                estoque.setIdProduto(p.getId());
+                estoqueDao.inserir(estoque);
+            }
         }
     }
 

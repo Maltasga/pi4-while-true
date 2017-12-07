@@ -121,4 +121,25 @@ public class EstoqueDao implements IDaoBase<Estoque> {
     public Estoque getById(int id) throws SQLException, Exception {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
+    public void excluirPorProduto(int produtoId)throws Exception{
+        String query = "DELETE FROM estoque WHERE id_produto = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setInt(1, produtoId);
+
+            statement.execute();
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+    }
 }
