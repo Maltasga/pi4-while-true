@@ -9,13 +9,14 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author while true
  */
 public class Cliente {
+
     private int id;
     private String nome;
     private String cpf;
     private String email;
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dataNascimento;
-    
+
     private String sexo;
     private String telefone;
     private String celular;
@@ -84,6 +85,13 @@ public class Cliente {
 
     public void setSexo(String sexo) {
         this.sexo = sexo;
+    }
+
+    public String getSexoCompleto() {
+        if (this.sexo.toLowerCase().equals("f")) {
+            return "Feminino";
+        }
+        return "Masculino";
     }
 
     public String getTelefone() {

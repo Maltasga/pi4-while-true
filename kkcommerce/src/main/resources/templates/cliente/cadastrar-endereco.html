@@ -25,16 +25,6 @@
                         <label>Cep</label>
                         <input type="text" required="required" name="cep" class="form-control"
                                th:field="*{cep}" th:value="${endereco.cep}" />
-
-
-                        <!--                        
-                        <label for="chkPrincipal" class="checkbox">
-                            <input id="chkPrincipal" type="checkbox" name="principal"
-                                   th:field="*{principal}" th:value="${endereco.principal}" />
-                            Principal
-                        </label>
-                        -->
-
                     </div>
                     <div class="form-group form-inline">
                         <label>Logradouro</label>
@@ -47,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label>Complemento</label>
-                        <input type="text" required="required" name="complemento" class="form-control"
+                        <input type="text" name="complemento" class="form-control"
                                th:field="*{complemento}" th:value="${endereco.complemento}" />
                     </div>
                     <div class="form-group form-inline">

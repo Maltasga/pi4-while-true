@@ -60,7 +60,12 @@ public class ClienteDao implements IDaoBase<Cliente> {
     @Override
     public void atualizar(Cliente obj) throws SQLException, Exception {
         String query = "UPDATE Cliente "
-                + "SET NOME = ?, EMAIL = ?, SEXO = ?, TELEFONE = ?, CELULAR = ? "
+                + "SET NOME = ?, "
+                + "EMAIL = ?, "
+                + "SEXO = ?, "
+                + "TELEFONE = ?, "
+                + "CELULAR = ? , "
+                + "DT_NASCIMENTO = ?"
                 + "WHERE ID = ?";
 
         PreparedStatement statement = null;
@@ -73,7 +78,8 @@ public class ClienteDao implements IDaoBase<Cliente> {
             statement.setString(3, obj.getSexo());
             statement.setString(4, obj.getTelefone());
             statement.setString(5, obj.getCelular());
-            statement.setInt(6, obj.getId());
+            statement.setDate(6, Util.toSQLDate(obj.getDataNascimento()));
+            statement.setInt(7, obj.getId());
             statement.execute();
         } finally {
             if (statement != null && !statement.isClosed()) {

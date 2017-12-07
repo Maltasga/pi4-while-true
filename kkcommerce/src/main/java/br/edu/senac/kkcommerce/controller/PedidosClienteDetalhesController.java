@@ -5,11 +5,8 @@
  */
 package br.edu.senac.kkcommerce.controller;
 
-import br.edu.senac.kkcommerce.model.PedidosClienteDetalhes;
 import br.edu.senac.kkcommerce.service.PedidosClienteDetalhesService;
-import br.edu.senac.kkcommerce.service.PedidosClienteService;
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
@@ -18,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author gabib
  */
+@Controller
 public class PedidosClienteDetalhesController extends BaseLojaController {
 
     PedidosClienteDetalhesService service = new PedidosClienteDetalhesService();
