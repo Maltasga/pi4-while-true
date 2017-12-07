@@ -10,13 +10,13 @@
                 <script th:src="@{/js/StatusPedidos.js}" src="../../static/js/StatusPedidos.js" type="text/javascript"></script>-->
 
     <body>
-        <div layout:fragment="conteudo" class="corpo">
+<!--        <div layout:fragment="conteudo" class="corpo">
             <h1>Detalhes do Pedido</h1>
 
             <p>&nbsp;</p>
             <h3 th:text="'Cliente: ' +${pedido[0].nome_cliente}">Cliente: </h3>
             <h2 th:text="'Protocolo: '+${pedido[0].protocolo}">Protocolo: </h2>
-            <!--            <h3 th:text="'Valor total: '+${total}">Valor total: </h3>-->
+                        <h3 th:text="'Valor total: '+${total}">Valor total: </h3>
             <table class="table table-condensed table-striped">
                 <thead>
                     <tr>
@@ -27,14 +27,14 @@
                     </tr>                
                 </thead>
                 <tbody>
-<!--                    <tr th:each="c : ${pedido}">
+                    <tr th:each="c : ${pedido}">
                         <td th:text="${c.id_produto}"></td>
                         <td th:text="${c.nome_produto}"></td>
                         <td th:text="${c.quantidade}"></td>
                                                 <td th:text="${c.valorTotal}"></td>
-                    </tr>-->
+                    </tr>
                 </tbody>
             </table>
-        </div>        
+        </div>        -->
     </body>
 </html>

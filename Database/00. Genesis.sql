@@ -196,7 +196,7 @@ INSERT INTO CATEGORIA (GENERO, NOME) VALUES
 
 INSERT INTO COLECAO (NOME) 
     VALUES 
-    ('Casual 2k17'), ('Prima Vera'), ('Ver?o Ver?o');
+    ('Casual 2017'), ('Primavera'), ('Verão Verão');
 
 INSERT INTO MARCA (NOME) 
     VALUES 
