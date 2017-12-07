@@ -30,7 +30,7 @@
                         <tbody>
                             <tr th:each="p : ${pedidos}"> 
                                 <td th:text="${p.protocolo}"></td>
-                                <td th:text="${p.dt_compra}"></td>
+                                <td th:text="${#dates.format(p.dt_compra,'dd/MM/yyyy')}"></td>
                                 <td th:text="${p.status}"></td>
                                 <td th:text="${#dates.format(p.dt_atualizacao_status,'dd/MM/yyyy')}"></td>
                                 <td>

@@ -30,9 +30,9 @@
                     <tr th:each="s : ${status}">
                         <td th:text="${s.nome}"></td>
                         <td th:text="${s.protocolo}"></td>
-                        <td th:text="${s.dt_transacao}"></td>
+                        <td th:text="${#dates.format(s.dt_transacao,'dd/MM/yyyy')}"></td>
                         <td th:text="${s.status}"></td>
-                        <td th:text="${s.dt_cadastro}"></td>
+                        <td th:text="${#dates.format(s.dt_cadastro,'dd/MM/yyyy')}"></td>
                         <td>
                             <ul class="list-unstyled list-inline">
                                 <li>

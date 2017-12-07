@@ -188,15 +188,15 @@ CREATE TABLE StatusCarrinhoDetalhe
 -- INSERT 
 INSERT INTO CATEGORIA (GENERO, NOME) VALUES 
     ('F', 'Blusa'), ('F', 'Camisa'), ('F', 'Camiseta'), ('F', 'Moletom'),
-    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tric�'), ('F', 'Cal�a'), ('F', 'Bermuda'),
-    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macac�o'), ('F', 'Jardineira'),
+    ('F', 'Casaco'), ('F', 'Jaqueta'), ('F', 'Tric?'), ('F', 'Cal?a'), ('F', 'Bermuda'),
+    ('F', 'Saia'), ('F', 'Legging'), ('F', 'Vestido'), ('F', 'Macac?o'), ('F', 'Jardineira'),
     ('M', 'Blusa'), ('M', 'Camisa'), ('M', 'Camiseta'),   ('M', 'Moletom'),  ('M', 'Casaco'),  
-    ('M', 'Jaqueta'), ('M', 'Tric�'),  ('M', 'Cal�a'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
-    ('M', 'Macac�o'),    ('M', 'Jardineira');
+    ('M', 'Jaqueta'), ('M', 'Tric?'),  ('M', 'Cal?a'),   ('M', 'Bermuda'),  ('M', 'Legging'), 
+    ('M', 'Macac?o'),    ('M', 'Jardineira');
 
 INSERT INTO COLECAO (NOME) 
     VALUES 
-    ('Casual 2k17'), ('Prima Vera'), ('Ver�o Ver�o');
+    ('Casual 2k17'), ('Prima Vera'), ('Ver?o Ver?o');
 
 INSERT INTO MARCA (NOME) 
     VALUES 
@@ -228,6 +228,24 @@ INSERT INTO promocao (PRODUTO_ID, DT_INICIO, DT_FIM, PERC_DESCONTO)
     , (3, NOW(), NULL, 15.0)
     , (4, DATE_ADD(NOW(), INTERVAL -60 DAY), DATE_ADD(NOW(), INTERVAL -55 DAY), 80.0)
     , (4, DATE_ADD(NOW(), INTERVAL -54 DAY), DATE_ADD(NOW(), INTERVAL 5 DAY), 80.0);
+
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (1,30,'P');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (1,5,'M');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (1,30,'G');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (1,30,'GG');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (2,30,'P');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (2,5,'M');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (2,30,'G');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (2,30,'GG');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (3,30,'P');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (3,5,'M');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (3,30,'G');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (3,30,'GG');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,20,'P');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,5,'M');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,20,'G');
+INSERT INTO ESTOQUE (ID_PRODUTO,QUANTIDADE,TAMANHO) VALUES (4,20,'GG');
+
 -- FIM INSERT
 
 -- CREATE VIEW
@@ -320,6 +338,38 @@ FROM carrinho c
 INNER JOIN statusCarrinhoDetalhe sc on sc.CARRINHO_ID = c.ID
 INNER JOIN statusCarrinho s on s.STATUS_ID = sc.STATUS_ID
 INNER JOIN cliente ct ON ct.ID = c.CLIENTE_ID
+);
+
+CREATE VIEW SELECT_PEDIDO_CLIENTE_DETALHES
+(
+    PRODUTO_ID,
+    NOME_PRODUTO,
+    VL_UNITARIO,
+    DESCRICAO,
+    QUANTIDADE,
+    TAMANHO,
+    CARRINHO_ID,
+    DT_COMPRA,
+    PROTOCOLO,
+    NOME_CLIENTE
+)
+AS 
+(
+SELECT
+    p.ID AS PRODUTO_ID,
+    p.NOME AS NOME_PRODUTO,
+    p.VALOR AS VL_UNITARIO,
+    p.DESCRICAO,
+    ci.QUANTIDADE,
+    ci.TAMANHO,
+    c.ID AS CARRINHO_ID,
+    c.DT_TRANSACAO AS DT_COMPRA,
+    c.PROTOCOLO,
+    ct.NOME AS NOME_CLIENTE
+FROM carrinho c
+INNER JOIN carrinhoitem ci ON ci.CARRINHO_ID = c.ID
+INNER JOIN cliente ct ON ct.ID = c.CLIENTE_ID
+INNER JOIN produto p on p.ID = ci.PRODUTO_ID
 );
 
 CREATE VIEW SELECT_PRODUTO_COMPLETO

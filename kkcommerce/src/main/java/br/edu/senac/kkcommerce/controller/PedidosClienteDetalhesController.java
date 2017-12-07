@@ -22,14 +22,6 @@ public class PedidosClienteDetalhesController extends BaseLojaController {
 
     PedidosClienteDetalhesService service = new PedidosClienteDetalhesService();
 
-//    @GetMapping("/lista-pedidos")
-//    public ModelAndView pedidos() throws Exception{
-//        try {
-//            return new ModelAndView("loja/pedidos-detalhes.html").addObject("pedidos", service.listar());
-//        } catch (Exception e) {
-//            throw new Exception(e.getMessage());
-//        }
-//    }
     @GetMapping("/pedido-detalhes-cliente")
     public ModelAndView detalhePedido(@ModelAttribute("pedido_id") int pedido_id) throws Exception {
         try {
