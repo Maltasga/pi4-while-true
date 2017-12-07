@@ -47,6 +47,7 @@ public class PedidosClienteDetalhesDAO implements IDaoBase<PedidosClienteDetalhe
                         result.getString("DESCRICAO"),
                         result.getInt("QUANTIDADE"),
                         result.getString("TAMANHO"),
+                        result.getDouble("VL_ITEM"),                       
                         result.getInt("CARRINHO_ID"),
                         Util.toUtilDate(result.getDate("DT_COMPRA")),
                         result.getLong("PROTOCOLO"),
@@ -68,44 +69,7 @@ public class PedidosClienteDetalhesDAO implements IDaoBase<PedidosClienteDetalhe
 
     @Override
     public PedidosClienteDetalhes getById(int id) throws SQLException, Exception {
-        PedidosClienteDetalhes pedido = new PedidosClienteDetalhes();
-
-        String query = "SELECT * FROM SELECT_PEDIDO_CLIENTE_DETALHES WHERE ID_COMPRA = ?";
-        PreparedStatement statement = null;
-
-        try {
-            conexao = ConnectionUtils.getConnection();
-            statement = conexao.prepareStatement(query);
-            statement.setInt(1, id);
-            ResultSet result = statement.executeQuery();
-
-            PedidosClienteDetalhes p = null;
-
-            while (result.next()) {
-                p = new PedidosClienteDetalhes(
-                        result.getInt("PRODUTO_ID"),
-                        result.getString("NOME_PRODUTO"),
-                        result.getDouble("VL_UNITARIO"),
-                        result.getString("DESCRICAO"),
-                        result.getInt("QUANTIDADE"),
-                        result.getString("TAMANHO"),
-                        result.getInt("CARRINHO_ID"),
-                        Util.toUtilDate(result.getDate("DT_COMPRA")),
-                        result.getLong("PROTOCOLO"),
-                        result.getString("NOME_CLIENTE"));
-
-//                pedido.add(p);
-            }
-        } finally {
-            if (statement != null && !statement.isClosed()) {
-                statement.close();
-            }
-
-            if (conexao != null || !conexao.isClosed()) {
-                conexao.close();
-            }
-        }
-        return pedido;
+            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

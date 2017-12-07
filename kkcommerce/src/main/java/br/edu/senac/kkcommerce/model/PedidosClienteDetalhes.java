@@ -14,24 +14,35 @@ public class PedidosClienteDetalhes {
     private String descricao;
     private Integer quantidade;  
     private String tamanho;
+    private double vl_item;
     private Integer carrinho_id;
     private Date dt_compra;
     private long protocolo;
     private String nome_cliente;
 
-    public PedidosClienteDetalhes(Integer produto_id, String nome_produto, double vl_unitario, String descricao, Integer quantidade, String tamanho, Integer carrinho_id, Date dt_compra, long protocolo, String nome_cliente) {
+    public PedidosClienteDetalhes(Integer produto_id, String nome_produto, double vl_unitario, String descricao, Integer quantidade, String tamanho, double vl_item, Integer carrinho_id, Date dt_compra, long protocolo, String nome_cliente) {
         this.produto_id = produto_id;
         this.nome_produto = nome_produto;
         this.vl_unitario = vl_unitario;
         this.descricao = descricao;
         this.quantidade = quantidade;
         this.tamanho = tamanho;
+        this.vl_item = vl_item;
         this.carrinho_id = carrinho_id;
         this.dt_compra = dt_compra;
         this.protocolo = protocolo;
         this.nome_cliente = nome_cliente;
     }
 
+    public double getVl_item() {
+        return vl_item;
+    }
+
+    public void setVl_item(double vl_item) {
+        this.vl_item = vl_item;
+    }
+
+    
     public PedidosClienteDetalhes() {
     }
 

@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
- * @author gabib
+ * @author While True
  */
 @Controller
 public class PedidosClienteDetalhesController extends BaseLojaController {
