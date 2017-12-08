@@ -35,12 +35,29 @@ function checkCart() {
 }
 
 function creditCard() {
-    $('input[type="radio"]').click(function () {
+    $('.radio button[name=formaPagamento]').click(function () {
         if ($(this).attr('id') == 'cc') {
             $('#opcoes').show();
-            return true;
-        } else {
+            $('#finalizar').prop("disabled", true)
+            $("#opcoes :input").keyup(function () {
+                if ($("#nomeImpresso").val() !== ""
+                        && $("#numeroCartao").val() !== ""
+                        && $("#codVerif").val() !== ""
+                        && $("#dtVenc").val() !== "") {
+                    $('#finalizar').prop("disabled", false)
+                    checkCart();
+                } else {
+                    $('#finalizar').prop("disabled", true)
+                }
+            });
+        } else if ($(this).attr('id') == 'boleto'){
             $('#opcoes').hide();
+            $("#nomeImpresso").val("");
+            $("#numeroCartao").val("");
+            $("#codVerif").val("");
+            $("#dtVenc").val("");
+            $('#finalizar').prop("disabled", false)
+            checkCart();
         }
     });
 }
