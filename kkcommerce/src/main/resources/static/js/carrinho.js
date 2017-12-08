@@ -27,4 +27,19 @@ $(document).ready(function () {
     $('#finalizar').click(function (e) {
         FinalizarCompras();
     });
+
+    $(document.body).on('click', '.quantidade', function () {
+        var qtd = $(this).val();
+        var tr = $(this).parent().parent().parent();
+        var valorDesconto = tr.find("p.vlDesconto").attr("valorDesconto");
+        var valorNormal = tr.find("p.vlNormal").attr("valorNormal");
+        var subTotal = tr.find(".sub-total p");
+
+        if (valorDesconto == undefined) {
+            subTotal.text('R$ '+(valorNormal * qtd).toFixed(2));
+        } else {
+            subTotal.text('R$ '+(valorDesconto * qtd).toFixed(2));
+        }
+
+    });
 });

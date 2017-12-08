@@ -15,7 +15,7 @@
     </head>
     <body>
         <div layout:fragment="conteudo">
-            <div class="container">
+            <div class="container fundo">
                 <div class="row">
                     <div class="table-responsive teste">
                         <table id="tabela-carrinho" class="table table-striped tabela-pedidos no-more-tables" style="width:100%">
@@ -51,12 +51,12 @@
                                     </td>                    
                                     <td>
                                         <div class="margem-valores valor">
-                                            <p th:if="${item.produto.getPossuiDesconto()}">
+                                            <p class="vlDesconto" th:valorDesconto="${item.produto.getValorComDesconto()}" th:if="${item.produto.getPossuiDesconto()}">
                                                 De <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(item.produto.valor)}"></span>
                                                 <br />
                                                 Por <span class="p-preco" th:text="${#numbers.formatCurrency(item.produto.getValorComDesconto())}"></span>
                                             </p>   
-                                            <p th:if="${!item.produto.getPossuiDesconto()}" 
+                                            <p class="vlNormal" th:valorNormal="${item.produto.valor}" th:if="${!item.produto.getPossuiDesconto()}" 
                                                th:text="${#numbers.formatCurrency(item.produto.valor)}">
                                                
                                             </p> 
