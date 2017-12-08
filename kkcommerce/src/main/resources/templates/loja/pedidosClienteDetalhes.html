@@ -10,14 +10,29 @@
         <link th:href="@{/css/geral.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/geral.css" />
+        <style>
+            .voltar:hover{
+                cursor: pointer;
+                transform: scale(1.5);
+            }
+        </style>
+    </head>
     <body>
         <div layout:fragment="conteudo" class="corpo">
             <div class="container fundo">
                 <p>&nbsp;</p>
-                <h2>Detalhes do Pedido</h2>
-
-                <i class="glyphicon glyphicon-arrow-left" title="Voltar"></i>
-                
+                <div class='row'>
+                    <div class='col-lg-6 col-xs-8'>
+                        <h2>Detalhes do Pedido</h2>  
+                    </div>
+                    <div class='col-lg-6 col-xs-4'>
+                        <div class='pull-right' style='margin-top: 20px; margin-right: 10px;'>
+                            <a href="/loja/lista-pedidos">
+                                <i class="glyphicon glyphicon-circle-arrow-left voltar" style="font-size:25px; color: #229bcc;" title="Voltar"></i> 
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="panel panel-info panel-default">
                     <div class="panel-heading">
                         <div class="row">
@@ -29,7 +44,7 @@
                             </div>
                         </div>
                     </div>
-                    <table class="table table-striped no-more-tables">
+                    <table class="table no-more-tables table-striped table-hover">
                         <thead>
                             <tr>
                                 <th>Produto</th>
