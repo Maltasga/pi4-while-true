@@ -50,7 +50,7 @@
                         <div class="container-opcoes">
                             <div class="row">
                                 <p>Tamanho</p>
-                                <select class="form-control" name="tamanho">
+                                <select class="form-control" name="tamanho" required>
                                     <option value="" selected>Selecione o Tamanho</option>
                                     <option th:each="e : ${produto.estoque}" th:value="${e.tamanho}" th:text="${e.tamanho}"></option>
                                 </select>
