@@ -77,7 +77,7 @@
                         <div class="row text-right">
                             <h3 th:text="'Valor Total: ' +${#numbers.formatCurrency(carrinho.valorTotal)}"></h3>
                         </div>
-                        <div class="row">
+                        <div th:if="${temEndereco}" class="row">
                             <p>Endereços</p>
                             <table class="table table-responsive table-striped">
                                 <thead>
