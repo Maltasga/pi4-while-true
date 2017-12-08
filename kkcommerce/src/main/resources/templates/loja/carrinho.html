@@ -128,15 +128,13 @@
                                     </tbody>
                                 </table>  
                             </div>
-                            
                         </div>
+                        
                         <div class="row">
                             <p>Formas de Pagamento</p>
                             <div class="radio">
-                                <label><input name="formaPagamento" type="radio" value="boleto" checked/> Boleto</label>
-                            </div>
-                            <div class="radio">
-                                <label><input name="formaPagamento" id="cc" type="radio" value="cc"/> Cartão de Crédito</label>
+                                <button id="boleto" name="formaPagamento" style="font-size:24px"><i class="fa fa-barcode">  Boleto</i></button>
+                                <button id="cc" name="formaPagamento" style="font-size:24px"><i class="fa fa-credit-card">  Cartão de Crédito</i></button>
                             </div>
                             <div id='opcoes' style='display:none'>
                                 <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
@@ -157,6 +155,7 @@
                                 </div>
                             </div>
                         </div>
+                        
                         <div th:if="${temEndereco}" class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">
