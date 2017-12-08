@@ -102,7 +102,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="botao flex-end" style="justify-content: space-between;">
+                        <div th:if="${temEndereco}" class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">
                                     <button class="btn btn-info">Continuar comprando</button>
@@ -111,6 +111,13 @@
                             <div>
                                 <button id="finalizar" class="btn btn-success">Finalizar a compra</button>
                             </div>
+                        </div>
+                        <div th:if="${!temEndereco}" class="flex-end" style="justify-content: space-between;">
+                            <p>Cadastre um endereço para concluir sua compra.</p>
+                            <a href="#" class="btn btn-info"
+                                th:href="@{/loja/cadastrar-endereco(id=1,eid)}">
+                                Cadastrar endereço
+                            </a>
                         </div>
                     </div>          
                 </div>

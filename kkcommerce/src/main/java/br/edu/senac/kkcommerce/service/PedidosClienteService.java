@@ -5,11 +5,8 @@
  */
 package br.edu.senac.kkcommerce.service;
 
-import br.edu.senac.kkcommerce.dao.IDaoBase;
 import br.edu.senac.kkcommerce.dao.PedidosClienteDAO;
-import br.edu.senac.kkcommerce.dao.StatusCarrinhoDetalheDAO;
 import br.edu.senac.kkcommerce.model.PedidosCliente;
-import br.edu.senac.kkcommerce.model.StatusCarrinhoDetalhe;
 import java.util.List;
 
 /**
