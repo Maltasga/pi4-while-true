@@ -7,6 +7,7 @@
         <link th:href="@{/css/detalhesProduto-loja.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/detalhesProduto-loja.css" />
+        <script th:src="@{/js/detalheProduto.js}" src="../../static/js/detalheProduto.js" type="text/javascript"></script>
     </head>
     <body>
         <div layout:fragment="conteudo">
@@ -45,14 +46,14 @@
                         <input type="hidden" th:value="${produto.id}" name="id"/>
                         <div class="form-group">
                             <label>Quantidade</label>
-                            <input type="number" min="1" max="10" name="qtde" class="form-control" value="1" />
+                            <input type="number" min="1" name="qtde" class="form-control" value="1" />
                         </div>
                         <div class="container-opcoes">
                             <div class="row">
                                 <p>Tamanho</p>
-                                <select class="form-control" name="tamanho" required>
+                                <select id="tamanho" class="form-control" name="tamanho" required>
                                     <option value="" selected>Selecione o Tamanho</option>
-                                    <option th:each="e : ${produto.estoque}" th:value="${e.tamanho}" th:text="${e.tamanho}"></option>
+                                    <option th:each="e : ${produto.estoque}" th:value="${e.tamanho}" th:text="${e.tamanho}" th:attr="quant=${e.quantidade}"></option>
                                 </select>
                             </div>
                             <div class="row linha-btn">
