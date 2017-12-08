@@ -192,7 +192,7 @@ public class Produto {
         if (this.getPossuiDesconto()) {
             return this.valor * ((100 - this.percDesconto) / 100);
         }
-        return this.valor;
+        return null;
     }
 
     public int getQuantidadeTotalEstoque() {

@@ -28,39 +28,26 @@
                             <tbody id="body-carrinho">
                                 <tr th:each="item : ${carrinho.itens}" th:produtoID="${item.produto.id}">
                                     <td>
-                                        <!--                                        <div class="row">
-                                                                                    <div class="col-md-4">
-                                                                                        <img class="img-responsive" style="width: 95px;" 
-                                                                                             th:src="${item.produto.urlImagemPrincipal}" alt=""/>
-                                                                                    </div>
-                                                                                    <div class="col-md-4">
-                                                                                        <span th:text="${item.produto.nome}"><b></b></span>   
-                                                                                        <span class="pull-right" th:text="${item.tamanho}"></span> 
-                                                                                        <span th:text="${item.Produto.Marca.nome}"></span> 
-                                                                                    </div>
-                                                                                </div>-->
-                                        <div class="flex">
-
-                                            <div>
-                                                <img class="img-responsive" style="width: 95px;" 
-                                                     th:src="${item.produto.urlImagemPrincipal}" alt=""/>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <p >
+                                                    <b>Produto: </b>  
+                                                    <span th:text="${item.produto.nome}"></span>
+                                                </p>
+                                                <p>
+                                                    <b>Descrição: </b>
+                                                    <span th:text="${item.produto.descricao}"></span>
+                                                </p> 
+                                                <p>
+                                                    <b>Tamanho: </b>
+                                                    <span th:text="${item.tamanho}"></span>
+                                                </p> 
+                                                <p>
+                                                    <b>Marca: </b>
+                                                    <span th:text="${item.Produto.Marca.nome}"></span>
+                                                </p> 
                                             </div>
-                                            <div class="produto-descricao">
-                                                <div>
-                                                    <span th:text="${item.produto.nome}"><b></b></span>   
-                                                    <span class="pull-right" th:text="${item.tamanho}"></span> 
-                                                    <span th:text="${item.Produto.Marca.nome}"></span> 
-                                                </div>
-                                                <div>
-                                                    <span>
-
-                                                    </span>
-                                                </div>
-                                                <div>
-                                                    <span th:text="${item.produto.descricao}"></span>                                                       
-                                                </div>          
-                                            </div>
-                                        </div>
+                                        </div>          
                                     </td>                    
                                     <td>
                                         <div class="margem-valores valor">
@@ -68,7 +55,10 @@
                                                 De <span style="text-decoration: line-through;" th:text="${#numbers.formatCurrency(item.produto.valor)}"></span>
                                                 <br />
                                                 Por <span class="p-preco" th:text="${#numbers.formatCurrency(item.produto.getValorComDesconto())}"></span>
-                                            </p>                                      
+                                            </p>   
+                                            <p th:if="${!item.produto.getPossuiDesconto()}">
+                                                <span th:text="${#numbers.formatCurrency(item.produto.valor)}"></span>
+                                            </p> 
                                         </div>
                                     </td>
                                     <td>

@@ -35,6 +35,9 @@
                             <br />
                             Por <span class="p-preco" th:text="${#numbers.formatCurrency(produto.getValorComDesconto())}"></span>
                         </p>
+                        <p th:if="${!produto.getPossuiDesconto()}">
+                            <span th:text="${#numbers.formatCurrency(produto.valor)}"></span>
+                        </p>
                     </div>
                 </div>
                 <div class="col-xs-5 col-md-6 col-lg-6" th:if="${produto.estaDisponivel}">                    
