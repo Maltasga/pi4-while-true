@@ -15,6 +15,9 @@
             .campo-estoque {
                 width: 50px;
             }
+            #errorMessage{
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -23,6 +26,7 @@
                 <h1>Relatório de Vendas</h1>
             </div>
             <p>&nbsp;</p>
+            <p id="errorMessage" th:if="${relatorio == null}">Data de início deve ser menor que data final.</p>
             <form action="#" method="get" enctype="multipart/form-data"
                   th:action="relatorios">
                 <div class="col-lg-8">
@@ -75,7 +79,7 @@
                                     </tr>                
                                 </thead>
                                 <tbody>
-                                    <tr th:each="r : ${relatorio}">
+                                    <tr th:if="${relatorio != null}" th:each="r : ${relatorio}">
                                         <td th:text="${r.protocolo}"></td>
                                         <td th:text="${r.quantProdutos}"></td>
                                         <td th:text="${#numbers.formatCurrency(r.frete)}"></td>

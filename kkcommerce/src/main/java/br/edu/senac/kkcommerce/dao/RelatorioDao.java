@@ -36,7 +36,8 @@ public class RelatorioDao implements IDaoBase<Relatorio> {
                 + "FROM CARRINHO AS C\n"
                 + "INNER JOIN CARRINHOITEM AS CI\n"
                 + "ON CI.CARRINHO_ID = C.ID\n"
-                + "WHERE DT_TRANSACAO BETWEEN ? AND ?"
+                + "WHERE DT_TRANSACAO >= ? "
+                + "AND DT_TRANSACAO <= ?"
                 + "GROUP BY C.PROTOCOLO, C.VL_TOTAL, C.DT_TRANSACAO";
 
         PreparedStatement statement = null;
