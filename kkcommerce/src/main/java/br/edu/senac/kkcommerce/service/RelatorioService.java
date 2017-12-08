@@ -27,7 +27,6 @@ public class RelatorioService extends ServiceBase {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date ini = sdf.parse(inicio);
         Date f = sdf.parse(fim);
-        System.out.println(inicio + " " + fim);
         RelatorioDao rdao = new RelatorioDao();
         List<Relatorio> relatorio = rdao.listarTudo(ini, f);
         return relatorio;
