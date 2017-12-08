@@ -5,6 +5,9 @@
     <head>
         <title>KK Coolwear - Relatório de Vendas</title>
         <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
+        <link th:href="@{/css/geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/geral.css" />
         <style>
             .label-estoque {
                 display: inline-block;
@@ -18,12 +21,24 @@
             #errorMessage{
                 color: red;
             }
+            .centered {
+                margin: 0 auto !important;
+                float: none !important;
+            }
+            .textoDecorado{
+                color: #969696;
+                font-weight: bold;
+                font-family: 'Merriweather', serif;
+            }
+            .sombraTexto{
+                text-shadow: 0 0 black;
+            }
         </style>
     </head>
     <body>
         <div layout:fragment="conteudo">
             <div class="header">
-                <h1>Relatório de Vendas</h1>
+                <h1 class="textoDecorado">Relatório de Vendas</h1>
             </div>
             <p>&nbsp;</p>
             <p id="errorMessage" th:if="${relatorio == null}">Data de início deve ser menor que data final.</p>
@@ -67,7 +82,7 @@
                             -->
                             </form>
                             <hr>
-                            <table class="table table-condensed table-striped">
+                            <table class="table no-more-tables table-striped table-hover">
                                 <thead>
                                     <tr>
                                         <th>Protocolo</th>
