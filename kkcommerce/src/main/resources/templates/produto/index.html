@@ -7,17 +7,39 @@
         <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
+        <link th:href="@{/css/geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/geral.css" />
+        <style>
+            .voltar:hover{
+                cursor: pointer;
+                transform: scale(1.5);
+            }
+            .centered {
+                margin: 0 auto !important;
+                float: none !important;
+            }
+            .textoDecorado{
+                color: #969696;
+                font-weight: bold;
+                font-family: 'Merriweather', serif;
+            }
+            .sombraTexto{
+                text-shadow: 0 0 black;
+            }
+        </style>
     </head>
     <body>
         <div layout:fragment="conteudo" class="corpo">
-            <h1>Produtos cadastrados</h1>
+            <h1 class="textoDecorado">Produtos cadastrados</h1>
             <div class="text-right">
                 <a href="#" th:href="@{/kk-admin/cadastrar-produto(id=0)}"
                    <span class="btn btn-primary">Novo Produto</span>
                 </a>
             </div>
             <p>&nbsp;</p>
-            <table class="table table-condensed table-striped">
+            
+            <table class="table no-more-tables table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Nome</th>

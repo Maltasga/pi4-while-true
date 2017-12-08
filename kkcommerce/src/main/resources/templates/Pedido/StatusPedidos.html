@@ -7,54 +7,78 @@
         <link th:href="@{/css/kkcoolwear.ecommerce.admin-geral.css}"
               rel="stylesheet" type="text/css"
               href="../../static/css/kkcoolwear.ecommerce.admin-geral.css" />
+        <link th:href="@{/css/geral.css}"
+              rel="stylesheet" type="text/css"
+              href="../../static/css/geral.css" />
         <script th:src="@{/js/StatusPedidos.js}" src="../../static/js/StatusPedidos.js" type="text/javascript"></script>
-
+        <style>
+            .voltar:hover{
+                cursor: pointer;
+                transform: scale(1.5);
+            }
+            .centered {
+                margin: 0 auto !important;
+                float: none !important;
+            }
+            .textoDecorado{
+                color: #969696;
+                font-weight: bold;
+                font-family: 'Merriweather', serif;
+            }
+            .sombraTexto{
+                text-shadow: 0 0 black;
+            }
+        </style>
     <body>
         <div layout:fragment="conteudo" class="corpo">
-            <h1>Status dos Pedidos</h1>
+            <h1 class="textoDecorado">Status dos Pedidos</h1>
 
             <p>&nbsp;</p>
-            <table class="table table-condensed table-striped">
-                <thead>
-                    <tr>
-                        <th>Cliente</th>
-                        <th>Protocolo</th>
-                        <th>Data da Compa</th>
-                        <th>Status</th>
-                        <th>Ultima atualização</th>
-                        <th>Detalhes</th>
-                        <th>Alterar</th>
-                    </tr>                
-                </thead>
-                <tbody>
-                    <tr th:each="s : ${status}">
-                        <td th:text="${s.nome}"></td>
-                        <td th:text="${s.protocolo}"></td>
-                        <td th:text="${#dates.format(s.dt_transacao,'dd/MM/yyyy')}"></td>
-                        <td th:text="${s.status}"></td>
-                        <td th:text="${#dates.format(s.dt_cadastro,'dd/MM/yyyy')}"></td>
-                        <td>
-                            <ul class="list-unstyled list-inline">
-                                <li>
-                                    <a href="#" title="Detalhes da compra"
-                                       th:href="@{/kk-admin/detalhes-pedido(pedido_id=${s.carrinho_id})}">
-                                        <span id="detalhes" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-search small"> Visualizar</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </td>
-                        <td>
-                            <select class="comboStatus" th:carrinhoID="${s.carrinho_id}">
-                                <option value="0">Selecione</option>
-                                <option value="1">Aguardando pagamento</option>
-                                <option value="2">Aguardando liberação do produto</option>
-                                <option value="3">Pedido enviado</option>
-                                <option value="4">Pedido entregue</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="panel panel-info panel-default">
+                <div class="panel-heading">Lista para controle dos pedidos</div>
+                <table class="table no-more-tables table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>Protocolo</th>
+                            <th>Data da Compa</th>
+                            <th>Status</th>
+                            <th>Ultima atualização</th>
+                            <th>Detalhes</th>
+                            <th>Alterar</th>
+                        </tr>                
+                    </thead>
+                    <tbody>
+                        <tr th:each="s : ${status}">
+                            <td th:text="${s.nome}"></td>
+                            <td th:text="${s.protocolo}"></td>
+                            <td th:text="${#dates.format(s.dt_transacao,'dd/MM/yyyy')}"></td>
+                            <td th:text="${s.status}"></td>
+                            <td th:text="${#dates.format(s.dt_cadastro,'dd/MM/yyyy')}"></td>
+                            <td>
+                                <ul class="list-unstyled list-inline">
+                                    <li>
+                                        <a href="#" title="Detalhes da compra"
+                                           th:href="@{/kk-admin/detalhes-pedido(pedido_id=${s.carrinho_id})}">
+                                            <span id="detalhes" th:carrinhoID="${s.carrinho_id}" class="glyphicon glyphicon-search small"> Visualizar</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                            <td>
+                                <select class="comboStatus" th:carrinhoID="${s.carrinho_id}">
+                                    <option value="0">Selecione</option>
+                                    <option value="1">Aguardando pagamento</option>
+                                    <option value="2">Aguardando liberação do produto</option>
+                                    <option value="3">Pedido enviado</option>
+                                    <option value="4">Pedido entregue</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </div>
+
         </div>        
     </body>
 </html>
