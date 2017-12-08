@@ -56,18 +56,35 @@ $(document).ready(function () {
         var valorDesconto = tr.find("p.vlDesconto").attr("valorDesconto");
         var valorNormal = tr.find("p.vlNormal").attr("valorNormal");
         var subTotal = tr.find(".sub-total p");
-
+        var totalCompra = 0;
+        
         if (valorDesconto == undefined) {
             subTotal.text('R$ ' + (valorNormal * qtd).toFixed(2));
         } else {
             subTotal.text('R$ ' + (valorDesconto * qtd).toFixed(2));
         }
+
+
+        $('#tabela-carrinho > tbody  > tr').each(function () {
+            var subTotal = $(this).find(".sub-total p.vlSubTotal").text();
+            var total = 
+            subTotal = subTotal.substring(3);
+            subTotal = subTotal.replace(",", ".");
+            debugger;
+            totalCompra = (parseFloat(totalCompra) + parseFloat(subTotal));
+            
+            $('h3').html('Valor Total: R$ '+totalCompra);
+
+
+        });
+
+
     });
 
-    $('#codVerif').inputmask({"alias": "integer", mask:"9{3,3}"});
-    $('#dtVenc').inputmask({"alias": "datetime", mask:"1/2/y", placeholder: "dd/mm/yyyy"});
-    $('#numeroCartao').inputmask({"alias": "integer", mask:"9999 9999 9999 9999", placeholder:"____-____-____-____"});
-    
+    $('#codVerif').inputmask({"alias": "integer", mask: "9{3,3}"});
+    $('#dtVenc').inputmask({"alias": "datetime", mask: "1/2/y", placeholder: "dd/mm/yyyy"});
+    $('#numeroCartao').inputmask({"alias": "integer", mask: "9999 9999 9999 9999", placeholder: "____-____-____-____"});
+
     checkCart();
     creditCard();
 });
