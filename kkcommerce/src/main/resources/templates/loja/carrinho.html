@@ -57,6 +57,7 @@
                                                 <p>
                                                     <b>Tamanho: </b>
                                                     <span th:text="${item.tamanho}"></span>
+                                                    <input id="maxEstoque" type="hidden" th:each="q : ${item.produto.estoque}" th:if="${q.tamanho} == ${item.tamanho}" th:value="${q.quantidade}"/>
                                                 </p> 
                                                 <p>
                                                     <b>Marca: </b>
@@ -80,7 +81,7 @@
                                     </td>
                                     <td>
                                         <div class="margem-valores">
-                                            <input class="quantidade" style="text-align: center;" type="number" name="quantity" min="1" max="6" th:value="${item.quantidade}">
+                                            <input class="quantidade" style="text-align: center;" type="number" name="quantity" min="1" th:value="${item.quantidade}">
                                         </div>
                                     </td>
                                     <td>
@@ -128,15 +129,17 @@
                                     </tbody>
                                 </table>  
                             </div>
-                            
                         </div>
+
                         <div class="row">
                             <p>Formas de Pagamento</p>
                             <div class="radio">
-                                <label><input name="formaPagamento" type="radio" value="boleto" checked/> Boleto</label>
-                            </div>
-                            <div class="radio">
-                                <label><input name="formaPagamento" id="cc" type="radio" value="cc"/> Cartão de Crédito</label>
+                                <a name="formaPagamento" id="boleto" class="btn btn-info btn-lg">
+                                    <span class="glyphicon glyphicon-barcode"></span> Boleto
+                                </a>
+                                <a name="formaPagamento" id="cc" class="btn btn-info btn-lg">
+                                    <span class="glyphicon glyphicon-credit-card"></span> Cartão de Crédito
+                                </a>
                             </div>
                             <div id='opcoes' style='display:none'>
                                 <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
@@ -157,6 +160,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div th:if="${temEndereco}" class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">

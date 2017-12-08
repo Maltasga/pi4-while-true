@@ -35,12 +35,29 @@ function checkCart() {
 }
 
 function creditCard() {
-    $('input[type="radio"]').click(function () {
+    $('.radio a[name=formaPagamento]').click(function () {
         if ($(this).attr('id') == 'cc') {
             $('#opcoes').show();
-            return true;
-        } else {
+            $('#finalizar').prop("disabled", true)
+            $("#opcoes :input").keyup(function () {
+                if ($("#nomeImpresso").val() !== ""
+                        && $("#numeroCartao").val() !== ""
+                        && $("#codVerif").val() !== ""
+                        && $("#dtVenc").val() !== "") {
+                    $('#finalizar').prop("disabled", false)
+                    checkCart();
+                } else {
+                    $('#finalizar').prop("disabled", true)
+                }
+            });
+        } else if ($(this).attr('id') == 'boleto') {
             $('#opcoes').hide();
+            $("#nomeImpresso").val("");
+            $("#numeroCartao").val("");
+            $("#codVerif").val("");
+            $("#dtVenc").val("");
+            $('#finalizar').prop("disabled", false)
+            checkCart();
         }
     });
 }
@@ -50,6 +67,13 @@ $(document).ready(function () {
         FinalizarCompras();
     });
 
+    $('.quantidade').prop('max', function () {
+        var tr = $(this).parent().parent().parent();
+        var maxEstoque = tr.find("#maxEstoque").val();
+        return maxEstoque;
+    });
+
+
     $(document.body).on('click', '.quantidade', function () {
         var qtd = $(this).val();
         var tr = $(this).parent().parent().parent();
@@ -57,7 +81,7 @@ $(document).ready(function () {
         var valorNormal = tr.find("p.vlNormal").attr("valorNormal");
         var subTotal = tr.find(".sub-total p");
         var totalCompra = 0;
-        
+
         if (valorDesconto == undefined) {
             subTotal.text('R$ ' + (valorNormal * qtd).toFixed(2));
         } else {
@@ -67,13 +91,13 @@ $(document).ready(function () {
 
         $('#tabela-carrinho > tbody  > tr').each(function () {
             var subTotal = $(this).find(".sub-total p.vlSubTotal").text();
-            var total = 
-            subTotal = subTotal.substring(3);
+            var total =
+                    subTotal = subTotal.substring(3);
             subTotal = subTotal.replace(",", ".");
             debugger;
             totalCompra = (parseFloat(totalCompra) + parseFloat(subTotal));
-            
-            $('h3').html('Valor Total: R$ '+totalCompra);
+
+            $('h3').html('Valor Total: R$ ' + totalCompra);
 
 
         });

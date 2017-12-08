@@ -65,7 +65,7 @@ public class LojaController extends BaseLojaController {
             ModelAndView model = new ModelAndView("loja/detalhesProduto.html");
             Produto produto = produtoService.buscar(id);
             model.addObject("produto", produto);
-
+            
             for (int i = 1; i < 6; i++) {
                 parcelas.add(produto.getValor() / i);
             }
