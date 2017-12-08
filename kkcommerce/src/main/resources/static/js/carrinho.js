@@ -35,7 +35,7 @@ function checkCart() {
 }
 
 function creditCard() {
-    $('.radio button[name=formaPagamento]').click(function () {
+    $('.radio a[name=formaPagamento]').click(function () {
         if ($(this).attr('id') == 'cc') {
             $('#opcoes').show();
             $('#finalizar').prop("disabled", true)
