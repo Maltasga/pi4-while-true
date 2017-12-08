@@ -129,37 +129,38 @@
                                     </tbody>
                                 </table>  
                             </div>
+                            <div class="row">
+                                <p>Formas de Pagamento</p>
+                                <div class="radio">
+                                    <a name="formaPagamento" id="boleto" class="btn btn-info btn-lg">
+                                        <span class="glyphicon glyphicon-barcode"></span> Boleto
+                                    </a>
+                                    <a name="formaPagamento" id="cc" class="btn btn-info btn-lg">
+                                        <span class="glyphicon glyphicon-credit-card"></span> Cartão de Crédito
+                                    </a>
+                                </div>
+                                <div id='opcoes' style='display:none'>
+                                    <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
+                                        <label>Número do Cartão de Crédito</label>
+                                        <input id="numeroCartao" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
+                                        <label>Nome Impresso no Cartão de Crédito</label>
+                                        <input id="nomeImpresso" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
+                                        <label>Código de Verificação</label>
+                                        <input id="codVerif" type="text" class="form-control">
+                                    </div>
+                                    <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
+                                        <label>Data de Vencimento</label>
+                                        <input id="dtVenc" type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="row">
-                            <p>Formas de Pagamento</p>
-                            <div class="radio">
-                                <a name="formaPagamento" id="boleto" class="btn btn-info btn-lg">
-                                    <span class="glyphicon glyphicon-barcode"></span> Boleto
-                                </a>
-                                <a name="formaPagamento" id="cc" class="btn btn-info btn-lg">
-                                    <span class="glyphicon glyphicon-credit-card"></span> Cartão de Crédito
-                                </a>
-                            </div>
-                            <div id='opcoes' style='display:none'>
-                                <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                                    <label>Número do Cartão de Crédito</label>
-                                    <input id="numeroCartao" type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
-                                    <label>Nome Impresso no Cartão de Crédito</label>
-                                    <input id="nomeImpresso" type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
-                                    <label>Código de Verificação</label>
-                                    <input id="codVerif" type="text" class="form-control">
-                                </div>
-                                <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
-                                    <label>Data de Vencimento</label>
-                                    <input id="dtVenc" type="text" class="form-control">
-                                </div>
-                            </div>
-                        </div>
+
 
                         <div th:if="${temEndereco}" class="botao flex-end" style="justify-content: space-between;">
                             <div>
