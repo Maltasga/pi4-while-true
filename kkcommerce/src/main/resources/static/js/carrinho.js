@@ -14,7 +14,7 @@ function FinalizarCompras() {
         data: {strCarrinho: JSON.stringify(arr)},
         success: function (result) {
             debugger;
-            location.href = '/loja/protocolo?protocoloID='+result;
+            location.href = '/loja/protocolo?protocoloID=' + result;
         },
         error: function (xhr, status, error) {
             console.log(error);
