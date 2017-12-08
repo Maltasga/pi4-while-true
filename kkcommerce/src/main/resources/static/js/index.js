@@ -4,7 +4,7 @@ $(document).ready(function () {
 
        $("#lista-produtos .produto").filter(function () {
 
-            $(this).parent().toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            $(this).parent().toggle($(".produto .nome").text().toLowerCase().indexOf(value) > -1)
 
         });
     });
