@@ -23,8 +23,8 @@
                 <h1>Relatório de Vendas</h1>
             </div>
             <p>&nbsp;</p>
-            <form action="#" method="post" enctype="multipart/form-data"
-                  th:action="gerar-relatorio">
+            <form action="#" method="get" enctype="multipart/form-data"
+                  th:action="relatorios">
                 <div class="col-lg-8">
                     <div class="form-group">
                         <div class="form-inline">
@@ -33,7 +33,6 @@
                             <label>Data final: </label>
                             <input type="date" name="fim" class="form-control" required/>
                             <input id="btnGerar" type="submit" value="Gerar" class="btn btn-primary" />
-                            <a href="#" th:href="@{/kk-admin/gerar-relatorio}"></a>
                         </div>
                     </div>
 
