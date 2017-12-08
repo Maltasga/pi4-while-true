@@ -38,8 +38,7 @@ public class RelatorioService extends ServiceBase {
         if (!"".equals(fim)) {
             f = sdf.parse(fim);
         }
-
-        System.out.println(inicio + " " + fim);
+        
         RelatorioDao rdao = new RelatorioDao();
         List<Relatorio> relatorio = rdao.listarTudo(ini, f);
         return relatorio;

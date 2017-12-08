@@ -8,61 +8,78 @@
     </head>
     <body>
         <div layout:fragment="conteudo">
-            <div class="header">
+            <div class="container fundo" style="padding: 20px;">
+                <p>&nbsp;</p>
                 <h1>Cadastro de Endereço</h1>
-            </div>    
+                <p>&nbsp;</p>
+                <form action="#" method="POST"
+                      th:action="cadastrar-endereco" th:object="${endereco}">
+                    <input type="hidden" name="id" th:field="*{id}" th:value="${endereco.id}" />
+                    <input type="hidden" name="clienteiI" th:field="*{clienteId}" th:value="${endereco.clienteId}" />
+                    <input type="hidden" name="principal" th:field="*{principal}" th:value="${endereco.principal}" />
 
-
-            <form action="#" method="POST"
-                  th:action="cadastrar-endereco" th:object="${endereco}">
-                <input type="hidden" name="id" th:field="*{id}" th:value="${endereco.id}" />
-                <input type="hidden" name="clienteiI" th:field="*{clienteId}" th:value="${endereco.clienteId}" />
-                <input type="hidden" name="principal" th:field="*{principal}" th:value="${endereco.principal}" />
-
-
-                <div class="col-lg-6">
-                    <div class="form-group form-inline">
-                        <label>Cep</label>
-                        <input type="text" required="required" name="cep" class="form-control"
-                               th:field="*{cep}" th:value="${endereco.cep}" />
-                    </div>
-                    <div class="form-group form-inline">
-                        <label>Logradouro</label>
-                        <input type="text" required="required" name="logradouro" class="form-control"
-                               th:field="*{logradouro}" th:value="${endereco.logradouro}" />                        
-
-                        <label>Nº</label>
-                        <input type="text" required="required" name="numero" class="form-control"
-                               th:field="*{numero}" th:value="${endereco.numero}" />
-                    </div>
-                    <div class="form-group">
-                        <label>Complemento</label>
-                        <input type="text" name="complemento" class="form-control"
-                               th:field="*{complemento}" th:value="${endereco.complemento}" />
-                    </div>
-                    <div class="form-group form-inline">
-                        <label>Cidade</label>
-                        <input type="text" required="required" name="cidade" class="form-control"
-                               th:field="*{cidade}" th:value="${endereco.cidade}" />
-
-                        <label>UF</label>
-                        <select required="required" class="form-control"
-                                th:field="*{uf}" th:value="${endereco.uf}">
-                            <option value="" selected="selected">UF</option>
-                            <option th:each="e : ${listaUF}" th:value="${e}" th:text="${e}"></option>
-                        </select>
-                    </div>
-
-                    <div class="clear">
-                        <div class="pull-right">
-                            <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
-                            <a href="#" th:href="@{/meus-enderecos(id=${endereco.clienteId})}"
-                               <span class="btn btn-default">Cancelar</span>
-                            </a>
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="cep">Cep</label>
+                                <input type="text" required="required" name="cep" class="form-control"
+                                       th:field="*{cep}" th:value="${endereco.cep}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="logradouro">Logradouro</label>
+                                <input type="text" required="required" name="logradouro" class="form-control"
+                                       th:field="*{logradouro}" th:value="${endereco.logradouro}" />    
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                <label for="numero">Nº</label>
+                                <input type="text" required="required" name="numero" class="form-control"
+                                       th:field="*{numero}" th:value="${endereco.numero}" />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                <label>Complemento</label>
+                                <input type="text" name="complemento" class="form-control"
+                                       th:field="*{complemento}" th:value="${endereco.complemento}" />
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div class="form-group">
+                                <label>Cidade</label>
+                                <input type="text" required="required" name="cidade" class="form-control"
+                                       th:field="*{cidade}" th:value="${endereco.cidade}" />  
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                            <div class="form-group">
+                                <label>UF</label>
+                                <select required="required" class="form-control"
+                                        th:field="*{uf}" th:value="${endereco.uf}">
+                                    <option value="" selected="selected">UF</option>
+                                    <option th:each="e : ${listaUF}" th:value="${e}" th:text="${e}"></option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="pull-right">
+                                <input id="btnSalvar" type="submit" value="Salvar" class="btn btn-primary" />
+                                <a href="#" th:href="@{/meus-enderecos(id=${endereco.clienteId})}"
+                                   <span class="btn btn-default">Cancelar</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
             <script type="text/javascript">
                 $(function () {
                     $("input[name='cep']").inputmask({"mask": "99999-999", removeMaskOnSubmit: true});

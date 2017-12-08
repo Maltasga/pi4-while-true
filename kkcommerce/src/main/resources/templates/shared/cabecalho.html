@@ -1,11 +1,11 @@
 <div class="row">
     <div class="col-lg-4 col-md-4">    
-        <div class="flex-start margin-left">
+        <div class="flex-start" style='padding-left: 8%'>
             <a href="/" class="img-logo"></a>
         </div>                   
     </div>
     <div class="col-lg-5 col-md-5 col-sm-12">
-        <div class="input-group txtPesquisa">
+        <div class="input-group txtPesquisa" style='padding-left: 8%'>
             <input type="text" id="txtPesquisa" class="form-control" placeholder="O que você procura?">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button">
@@ -21,7 +21,7 @@
                 <div class="col-lg-4 col-md-2">
                     <a href="#" style="text-decoration: none;"
                        th:href="@{/loja/lista-pedidos?id=1}">
-                        <span class="glyphicon glyphicon-list-alt flex-center icons" style="color: black;"></span>
+                        <span class="glyphicon glyphicon-list-alt flex-center icons" style="color: #191970;"></span>
                         <div class="flex-center">   
                             <span class="font-text">Pedidos</span> 
                         </div>                           
@@ -30,15 +30,15 @@
                 <div class="col-lg-4 col-md-2">
                     <a href="#" style="text-decoration: none;"
                        th:href="@{/loja/meus-dados?id=1}">
-                        <span class="glyphicon glyphicon-user flex-center icons" style="color: black;"></span>
+                        <span class="glyphicon glyphicon-user flex-center icons" style="color: #191970;"></span>
                         <div class="flex-center">
                             <span class="font-text">Minha conta</span>                         
                         </div>
                     </a>
                 </div>
                 <div class="col-lg-4 col-md-2">
-                    <a href="checkout/checkout" style="text-decoration: none;">
-                        <span class="glyphicon glyphicon-shopping-cart icons" style="color: black;"></span>                    
+                    <a href="/checkout" style="text-decoration: none;">
+                        <span class="glyphicon glyphicon-shopping-cart icons" style="color: #191970;"></span>                    
                     </a>
                     <span class="badge" th:text='${@carrinhoController.quantidadeItens}'></span>
                 </div>  
