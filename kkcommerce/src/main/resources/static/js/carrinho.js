@@ -23,6 +23,17 @@ function FinalizarCompras() {
 
 }
 
+function checkCart() {
+    var item = $('#body-carrinho tr');
+    if (item.length > 0) {
+        $('#if-cart-empty').hide();
+        $('#finalizar').prop("disabled", false)
+    } else {
+        $('#if-cart-empty').show();
+        $('#finalizar').prop("disabled", true)
+    }
+}
+
 $(document).ready(function () {
     $('#finalizar').click(function (e) {
         FinalizarCompras();
@@ -42,4 +53,6 @@ $(document).ready(function () {
         }
 
     });
+    
+    checkCart();
 });

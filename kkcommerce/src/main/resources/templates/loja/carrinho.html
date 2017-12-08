@@ -75,6 +75,8 @@
                                 </tr>
                             </tbody>
                         </table> 
+                        <div class="alert alert-warning text-center" id="if-cart-empty"><strong>Carrinho vazio.</strong>
+                            Por favor coloque produtos no carrinho para finalizar a compra.</div>
                         <div class="row text-right">
                             <h3 th:text="'Valor Total: ' +${#numbers.formatCurrency(carrinho.valorTotal)}"></h3>
                         </div>
@@ -93,7 +95,7 @@
                                 <tbody>
                                     <tr th:each="item : ${enderecos}">
                                         <td>
-                                            <input type="radio" th:enderecoid="${item.id}" th:checked="${item.principal}" />
+                                            <input name="endereco" type="radio" th:enderecoid="${item.id}" th:checked="${item.principal}" />
                                         </td>
                                         <td th:text="${item.logradouroNumero}"></td>
                                         <td th:text="${item.cidade}"></td>
