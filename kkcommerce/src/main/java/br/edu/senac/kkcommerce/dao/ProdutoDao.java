@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -180,5 +181,88 @@ public class ProdutoDao implements IDaoBase<Produto> {
             }
         }
         return produto;
+    }
+
+    public ArrayList<Produto> listarPorGenero(String genero) throws SQLException, Exception {
+
+        ArrayList<Produto> produtos = new ArrayList<>();
+
+        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHERE GENERO = ?";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            statement.setString(1, genero);
+            ResultSet result = statement.executeQuery();
+            Produto p = null;
+            while (result.next()) {
+                p = new Produto(
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("DESCRICAO"),
+                        result.getInt("ID_CATEGORIA"),
+                        result.getInt("ID_COLECAO"),
+                        result.getInt("ID_MARCA"),
+                        result.getDouble("VALOR"),
+                        result.getBoolean("ATIVO"),
+                        Util.toUtilDate(result.getDate("DT_CADASTRO")));
+                p.setPercDesconto(result.getDouble("PERC_DESCONTO"));
+                p.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
+                p.setColecao(new Colecao(result.getInt("ID_COLECAO"), result.getString("NM_COLECAO")));
+                produtos.add(p);
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return produtos;
+    }
+
+    public ArrayList<Produto> listarPorOferta() throws SQLException, Exception {
+
+        ArrayList<Produto> produtos = new ArrayList<>();
+
+        String query = "SELECT * FROM SELECT_PRODUTO_COMPLETO WHERE PERC_DESCONTO IS NOT NULL";
+        PreparedStatement statement = null;
+
+        try {
+            conexao = ConnectionUtils.getConnection();
+            statement = conexao.prepareStatement(query);
+            ResultSet result = statement.executeQuery();
+            Produto p = null;
+            while (result.next()) {
+                p = new Produto(
+                        result.getInt("ID"),
+                        result.getString("NOME"),
+                        result.getString("DESCRICAO"),
+                        result.getInt("ID_CATEGORIA"),
+                        result.getInt("ID_COLECAO"),
+                        result.getInt("ID_MARCA"),
+                        result.getDouble("VALOR"),
+                        result.getBoolean("ATIVO"),
+                        Util.toUtilDate(result.getDate("DT_CADASTRO")));
+                p.setPercDesconto(result.getDouble("PERC_DESCONTO"));
+                p.setMarca(new Marca(result.getInt("ID_MARCA"), result.getString("NM_MARCA")));
+                p.setColecao(new Colecao(result.getInt("ID_COLECAO"), result.getString("NM_COLECAO")));
+                produtos.add(p);
+
+            }
+        } finally {
+            if (statement != null && !statement.isClosed()) {
+                statement.close();
+            }
+
+            if (conexao != null || !conexao.isClosed()) {
+                conexao.close();
+            }
+        }
+        return produtos;
     }
 }

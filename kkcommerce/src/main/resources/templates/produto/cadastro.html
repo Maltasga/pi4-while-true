@@ -40,19 +40,19 @@
                     <div class="form-group">
                         <div class="form-inline">
                             <label>Coleção</label>
-                            <select name="idColecao" class="form-control"
+                            <select required="required" name="idColecao" class="form-control"
                                     th:field="*{idColecao}" >
                                 <option value="" selected>Selecione a coleção</option>
                                 <option th:each="c : ${colecoes}" th:value="${c.id}" th:text="${c.nome}"></option>
                             </select>
                             <label>Categoria</label>
-                            <select name="idCategoria" class="form-control"
+                            <select required="required" name="idCategoria" class="form-control"
                                     th:field="*{idCategoria}" >
                                 <option value="" selected>Selecione a categoria</option>
                                 <option th:each="c : ${categorias}" th:value="${c.id}" th:text="${c.nome + ' - ' + c.genero}"></option>
                             </select>
                             <label>Marca</label>
-                            <select name="idMarca" class="form-control"
+                            <select required="required" name="idMarca" class="form-control"
                                     th:field="*{idMarca}" >
                                 <option value="" selected>Selecione a marca</option>
                                 <option th:each="m : ${marcas}" th:value="${m.id}" th:text="${m.nome}"></option>
@@ -78,7 +78,7 @@
                             <li th:each="e, eStatus : ${produto.estoque}">
                                 <div class="label-estoque" th:text="${e.tamanho}"></div>
                                 <input type="hidden" th:field="*{estoque[__${eStatus.index}__].tamanho}" th:value="${e.tamanho}" />
-                                <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" th:value="${e.quantidade}" class="campo-estoque" />
+                                <input id="qtdEstoque" type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" th:value="${e.quantidade}" class="campo-estoque" />
                             </li>
 
                         </ul>
@@ -95,8 +95,8 @@
             </form>
             <script type="text/javascript">
                 $(function () {
-                    $("input[name='valor'").inputmask({"alias": "currency", removeMaskOnSubmit: true});
-                    $("input.campo-estoque").inputmask({"alias": "integer"});
+                    $("input[name='valor'").inputmask({"alias": "currency", removeMaskOnSubmit: true, allowMinus: false});
+                    $("input.campo-estoque").inputmask({"alias": "integer", allowMinus: false});
                 });
             </script>
         </div>

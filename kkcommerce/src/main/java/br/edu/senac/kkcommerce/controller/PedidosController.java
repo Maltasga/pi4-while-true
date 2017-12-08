@@ -6,7 +6,6 @@
 
 package br.edu.senac.kkcommerce.controller;
 
-import br.edu.senac.kkcommerce.service.CarrinhoService;
 import br.edu.senac.kkcommerce.service.PedidosClienteService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

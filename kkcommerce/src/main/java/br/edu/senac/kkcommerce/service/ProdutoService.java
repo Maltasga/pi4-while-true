@@ -30,6 +30,30 @@ public class ProdutoService extends ServiceBase {
         return produtos;
     }
 
+    public List<Produto> listarPorGenero(String genero) throws Exception {
+        ProdutoDao pdao = new ProdutoDao();
+
+        List<Produto> produtos = pdao.listarPorGenero(genero);
+
+        for (Produto p : produtos) {
+            p.setImagens(imagemService.listar(p.getId()));
+            p.setEstoque(estoqueService.listarPorProduto(p.getId()));
+        }
+        return produtos;
+    }
+
+    public List<Produto> listarPorOferta() throws Exception {
+        ProdutoDao pdao = new ProdutoDao();
+
+        List<Produto> produtos = pdao.listarPorOferta();
+
+        for (Produto p : produtos) {
+            p.setImagens(imagemService.listar(p.getId()));
+            p.setEstoque(estoqueService.listarPorProduto(p.getId()));
+        }
+        return produtos;
+    }
+
     public void salvar(Produto p) throws Exception {
         if (dao.getById(p.getId()) == null) {
             int idProduto = dao.inserir(p);
