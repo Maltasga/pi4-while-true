@@ -5,11 +5,10 @@
  */
 package br.edu.senac.kkcommerce.service;
 
-import br.edu.senac.kkcommerce.dao.IDaoBase;
 import br.edu.senac.kkcommerce.dao.RelatorioDao;
 import br.edu.senac.kkcommerce.model.Relatorio;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,14 +18,27 @@ import java.util.List;
  */
 public class RelatorioService extends ServiceBase {
 
+    private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
     public RelatorioService() {
         super(new RelatorioDao());
     }
 
     public List<Relatorio> listarTudo(String inicio, String fim) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date ini = sdf.parse(inicio);
-        Date f = sdf.parse(fim);
+        Calendar cIni = Calendar.getInstance();
+        cIni.add(Calendar.DATE, -7);
+        Calendar cFim = Calendar.getInstance();
+        cFim.add(Calendar.DATE, 1);
+        Date ini = cIni.getTime();
+        Date f = cFim.getTime();
+
+        if (!"".equals(inicio)) {
+            ini = sdf.parse(inicio);
+        }
+        if (!"".equals(fim)) {
+            f = sdf.parse(fim);
+        }
+
         System.out.println(inicio + " " + fim);
         RelatorioDao rdao = new RelatorioDao();
         List<Relatorio> relatorio = rdao.listarTudo(ini, f);
@@ -34,9 +46,18 @@ public class RelatorioService extends ServiceBase {
     }
 
     public List<Relatorio> listarPorCategoria(String inicio, String fim, int catId) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date ini = sdf.parse(inicio);
-        Date f = sdf.parse(fim);
+        Calendar cIni = Calendar.getInstance();
+        cIni.add(Calendar.DATE, -7);
+        Date ini = cIni.getTime();
+        Date f = Calendar.getInstance().getTime();
+
+        if (!"".equals(inicio)) {
+            ini = sdf.parse(inicio);
+        }
+        if (!"".equals(fim)) {
+            f = sdf.parse(fim);
+        }
+
         System.out.println(inicio + " " + fim);
         RelatorioDao rdao = new RelatorioDao();
         List<Relatorio> relatorio = rdao.listarCat(ini, f, catId);

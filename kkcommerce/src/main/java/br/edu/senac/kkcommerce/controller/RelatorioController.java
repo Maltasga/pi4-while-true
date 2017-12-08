@@ -10,7 +10,6 @@ import br.edu.senac.kkcommerce.model.Relatorio;
 import br.edu.senac.kkcommerce.service.CategoriaService;
 import br.edu.senac.kkcommerce.service.RelatorioService;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -18,21 +17,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-/**
- *
- * @author Karolina G. K.
- */
 @Controller
 public class RelatorioController extends BaseAdminController {
 
     private RelatorioService service = new RelatorioService();
-
     private CategoriaService catService = new CategoriaService();
 
     @GetMapping("/relatorios")
-    public ModelAndView index() throws Exception {
+    public ModelAndView index(@ModelAttribute("inicio") String inicio, @ModelAttribute("fim") String fim) throws Exception {
         try {
 
             List<Categoria> categorias = catService.listar();
@@ -46,7 +39,11 @@ public class RelatorioController extends BaseAdminController {
                     catMasc.add(c);
                 }
             }
-            return new ModelAndView("relatorio/relatorios.html").addObject("catfem", catFem).addObject("catmasc", catMasc);
+            List<Relatorio> relatorio = service.listarTudo(inicio, fim);
+            return new ModelAndView("relatorio/relatorios.html")
+                    .addObject("catfem", catFem)
+                    .addObject("catmasc", catMasc)
+                    .addObject("relatorio", relatorio);
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
