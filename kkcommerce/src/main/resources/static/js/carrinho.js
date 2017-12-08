@@ -34,6 +34,17 @@ function checkCart() {
     }
 }
 
+function creditCard() {
+    $('input[type="radio"]').click(function () {
+        if ($(this).attr('id') == 'cc') {
+            $('#opcoes').show();
+            return true;
+        } else {
+            $('#opcoes').hide();
+        }
+    });
+}
+
 $(document).ready(function () {
     $('#finalizar').click(function (e) {
         FinalizarCompras();
@@ -47,12 +58,16 @@ $(document).ready(function () {
         var subTotal = tr.find(".sub-total p");
 
         if (valorDesconto == undefined) {
-            subTotal.text('R$ '+(valorNormal * qtd).toFixed(2));
+            subTotal.text('R$ ' + (valorNormal * qtd).toFixed(2));
         } else {
-            subTotal.text('R$ '+(valorDesconto * qtd).toFixed(2));
+            subTotal.text('R$ ' + (valorDesconto * qtd).toFixed(2));
         }
-
     });
+
+    $('#codVerif').inputmask({"alias": "integer", mask:"9{3,3}"});
+    $('#dtVenc').inputmask({"alias": "datetime", mask:"1/2/y", placeholder: "dd/mm/yyyy"});
+    $('#numeroCartao').inputmask({"alias": "integer", mask:"9999 9999 9999 9999", placeholder:"____-____-____-____"});
     
     checkCart();
+    creditCard();
 });

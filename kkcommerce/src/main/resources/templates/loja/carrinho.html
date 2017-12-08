@@ -12,6 +12,7 @@
               href="../../static/css/geral.css" />
 
         <script th:src="@{/js/carrinho.js}" src="../../static/js/carrinho.js" type="text/javascript"></script>
+        <script th:src="@{/webjars/jquery.inputmask/3.3.7/jquery.inputmask.bundle.js}" type="text/javascript"></script>
     </head>
     <body>
         <div layout:fragment="conteudo">
@@ -58,7 +59,7 @@
                                             </p>   
                                             <p class="vlNormal" th:valorNormal="${item.produto.valor}" th:if="${!item.produto.getPossuiDesconto()}" 
                                                th:text="${#numbers.formatCurrency(item.produto.valor)}">
-                                               
+
                                             </p> 
                                         </div>
                                     </td>
@@ -105,6 +106,33 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="row">
+                            <p>Formas de Pagamento</p>
+                            <div class="radio">
+                                <label><input name="formaPagamento" type="radio" value="boleto" checked/> Boleto</label>
+                            </div>
+                            <div class="radio">
+                                <label><input name="formaPagamento" id="cc" type="radio" value="cc"/> Cartão de Crédito</label>
+                            </div>
+                            <div id='opcoes' style='display:none'>
+                                <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
+                                    <label>Número do Cartão de Crédito</label>
+                                    <input id="numeroCartao" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-lg-4 col-xs-12 col-sm-12 col-md-6">
+                                    <label>Nome Impresso no Cartão de Crédito</label>
+                                    <input id="nomeImpresso" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
+                                    <label>Código de Verificação</label>
+                                    <input id="codVerif" type="text" class="form-control">
+                                </div>
+                                <div class="form-group col-lg-2 col-xs-4 col-sm-4 col-md-2">
+                                    <label>Data de Vencimento</label>
+                                    <input id="dtVenc" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                         <div th:if="${temEndereco}" class="botao flex-end" style="justify-content: space-between;">
                             <div>
                                 <a href="/">
@@ -118,7 +146,7 @@
                         <div th:if="${!temEndereco}" class="flex-end" style="justify-content: space-between;">
                             <p>Cadastre um endereço para concluir sua compra.</p>
                             <a href="#" class="btn btn-info"
-                                th:href="@{/loja/cadastrar-endereco(id=1,eid)}">
+                               th:href="@{/loja/cadastrar-endereco(id=1,eid)}">
                                 Cadastrar endereço
                             </a>
                         </div>
