@@ -27,6 +27,36 @@ public class LojaController extends BaseLojaController {
         }
     }
 
+    @GetMapping("/feminino")
+    public ModelAndView listarFem() throws Exception {
+        try {
+            return new ModelAndView("loja/index.html")
+                    .addObject("produtos", produtoService.listarPorGenero("F"));
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/masculino")
+    public ModelAndView listarMasc() throws Exception {
+        try {
+            return new ModelAndView("loja/index.html")
+                    .addObject("produtos", produtoService.listarPorGenero("M"));
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
+    @GetMapping("/ofertas")
+    public ModelAndView listarOfertas() throws Exception {
+        try {
+            return new ModelAndView("loja/index.html")
+                    .addObject("produtos", produtoService.listarPorOferta());
+        } catch (Exception ex) {
+            throw new Exception(ex.getMessage());
+        }
+    }
+
     @GetMapping("/detalhes-produto")
     public ModelAndView detalhes(@ModelAttribute("id") int id) throws Exception {
         try {
@@ -40,13 +70,13 @@ public class LojaController extends BaseLojaController {
                 parcelas.add(produto.getValor() / i);
             }
             model.addObject("parcelas", parcelas);
-            
+
             return model;
         } catch (Exception ex) {
             throw new Exception(ex.getMessage());
         }
     }
-    
+
     @GetMapping("/protocolo")
     public ModelAndView protocolo() throws Exception {
         try {
