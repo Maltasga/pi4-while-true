@@ -26,8 +26,7 @@
                   th:action="cadastrar-produto" th:object="${produto}">
 
                 <div class="col-lg-6">
-                    <input type="hidden" name="id" th:field="*{id}" th:value="${id}" />
-                    <input type="hidden" name="estoque" th:field="*{estoque}" th:value="${estoque}" />
+                    <input type="hidden" name="id" th:field="*{id}" th:value="${id}" /> 
                     <div class="form-group">
                         <label>Nome</label>
                         <input type="text" name="nome" class="form-control" required
@@ -76,7 +75,7 @@
                         <label>Estoque</label>
                         <ul id="lista-estoque" class="list-unstyled">
                             
-                            <li th:each="e, eStatus : ${estoque}">
+                            <li th:each="e, eStatus : ${produto.estoque}">
                                 <div class="label-estoque" th:text="${e.tamanho}"></div>
                                 <input type="hidden" th:field="*{estoque[__${eStatus.index}__].tamanho}" th:value="${e.tamanho}" />
                                 <input type="text" th:field="*{estoque[__${eStatus.index}__].quantidade}" th:value="${e.quantidade}" class="campo-estoque" />

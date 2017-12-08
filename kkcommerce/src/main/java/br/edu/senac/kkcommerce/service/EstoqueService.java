@@ -35,6 +35,18 @@ public class EstoqueService extends ServiceBase {
         return estoque;
     }
 
+    public ArrayList<Estoque> listarPorProdutoTodos(int produtoId) throws Exception {
+        ArrayList<Estoque> estoque = new ArrayList<>();
+        List<Estoque> arrEstoque = dao.listar();
+
+        for (Estoque e : arrEstoque) {
+            if (e.getIdProduto() == produtoId) {
+                estoque.add(e);
+            }
+        }
+        return estoque;
+    }
+
     public void atualizarEstoque(Estoque e) throws Exception {
         dao.atualizar(e);
     }
